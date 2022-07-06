@@ -1,12 +1,19 @@
 <resources>
-    <string name="app_name">Draft</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="app_name">Wheeler_Android</string>
+    <string name="app_name_Start">Wheeler</string>
+    <string name="Create_account_Start">Create account</string>
+    <string name="Login_account_Start">Login</string>
+    <string name="Facebook_connection">Connection with Facebook</string>
+    <string name="Gmail_connection">Connection with Gmail</string>
+    <string name="Phone_connection">Connection with Phone</string>
+    <string name="Connection_email">Email/username</string>
+    <string name="password">Password</string>
+    <string name="Game_Batch_Start">Current Batch</string>
+    <string name="Game_Proposal_Start">Would you like to win this prize ?</string>
+    <string name="Game_Answer1">Yes</string>
+    <string name="Game_Answer2">No</string>
+    <string name="Golden_Subs">Try the Golden subscription</string>
+    <string name="GameWaiting">Random draw in:</string>
+    <string name="End_Game">Winner</string>
+    <string name="Forthcoming">Forthcoming</string>
 </resources>
