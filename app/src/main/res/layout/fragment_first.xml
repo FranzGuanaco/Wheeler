@@ -26,7 +26,7 @@
         android:layout_marginTop="180dp"
         android:maxWidth="12dp"
         android:maxHeight="12dp"
-        android:src="@drawable/Animation"
+        android:src="@drawable/animation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
