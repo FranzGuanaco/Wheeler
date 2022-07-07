@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Wheeler_Android</string>
     <string name="app_name_Start">Wheeler</string>
+    <string name="lorem">orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com</string>
     <string name="Create_account_Start">Create account</string>
     <string name="Login_account_Start">Login</string>
     <string name="Facebook_connection">Connection with Facebook</string>
