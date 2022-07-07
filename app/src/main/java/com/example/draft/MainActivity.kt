@@ -16,10 +16,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_first)
+        setContentView(R.layout.fragment_first);
 
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(androidx.fragment.R.id.fragment_container_view_tag, Homefrag())
-        transaction.addToBackStack(null)
-        transaction.commit()
+
+
     }}
