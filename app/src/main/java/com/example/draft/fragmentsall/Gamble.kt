@@ -1,35 +1,22 @@
-package com.example.draft
+package com.example.draft.fragmentsall
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.example.draft.R
 
-
-class MainActivity : AppCompatActivity() {
-
-
+class Gamble: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.first_gamble)
-/*
-    val facebook = findViewById<Button>(R.id.Facebook)
 
-        facebook?.setOnClickListener {
-            val intent = Intent(this,FirstFragment::class.java)
-            startActivity(intent)
-        }
-*/
         val progressbar = findViewById<ProgressBar>(R.id.progressBar)
         progressbar.visibility= View.VISIBLE
         val button = findViewById<Button>(R.id.button5)
 
         button.setOnClickListener{
             progressbar.incrementProgressBy(10)
-
-        }
-
-
-    }}
+}}}
