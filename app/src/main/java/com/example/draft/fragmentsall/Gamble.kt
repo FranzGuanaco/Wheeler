@@ -11,12 +11,12 @@ import com.example.draft.R
 class Gamble: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.first_gamble)
-
+        setContentView(R.layout.first_gamble) }}
+/*
         val progressbar = findViewById<ProgressBar>(R.id.progressBar)
         progressbar.visibility= View.VISIBLE
         val button = findViewById<Button>(R.id.button5)
 
         button.setOnClickListener{
             progressbar.incrementProgressBy(10)
-}}}
+}}} */

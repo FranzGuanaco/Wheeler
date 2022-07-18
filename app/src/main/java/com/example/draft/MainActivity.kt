@@ -2,13 +2,16 @@ package com.example.draft
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ProgressBar
 
 
 class MainActivity : AppCompatActivity() {
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,13 +26,17 @@ class MainActivity : AppCompatActivity() {
         }
 */
         val progressbar = findViewById<ProgressBar>(R.id.progressBar)
-        progressbar.visibility= View.VISIBLE
-        val button = findViewById<Button>(R.id.button5)
+        val converter:  EditText = findViewById (R.id.gamblesum)
+        val button = findViewById<Button>(R.id.button6)
 
-        button.setOnClickListener{
-            progressbar.incrementProgressBy(10)
+
+
+
+        button.setOnClickListener() {
+            if ( converter.text.toString().toIntOrNull() is Int && converter.text.toString().toInt() > 10 ) {
+                with(progressbar) { incrementProgressBy(10) }
+
+            }
 
         }
-
-
     }}
