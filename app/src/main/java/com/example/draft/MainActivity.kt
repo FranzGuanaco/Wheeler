@@ -30,13 +30,24 @@ class MainActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.button6)
 
 
+        progressbar.max= 100;
+        
+
+        button.setOnClickListener()
+
+        {
+
+            if ( converter.text.toString().toIntOrNull() is Int && converter.text.toString().toInt() > 10 ){
+                with(progressbar) { progress=10
 
 
-        button.setOnClickListener() {
-            if ( converter.text.toString().toIntOrNull() is Int && converter.text.toString().toInt() > 10 ) {
-                with(progressbar) { incrementProgressBy(10) }
+                }
+
+                if ( converter.text.toString().toIntOrNull() is Int && converter.text.toString().toInt() > 20 ) {
+                    with(progressbar) { incrementProgressBy(20) }
+
 
             }
 
         }
-    }}
+    }}}
