@@ -27,13 +27,13 @@ class MainActivity : AppCompatActivity() {
 */
         val progressbar = findViewById<ProgressBar>(R.id.progressBar)
         val converter:  EditText = findViewById (R.id.gamblesum)
-        val button = findViewById<Button>(R.id.button6)
+
 
 
         progressbar.max= 100;
 
 
-        button.setOnClickListener()
+        converter.setOnClickListener()
 
         {
 
