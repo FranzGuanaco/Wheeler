@@ -31,20 +31,16 @@ class MainActivity : AppCompatActivity() {
 
 
         progressbar.max= 100;
-        
+
 
         button.setOnClickListener()
 
         {
 
-            if ( converter.text.toString().toIntOrNull() is Int && converter.text.toString().toInt() > 10 ){
-                with(progressbar) { progress=10
+            if ( converter.text.toString().toDoubleOrNull() is Double && converter.text.toString().toDouble() < 200 ){
+                with(progressbar) { progress= (converter.text.toString().toInt() * 100 / 200)
 
 
-                }
-
-                if ( converter.text.toString().toIntOrNull() is Int && converter.text.toString().toInt() > 20 ) {
-                    with(progressbar) { incrementProgressBy(20) }
 
 
             }
