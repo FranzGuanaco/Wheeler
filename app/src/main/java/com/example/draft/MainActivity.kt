@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.Toast
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +28,10 @@ class MainActivity : AppCompatActivity() {
 */
         val progressbar = findViewById<ProgressBar>(R.id.progressBar)
         val converter:  EditText = findViewById (R.id.gamblesum)
+        val toast = Toast.makeText(applicationContext, "pas possible", Toast.LENGTH_SHORT)
+        toast.setGravity(2, 90, 0)
+
+
 
 
 
@@ -39,6 +44,11 @@ class MainActivity : AppCompatActivity() {
 
             if ( converter.text.toString().toDoubleOrNull() is Double && converter.text.toString().toDouble() < 200 ){
                 with(progressbar) { progress= (converter.text.toString().toInt() * 100 / 200)
+                }}
+
+                    if ( converter.text.toString().toDoubleOrNull() is Double && converter.text.toString().toDouble() > 200 ){
+                        toast.show()
+                    }
 
 
 
@@ -46,4 +56,4 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-    }}}
+    }
