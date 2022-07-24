@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         val toast = Toast.makeText(applicationContext, "pas possible", Toast.LENGTH_SHORT)
         toast.setGravity(2, 90, 0)
         val newpage = findViewById<Button>(R.id.validation)
+        var prog = 0
+
 
 
 
@@ -34,7 +36,8 @@ class MainActivity : AppCompatActivity() {
 
             if ( converter.text.toString().toDoubleOrNull() is Double && converter.text.toString().toDouble() < 200 ){
                 with(progressbar) { progress= (converter.text.toString().toInt() * 100 / 200)
-                }}
+                prog = progress
+                } }
 
                     if ( converter.text.toString().toDoubleOrNull() is Double && converter.text.toString().toDouble() > 200 ){
                         toast.show()
@@ -44,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         newpage?.setOnClickListener(){
             if ( converter.text.toString().toDoubleOrNull() is Double && converter.text.toString().toDouble() < 200 ){
                 val intent = Intent(this,FirstFragment::class.java)
+                intent.putExtra("jauge", prog)
                 startActivity(intent)
             }
         }
