@@ -34,13 +34,18 @@ class MainActivity : AppCompatActivity() {
 
         {
 
+            // boutton pour choisir la quantité d'argent à mettre
+
             if ( converter.text.toString().toDoubleOrNull() is Double && converter.text.toString().toDouble() < 200 ){
                 with(progressbar) { progress= (converter.text.toString().toInt() * 100 / 200)
-                prog = progress
+                // prog c'est la variable qui reprend la quantité d'argent misé par l'utilisateur
+                    prog = progress
                 } }
 
                     if ( converter.text.toString().toDoubleOrNull() is Double && converter.text.toString().toDouble() > 200 ){
                         toast.show()
+
+                        // toast pour informer de la mise maximale (ne fonctionne pas)
                     }
             }
 
@@ -49,6 +54,8 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this,FirstFragment::class.java)
                 intent.putExtra("jauge", prog)
                 startActivity(intent)
+
+                    // intend une fois que la mise a été validé
             }
         }
         }
