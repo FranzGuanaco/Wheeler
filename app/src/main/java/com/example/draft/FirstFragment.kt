@@ -83,13 +83,7 @@ class FirstFragment : AppCompatActivity()
         button.setOnClickListener(){
 
             test()
-        }
-
-
-
-        }
-
-        }
+        }}}
 
 
 
