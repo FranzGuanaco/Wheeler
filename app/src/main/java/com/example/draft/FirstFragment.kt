@@ -44,10 +44,8 @@ class FirstFragment : AppCompatActivity()
         var text = findViewById<EditText>(R.id.settext)
 
 
-
-
-        bar.max = 100
-        bar.progress = name
+        bar.max = 100 // remplissage maximale de la varre
+        bar.progress = name // donnée de la MainActivity
 
 
 
@@ -59,14 +57,14 @@ class FirstFragment : AppCompatActivity()
                     duration = 800
                     repeatCount = 122
                     repeatMode = ObjectAnimator.REVERSE
-                } }
+                } }   // mouvement de la fleche (useless pour le moment)
 
             val set = AnimatorSet()
             set.playTogether(animations)
             set.start()
 
 
-            val random = Random.nextLong(1000,15000)
+            val random = Random.nextLong(1000,15000) //compte à rebours
 
             object : CountDownTimer(random, 1000) {
 
@@ -75,7 +73,8 @@ class FirstFragment : AppCompatActivity()
                 }
 
                 override fun onFinish() {
-                    set.cancel()
+                    set.cancel()  // annulation du mouvement de la fleche
+
                 }
             }.start()
         }

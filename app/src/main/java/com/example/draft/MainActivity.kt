@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         val progressbar = findViewById<ProgressBar>(R.id.progressBar)
         val converter:  EditText = findViewById (R.id.gamblesum)
         val toast = Toast.makeText(applicationContext, "pas possible", Toast.LENGTH_SHORT)
-        toast.setGravity(2, 90, 0)
+        toast.setGravity(2, 90, 0) // pas important pour le moment
         val newpage = findViewById<Button>(R.id.validation)
         var prog = 0
 
