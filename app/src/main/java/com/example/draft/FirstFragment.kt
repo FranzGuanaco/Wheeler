@@ -19,6 +19,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.draft.databinding.FragmentFirstBinding
 import com.google.android.material.progressindicator.AnimatorDurationScaleProvider
 import java.text.DateFormat
+import java.util.*
+import java.util.stream.IntStream
 import kotlin.random.Random
 import kotlin.random.nextInt
 import kotlin.system.measureTimeMillis
@@ -44,7 +46,7 @@ class FirstFragment : AppCompatActivity()
         var text = findViewById<EditText>(R.id.settext)
 
 
-        bar.max = 100 // remplissage maximale de la varre
+        bar.max = 100 // remplissage maximale de la barre
         bar.progress = name // donnée de la MainActivity
 
 
@@ -52,32 +54,51 @@ class FirstFragment : AppCompatActivity()
 
         fun test() {
 
+
+            val array  = intArrayOf(1,3,4,22)
+
+            for (n in array){
+
+                if (n == name){
+                    text.setText("hahah")
+
+                val animations = arrayOf(1000f, -600f).map { translation ->
+                    ObjectAnimator.ofFloat(cursor, "translationX", translation).apply {
+                        duration = 800
+                        repeatCount = 12
+                        repeatMode = ObjectAnimator.REVERSE
+                    }}
+                    val set = AnimatorSet()
+                    set.playTogether(animations)
+                    set.start()
+                }
+
+
+
+                else{
+                    text.setText("$name")}}}
+
+
+
+
+            /*
+
+
+
             val animations = arrayOf(1000f, -600f).map { translation ->
                 ObjectAnimator.ofFloat(cursor, "translationX", translation).apply {
                     duration = 800
                     repeatCount = 122
                     repeatMode = ObjectAnimator.REVERSE
-                } }   // mouvement de la fleche (useless pour le moment)
+                }
+            }   // mouvement de la fleche (useless pour le moment)
 
             val set = AnimatorSet()
             set.playTogether(animations)
             set.start()
 
 
-            val random = Random.nextLong(1000,15000) //compte à rebours
-
-            object : CountDownTimer(random, 1000) {
-
-                override fun onTick(millisUntilFinished: Long) {
-                    text.setText("seconds remaining: " + millisUntilFinished / 1000)
-                }
-
-                override fun onFinish() {
-                    set.cancel()  // annulation du mouvement de la fleche
-
-                }
-            }.start()
-        }
+        }  */
 
         button.setOnClickListener(){
 
@@ -89,8 +110,17 @@ class FirstFragment : AppCompatActivity()
 // faire que la fleche identifie si elle est sur la progressbar ou non
 // faire que la fleche s'arrete aleatoirement => func minuteur
 
+/*
+object : CountDownTimer(random, 1000) {
 
+    override fun onTick(millisUntilFinished: Long) {
+        text.setText("seconds remaining: " + millisUntilFinished / 1000)
+    }
 
+    override fun onFinish() {
+        set.cancel()  // annulation du mouvement de la fleche
+
+    } */
 
 
 
