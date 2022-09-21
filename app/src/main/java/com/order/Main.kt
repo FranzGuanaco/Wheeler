@@ -1,4 +1,4 @@
-package com.example.draft
+package com.order
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,9 @@ import android.text.InputType
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.draft.R
 
-
-class MainActivity : AppCompatActivity() {
+class Main  : AppCompatActivity() {
 
 
 
@@ -38,25 +38,25 @@ class MainActivity : AppCompatActivity() {
 
             if ( converter.text.toString().toDoubleOrNull() is Double && converter.text.toString().toDouble() < 200 ){
                 with(progressbar) { progress= (converter.text.toString().toInt() * 100 / 200)
-                // prog c'est la variable qui reprend la quantité d'argent misé par l'utilisateur
+                    // prog c'est la variable qui reprend la quantité d'argent misé par l'utilisateur
                     prog = progress
                 } }
 
-                    if ( converter.text.toString().toDoubleOrNull() is Double && converter.text.toString().toDouble() > 200 ){
-                        toast.show()
+            if ( converter.text.toString().toDoubleOrNull() is Double && converter.text.toString().toDouble() > 200 ){
+                toast.show()
 
-                        // toast pour informer de la mise maximale (ne fonctionne pas)
-                    }
+                // toast pour informer de la mise maximale (ne fonctionne pas)
             }
+        }
 
         newpage?.setOnClickListener(){
             if ( converter.text.toString().toDoubleOrNull() is Double && converter.text.toString().toDouble() < 200 ){
-                val intent = Intent(this,FirstFragment::class.java)
+                val intent = Intent(this,Result::class.java)
                 intent.putExtra("jauge", prog)
                 startActivity(intent)
 
-                    // intend une fois que la mise a été validé
+                // intend une fois que la mise a été validé
             }
         }
-        }
     }
+}

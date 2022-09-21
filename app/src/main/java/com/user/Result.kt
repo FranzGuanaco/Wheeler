@@ -1,4 +1,5 @@
-package com.example.draft
+package com.user
+
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -24,11 +25,12 @@ import java.util.stream.IntStream
 import kotlin.random.Random
 import kotlin.random.nextInt
 import kotlin.system.measureTimeMillis
+import com.example.draft.R
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : AppCompatActivity()
+class Result : AppCompatActivity()
 {
 
 
@@ -62,12 +64,12 @@ class FirstFragment : AppCompatActivity()
                 if (n == name){
                     text.setText("hahah")
 
-                val animations = arrayOf(1000f, -600f).map { translation ->
-                    ObjectAnimator.ofFloat(cursor, "translationX", translation).apply {
-                        duration = 800
-                        repeatCount = 12
-                        repeatMode = ObjectAnimator.REVERSE
-                    }}
+                    val animations = arrayOf(1000f, -600f).map { translation ->
+                        ObjectAnimator.ofFloat(cursor, "translationX", translation).apply {
+                            duration = 800
+                            repeatCount = 12
+                            repeatMode = ObjectAnimator.REVERSE
+                        }}
                     val set = AnimatorSet()
                     set.playTogether(animations)
                     set.start()
@@ -81,24 +83,24 @@ class FirstFragment : AppCompatActivity()
 
 
 
-            /*
+        /*
 
 
 
-            val animations = arrayOf(1000f, -600f).map { translation ->
-                ObjectAnimator.ofFloat(cursor, "translationX", translation).apply {
-                    duration = 800
-                    repeatCount = 122
-                    repeatMode = ObjectAnimator.REVERSE
-                }
-            }   // mouvement de la fleche (useless pour le moment)
+        val animations = arrayOf(1000f, -600f).map { translation ->
+            ObjectAnimator.ofFloat(cursor, "translationX", translation).apply {
+                duration = 800
+                repeatCount = 122
+                repeatMode = ObjectAnimator.REVERSE
+            }
+        }   // mouvement de la fleche (useless pour le moment)
 
-            val set = AnimatorSet()
-            set.playTogether(animations)
-            set.start()
+        val set = AnimatorSet()
+        set.playTogether(animations)
+        set.start()
 
 
-        }  */
+    }  */
 
         button.setOnClickListener(){
 
@@ -121,10 +123,3 @@ object : CountDownTimer(random, 1000) {
         set.cancel()  // annulation du mouvement de la fleche
 
     } */
-
-
-
-
-
-
-
