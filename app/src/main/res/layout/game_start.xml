@@ -7,19 +7,6 @@
     android:background="@color/white">
 
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:text="Current Batch"
-        android:textColor="@color/gold"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/settext"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
@@ -35,7 +22,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="330dp"
         android:layout_height="20dp"
-        android:layout_marginBottom="596dp"
+        android:layout_marginBottom="540dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
@@ -45,7 +32,7 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="148dp"
         android:layout_marginEnd="144dp"
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,20 +42,23 @@
         android:id="@+id/settext"
         android:layout_width="400dp"
         android:layout_height="0dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="231dp"
+        android:layout_marginBottom="235dp"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/settext2"
         android:layout_width="400dp"
         android:layout_height="0dp"
-        android:layout_marginTop="304dp"
+        android:layout_marginBottom="236dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
