@@ -58,9 +58,9 @@ class Game : AppCompatActivity()
             for (n in array){
 
                 if (n == name){
-                    text.setText("hahah")
+                    text.setText("Winner")
 
-                    val animations = arrayOf(1000f, -600f).map { translation ->
+                    val animations = arrayOf(2000f, -1000f).map { translation ->
                         ObjectAnimator.ofFloat(cursor, "translationX", translation).apply {
                             duration = 800
                             repeatCount = 12
@@ -82,6 +82,7 @@ class Game : AppCompatActivity()
 
             test()
         }}}
+
 
 
 
