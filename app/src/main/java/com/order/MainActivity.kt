@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.first_gamble)
 
 
+
         val progressbar = findViewById<ProgressBar>(R.id.progressBar)
         val converter:  EditText = findViewById (R.id.gamblesum)
         val toast = Toast.makeText(applicationContext, "pas possible", Toast.LENGTH_SHORT)

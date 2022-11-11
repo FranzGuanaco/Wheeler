@@ -41,7 +41,7 @@ class Game : AppCompatActivity()
         val bar = findViewById<ProgressBar>(R.id.progressBar2)
         val button = findViewById<Button>(R.id.button)
         val cursor = findViewById<ImageView>(R.id.imageView4)
-        var text = findViewById<EditText>(R.id.settext2)
+        val text = findViewById<EditText>(R.id.settext2)
 
 
         bar.max = 100 // remplissage maximale de la barre
