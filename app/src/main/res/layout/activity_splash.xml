@@ -5,25 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <ImageView
         android:id="@+id/triangleBlue"
-        android:layout_width="100dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="196dp"
-        android:layout_marginTop="184dp"
-        android:rotation="199"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="177dp"
+        android:rotation="200"
         android:src="@drawable/triangle_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <ImageView
         android:id="@+id/triangleBlue2"
-        android:layout_width="100dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="240dp"
-        android:layout_marginEnd="193dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="255dp"
+        android:layout_marginEnd="120dp"
         android:rotation="19"
         android:src="@drawable/triangle_blue"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,32 +33,35 @@
 
     <ImageView
         android:id="@+id/triangleYellow"
-        android:layout_width="100dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="203dp"
-        android:layout_marginTop="219dp"
-        android:rotation="244"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="135dp"
+        android:layout_marginTop="233dp"
+        android:rotation="243"
         android:src="@drawable/triangle_yellow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/triangleYellow2"
-        android:layout_width="100dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="200dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="196dp"
+        android:layout_marginEnd="2dp"
         android:rotation="64"
         android:src="@drawable/triangle_yellow"
+        app:layout_constraintEnd_toStartOf="@+id/triangleBlue"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/triangleRed"
-        android:layout_width="100dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="182dp"
-        android:layout_marginTop="248dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="282dp"
         android:rotation="289"
         android:src="@drawable/red_triangle"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,11 +69,11 @@
 
     <ImageView
         android:id="@+id/triangleRed2"
-        android:layout_width="100dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="133dp"
-        android:layout_marginTop="139dp"
-        android:rotation="108"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="150dp"
+        android:rotation="110"
         android:src="@drawable/red_triangle"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -78,24 +81,24 @@
 
     <ImageView
         android:id="@+id/trianglePurple"
-        android:layout_width="100dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="164dp"
-        android:rotation="152"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="140dp"
+        android:rotation="155"
         android:src="@drawable/triangle_purple"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/triangleGreen"
-        android:layout_width="100dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="147dp"
-        android:layout_marginBottom="347dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
         android:rotation="334"
         android:src="@drawable/triangle_green"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/triangleRed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
