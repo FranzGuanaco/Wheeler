@@ -5,6 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:background="@drawable/button_style"
+        android:text="cylindrical"
+        android:textColor="#3e2723"
+        app:backgroundTint="@null"
+
+        tools:layout_editor_absoluteX="93dp"
+        tools:layout_editor_absoluteY="36dp" />
 
     <ImageView
         android:id="@+id/triangleBlue"
@@ -20,12 +31,13 @@
     <ImageView
         android:id="@+id/triangleBlue2"
         android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_height="0dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="255dp"
-        android:layout_marginEnd="120dp"
+        android:layout_marginTop="261dp"
+        android:layout_marginEnd="122dp"
         android:rotation="19"
         android:src="@drawable/triangle_blue"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +60,7 @@
         android:layout_height="200dp"
         android:layout_marginStart="3dp"
         android:layout_marginTop="196dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginEnd="22dp"
         android:rotation="64"
         android:src="@drawable/triangle_yellow"
         app:layout_constraintEnd_toStartOf="@+id/triangleBlue"
@@ -94,11 +106,12 @@
         android:id="@+id/triangleGreen"
         android:layout_width="300dp"
         android:layout_height="200dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="39dp"
         android:layout_marginTop="10dp"
         android:rotation="334"
         android:src="@drawable/triangle_green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/triangleRed" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
