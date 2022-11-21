@@ -5,7 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/arrow.xml" value="0.1385" />
         <entry key="app/src/main/res/drawable/arrow_shape.xml" value="0.1615" />
-        <entry key="app/src/main/res/drawable/button_style.xml" value="0.233" />
+        <entry key="app/src/main/res/drawable/button_style.xml" value="0.165" />
         <entry key="app/src/main/res/drawable/cursor.xml" value="0.244" />
         <entry key="app/src/main/res/drawable/ic_arrow_background.xml" value="0.1545" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.26" />
@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/drawable/ic_phone_foreground.xml" value="0.26" />
         <entry key="app/src/main/res/drawable/progressbar_custom.xml" value="0.237" />
         <entry key="app/src/main/res/drawable/red_triangle.xml" value="0.171" />
+        <entry key="app/src/main/res/drawable/screen_splash.xml" value="0.263" />
         <entry key="app/src/main/res/drawable/shadow.xml" value="0.244" />
         <entry key="app/src/main/res/drawable/start_animation.xml" value="0.12334747314453126" />
         <entry key="app/src/main/res/drawable/triangle.xml" value="0.171" />
@@ -23,7 +24,7 @@
         <entry key="app/src/main/res/drawable/triangle_yellow.xml" value="0.171" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.14108409321175278" />
-        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.6024972534179689" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.5070317431351457" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_splash_screen2.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/anim_intro.xml" value="0.35635223388671877" />
@@ -33,8 +34,10 @@
         <entry key="app/src/main/res/layout/create_account.xml" value="0.3491847826086957" />
         <entry key="app/src/main/res/layout/first_gamble.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.2332117716471354" />
+        <entry key="app/src/main/res/layout/fragment_screen_splash.xml" value="0.32971014492753625" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.335" />
         <entry key="app/src/main/res/layout/game_start.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/screen_splash.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.16041666666666668" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_arrow.xml" value="0.2365" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_arrow_round.xml" value="0.2365" />
