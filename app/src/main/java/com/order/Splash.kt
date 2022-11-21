@@ -2,15 +2,10 @@ package com.order
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.widget.ImageView
-import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
 import com.example.draft.R
-import kotlinx.coroutines.delay
 
 
 class Splash : AppCompatActivity() {
@@ -28,18 +23,17 @@ class Splash : AppCompatActivity() {
         val triangle8 = findViewById<ImageView>(R.id.triangleBlue2)
 
 
+        val objectAnimator1: ObjectAnimator =
+            ObjectAnimator.ofFloat(triangle1, "translationX", 1000f)
+        val objectAnimator2: ObjectAnimator =
+            ObjectAnimator.ofFloat(triangle2, "translationX", -1000f)
+
+        val animatorSet = AnimatorSet()
+        animatorSet.playTogether(objectAnimator1, objectAnimator2)
+        animatorSet.startDelay = 1000
+        animatorSet.duration = 2000
+
+        animatorSet.start()
 
 
-        val animations = arrayOf(2000f, 1000f).map { translation ->
-            ObjectAnimator.ofFloat(triangle1, "translationX", translation).apply {
-                duration = 1000
-                startDelay = 2000
-
-
-            }}
-
-            val set = AnimatorSet()
-            set.playTogether(animations)
-            set.start()
-
-        }}
+    }}
