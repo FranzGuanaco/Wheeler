@@ -2,9 +2,12 @@ package com.order
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.draft.Game
 import com.example.draft.R
 
 
@@ -21,7 +24,8 @@ class Splash : AppCompatActivity() {
         val triangle6 = findViewById<ImageView>(R.id.trianglePurple)
         val triangle7 = findViewById<ImageView>(R.id.triangleBlue)
         val triangle8 = findViewById<ImageView>(R.id.triangleBlue2)
-
+        val login = findViewById<Button>(R.id.Loginbutton)
+        val createAccount = findViewById<Button>(R.id.create_account)
 
 
         val objectAnimator1x: ObjectAnimator =
@@ -68,10 +72,16 @@ class Splash : AppCompatActivity() {
         val animatorSet = AnimatorSet()
         animatorSet.playTogether(objectAnimator1x, objectAnimator1y, objectAnimator2x, objectAnimator2y, objectAnimator3x, objectAnimator3y, objectAnimator4x, objectAnimator4y, objectAnimator5x, objectAnimator5y,
                 objectAnimator6x, objectAnimator6y, objectAnimator7x, objectAnimator7y, objectAnimator8x, objectAnimator8y)
-        animatorSet.startDelay = 1000
-        animatorSet.duration = 2000
+        animatorSet.startDelay = 3000
+        animatorSet.duration = 900
 
         animatorSet.start()
 
 
-    }}
+        login.setOnClickListener(){
+
+                val intent = Intent(this, Login::class.java)
+                startActivity(intent)
+
+
+            }}}

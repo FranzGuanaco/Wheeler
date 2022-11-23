@@ -26,8 +26,6 @@ class MainActivity : AppCompatActivity() {
         var prog = 0
 
 
-
-
         progressbar.max= 100;
 
 

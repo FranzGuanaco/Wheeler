@@ -66,6 +66,7 @@ class Game : AppCompatActivity()
                             repeatCount = 12
                             repeatMode = ObjectAnimator.REVERSE
                         }}
+
                     val set = AnimatorSet()
                     set.playTogether(animations)
                     set.start()
@@ -83,17 +84,3 @@ class Game : AppCompatActivity()
             test()
         }}}
 
-
-
-
-// faire que la fleche identifie si elle est sur la progressbar ou non
-// faire que la fleche s'arrete aleatoirement => func minuteur
-
-/*
-object : CountDownTimer(random, 1000) {
-    override fun onTick(millisUntilFinished: Long) {
-        text.setText("seconds remaining: " + millisUntilFinished / 1000)
-    }
-    override fun onFinish() {
-        set.cancel()  // annulation du mouvement de la fleche
-    } */
