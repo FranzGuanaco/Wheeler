@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.order.Login"></activity>
+        <activity android:name="com.order.Create_account"></activity>
         <activity
             android:name="com.order.MainActivity"
             android:exported="true" >

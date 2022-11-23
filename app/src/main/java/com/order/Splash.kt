@@ -78,10 +78,16 @@ class Splash : AppCompatActivity() {
         animatorSet.start()
 
 
-        login.setOnClickListener(){
+        login.setOnClickListener() {
 
-                val intent = Intent(this, Login::class.java)
-                startActivity(intent)
+            val loginActivity = Intent(this, Login::class.java)
+            startActivity(loginActivity)
+        }
+
+        createAccount.setOnClickListener(){
+
+            val accountActivity = Intent(this, Create_account::class.java)
+            startActivity(accountActivity)
 
 
             }}}
