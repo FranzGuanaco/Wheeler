@@ -19,7 +19,7 @@
         android:id="@+id/textView5"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="572dp"
+        android:layout_marginBottom="464dp"
         android:gravity="center"
         android:text="Login"
         android:textColor="@color/black"
@@ -27,6 +27,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -51,7 +52,7 @@ ullamco laboris nisi ut aliquip ex ea com"
     <Button
         android:id="@+id/button7"
         android:layout_width="290dp"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="26dp"
         android:background="@drawable/button_style"
         android:text="Connection with Facebook"
@@ -69,7 +70,7 @@ ullamco laboris nisi ut aliquip ex ea com"
     <Button
         android:id="@+id/button2"
         android:layout_width="290dp"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="36dp"
         android:background="@drawable/button_style"
         android:text="Connection with Gmail"
@@ -87,7 +88,7 @@ ullamco laboris nisi ut aliquip ex ea com"
     <Button
         android:id="@+id/button4"
         android:layout_width="290dp"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="89dp"
         android:background="@drawable/button_style"
         android:text="Connection with Phone"

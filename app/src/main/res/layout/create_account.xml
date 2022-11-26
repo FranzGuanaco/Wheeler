@@ -23,7 +23,7 @@
     <Button
         android:id="@+id/buttonMail"
         android:layout_width="290dp"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="300dp"
         android:background="@drawable/button_style"
         android:text="Connection with Gmail"
@@ -40,7 +40,7 @@
     <Button
         android:id="@+id/buttonFb"
         android:layout_width="290dp"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="400dp"
         android:background="@drawable/button_style"
         android:text="Connection with Fb"
@@ -57,7 +57,7 @@
     <Button
         android:id="@+id/buttonPhone"
         android:layout_width="290dp"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="504dp"
         android:background="@drawable/button_style"
         android:text="Connection with Phone"
