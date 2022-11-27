@@ -1,6 +1,8 @@
 package com.order
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -16,20 +18,30 @@ class Login: AppCompatActivity() {
         setContentView(R.layout.classiclogin)
 
         var password = findViewById<EditText>(R.id.Password)
-        var name = findViewById<TextView>(R.id.textView4)
+        var name = findViewById<EditText>(R.id.name)
         var validation = findViewById<Button>(R.id.validationBt)
+        var load = findViewById<Button>(R.id.load)
 
-        validation.setOnClickListener(){
+        val sharedPref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+        var editor = sharedPref.edit()
 
-            var user = name
-            var entered = password.text.toString()
-            DisplayAndSave(entered, user);
+       fun test(){
+            val user = name.text.toString()
+            val pass = password.text.toString()
 
-        }}
+            editor.apply {
+                putString("name", user)
+                putString("code", pass)
+                apply()
+            }}
 
-    private fun DisplayAndSave(entered: String, user: TextView) {
+        load.setOnClickListener(){
+            val user = sharedPref.getString("name", null)
+            val pass = sharedPref.getString("code", null)
 
-        user.setText(entered);
+            name.setText(user)
+            password.setText(pass)
 
-    }
+        }
+        }
 }
