@@ -1,4 +1,4 @@
-package com.order
+package com.user
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -7,8 +7,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.draft.Game
 import com.example.draft.R
+import com.user.Create_account
+import com.user.Login
 
 
 class Splash : AppCompatActivity() {

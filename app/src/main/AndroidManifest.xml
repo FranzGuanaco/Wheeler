@@ -23,8 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.order.Login"></activity>
-        <activity android:name="com.order.Create_account"></activity>
+        <activity android:name="com.user.Login"></activity>
+        <activity android:name="com.user.Create_account"></activity>
         <activity
             android:name="com.order.MainActivity"
             android:exported="true" >
