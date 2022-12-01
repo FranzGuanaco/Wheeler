@@ -8,17 +8,11 @@ import android.database.sqlite.SQLiteOpenHelper
 class DBHelper (context: Context, factory: SQLiteDatabase.CursorFactory?) :
         SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION) {
 
-        // below is the method for creating a database by a sqlite query
         override fun onCreate(db: SQLiteDatabase) {
-            // below is a sqlite query, where column names
-            // along with their data types is given
             val query = ("CREATE TABLE " + TABLE_NAME + " ("
-                    + ID_COL + " INTEGER PRIMARY KEY, " +
-                    NAME_COl + " TEXT," +
-                    AGE_COL + " TEXT" + ")")
+                    + ID + " INTEGER PRIMARY KEY, " +
+                    PASSWORD + " TEXT" +")")
 
-            // we are calling sqlite
-            // method for executing our query
             db.execSQL(query)
         }
 
@@ -28,22 +22,16 @@ class DBHelper (context: Context, factory: SQLiteDatabase.CursorFactory?) :
             onCreate(db)
         }
 
-        // This method is for adding data in our database
-        fun addName(name : String, age : String ){
+        fun addName(id : String, password : String ){
 
-            // below we are creating
-            // a content values variable
+            // below we are creating a content values variable
             val values = ContentValues()
 
-            // we are inserting our values
-            // in the form of key-value pair
-            values.put(NAME_COl, name)
-            values.put(AGE_COL, age)
+            // we are inserting our values in the form of key-value pair
+            values.put(ID, id)
+            values.put(PASSWORD, password)
 
-            // here we are creating a
-            // writable variable of
-            // our database as we want to
-            // insert value in our database
+            // here we are creating a writable variable of our database as we want to insert value in our database
             val db = this.writableDatabase
 
             // all values are inserted into database
@@ -54,17 +42,13 @@ class DBHelper (context: Context, factory: SQLiteDatabase.CursorFactory?) :
             db.close()
         }
 
-        // below method is to get
-        // all data from our database
+        // below method is to get all data from our database
         fun getName(): Cursor? {
 
-            // here we are creating a readable
-            // variable of our database
-            // as we want to read value from it
+            // here we are creating a readable variable of our database as we want to read value from it
             val db = this.readableDatabase
 
-            // below code returns a cursor to
-            // read data from the database
+            // below code returns a cursor to read data from the database
             return db.rawQuery("SELECT * FROM " + TABLE_NAME, null)
 
         }
@@ -82,12 +66,9 @@ class DBHelper (context: Context, factory: SQLiteDatabase.CursorFactory?) :
             val TABLE_NAME = "gfg_table"
 
             // below is the variable for id column
-            val ID_COL = "id"
+            val ID = "id"
 
             // below is the variable for name column
-            val NAME_COl = "name"
-
-            // below is the variable for age column
-            val AGE_COL = "age"
+            val PASSWORD = "name"
         }
     }
