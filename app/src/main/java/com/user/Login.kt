@@ -34,7 +34,7 @@ class Login: AppCompatActivity() {
             val ID = id.text.toString()
 
             // calling method to add name to our database
-            db.addName(Pass, ID)
+            db.AddData(Pass, ID)
 
             // Toast to message on the screen
             Toast.makeText(this, Pass + " added to database", Toast.LENGTH_LONG).show()
@@ -55,13 +55,13 @@ class Login: AppCompatActivity() {
 
             // moving the cursor to first position and appending value in the text view
             cursor!!.moveToFirst()
-            Name.append(cursor.getString(cursor.getColumnIndex(DBHelper.ID)) + "\n")
-            Age.append(cursor.getString(cursor.getColumnIndex(DBHelper.PASSWORD)) + "\n")
+            Name.append(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ID)) + "\n")
+            Age.append(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PASSWORD)) + "\n")
 
             // moving our cursor to next position and appending values
             while(cursor.moveToNext()){
-                Name.append(cursor.getString(cursor.getColumnIndex(DBHelper.ID)) + "\n")
-                Age.append(cursor.getString(cursor.getColumnIndex(DBHelper.PASSWORD)) + "\n")
+                Name.append(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ID)) + "\n")
+                Age.append(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PASSWORD)) + "\n")
             }
 
             // at last we close our cursor

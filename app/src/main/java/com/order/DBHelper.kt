@@ -22,7 +22,7 @@ class DBHelper (context: Context, factory: SQLiteDatabase.CursorFactory?) :
             onCreate(db)
         }
 
-        fun addName(id : String, password : String ){
+        fun AddData(id : String, password : String ){
 
             // below we are creating a content values variable
             val values = ContentValues()
@@ -37,8 +37,6 @@ class DBHelper (context: Context, factory: SQLiteDatabase.CursorFactory?) :
             // all values are inserted into database
             db.insert(TABLE_NAME, null, values)
 
-            // at last we are
-            // closing our database
             db.close()
         }
 
@@ -57,13 +55,13 @@ class DBHelper (context: Context, factory: SQLiteDatabase.CursorFactory?) :
             // here we have defined variables for our database
 
             // below is variable for database name
-            private val DATABASE_NAME = "GEEKS_FOR_GEEKS"
+            private val DATABASE_NAME = "Db_user"
 
             // below is the variable for database version
             private val DATABASE_VERSION = 1
 
             // below is the variable for table name
-            val TABLE_NAME = "gfg_table"
+            val TABLE_NAME = "user_table"
 
             // below is the variable for id column
             val ID = "id"
