@@ -1,4 +1,5 @@
-package com.order
+package com.Model
+
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor

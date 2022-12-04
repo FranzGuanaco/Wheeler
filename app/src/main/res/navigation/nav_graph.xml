@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.draft.FirstFragment"
+        android:name="com.example.wheeler.FirstFragment"
         android:label=""
         tools:layout="@layout/fragment_first">
 

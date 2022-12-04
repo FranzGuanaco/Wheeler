@@ -1,4 +1,4 @@
-package com.order
+package com.View
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -7,9 +7,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.draft.R
-import com.user.Create_account
-import com.user.Login
+import com.example.wheeler.R
+import com.ViewModel.Create_account
+import com.ViewModel.Login
 
 
 class Splash : AppCompatActivity() {

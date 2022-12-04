@@ -1,31 +1,8 @@
-package com.order
+package com.ViewModel
 
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
-import android.content.Intent
-import android.graphics.Interpolator
-import android.os.Bundle
-import android.os.CountDownTimer
-import android.provider.ContactsContract
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.findNavController
-import com.example.draft.databinding.FragmentFirstBinding
-import com.google.android.material.progressindicator.AnimatorDurationScaleProvider
-import java.text.DateFormat
-import java.util.*
-import java.util.stream.IntStream
-import kotlin.random.Random
-import kotlin.random.nextInt
-import kotlin.system.measureTimeMillis
-import com.example.draft.R
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.

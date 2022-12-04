@@ -1,8 +1,8 @@
-package com.user
+package com.ViewModel
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.draft.R
+import com.example.wheeler.R
 
 class Create_account: AppCompatActivity() {
 

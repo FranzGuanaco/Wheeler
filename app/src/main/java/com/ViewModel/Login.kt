@@ -1,4 +1,4 @@
-package com.user
+package com.ViewModel
 
 import android.os.Bundle
 import android.widget.Button
@@ -6,8 +6,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.draft.R
-import com.order.DBHelper
+import com.Model.DBHelper
+import com.example.wheeler.R
 
 class Login: AppCompatActivity() {
 

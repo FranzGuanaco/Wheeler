@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.draft" >
+    package="com.example.wheeler" >
 <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Draft.NoActionBar"
         tools:targetApi="31" >
         <activity
-            android:name="com.order.Splash"
+            android:name="com.View.Splash"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,10 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.user.Login"></activity>
-        <activity android:name="com.user.Create_account"></activity>
+        <activity android:name="com.ViewModel.Login"></activity>
+        <activity android:name="com.ViewModel.Create_account"></activity>
         <activity
-            android:name="com.order.MainActivity"
+            android:name="com.ViewModel.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

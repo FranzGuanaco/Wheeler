@@ -1,4 +1,4 @@
-package com.order
+package com.ViewModel
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.draft.R
+import com.example.wheeler.R
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
