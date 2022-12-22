@@ -9,7 +9,6 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wheeler.R
 import com.ViewModel.Create_account
-import com.ViewModel.Login
 
 
 class Splash : AppCompatActivity() {

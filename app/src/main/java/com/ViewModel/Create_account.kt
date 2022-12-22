@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.AndroidViewModel
 import com.example.wheeler.R
 
-class Create_account(application: Application): AndroidViewModel(application) {
+class Create_account: AppCompatActivity() {
 
 
-     fun onCreate(savedInstanceState: Bundle?) {
+     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.first_gamble)
 
     }}

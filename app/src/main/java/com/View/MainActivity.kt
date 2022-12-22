@@ -1,9 +1,10 @@
-package com.ViewModel
+package com.View
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.ViewModel.Game
 import com.example.wheeler.R
 
 

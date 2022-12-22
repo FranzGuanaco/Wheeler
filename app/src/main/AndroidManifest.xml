@@ -23,10 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ViewModel.Login"></activity>
+        <activity android:name="com.View.Login"></activity>
         <activity android:name="com.ViewModel.Create_account"></activity>
         <activity
-            android:name="com.ViewModel.MainActivity"
+            android:name="com.View.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
