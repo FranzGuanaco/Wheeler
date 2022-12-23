@@ -16,3 +16,6 @@ interface DataLoginInterface {
     fun insert(vararg user: User)
 
 }
+
+
+// action de la base de donnée (suspend ?)

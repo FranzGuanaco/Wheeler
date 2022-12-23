@@ -10,14 +10,15 @@ import java.security.AccessControlContext
 @Database(entities = [User::class], version = 1, exportSchema = false)
 abstract class DataUsers: RoomDatabase() {
 
-    abstract fun datalogin(): DataLoginInterface
+    abstract fun datalogin(): DataLoginInterface //extension
 
     companion object{
 
+        //SINGATON
         @Volatile
         private var INSTANCE : DataUsers? = null
 
-
+        //INSTANCE?
         fun getDatabase(context: Context): DataUsers{
 
             val tempInstance = INSTANCE
