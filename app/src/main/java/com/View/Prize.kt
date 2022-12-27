@@ -1,10 +1,18 @@
 package com.View
 
 import android.app.Dialog
+import android.app.ProgressDialog
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.wheeler.databinding.ActivityPrizeBinding
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 import java.lang.StringBuilder
 
 class Prize : AppCompatActivity() {
@@ -23,13 +31,36 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
     var database = FirebaseDatabase.getInstance().reference
 
+    /*val progressDialog = ProgressDialog(this)
+    progressDialog.setMessage("fetch")
+    progressDialog.setCancelable(false)
+    progressDialog.show() */
+
 
     binding.button.setOnClickListener(){
 
-        var test = binding.editText.text.toString()
-        var data = binding.editText2.text.toString()
 
-        database.child(test.toString()).setValue(Firebase(data))
-    }}
+        val storage = FirebaseStorage.getInstance().reference.child("Image/Store.jpeg")
 
-}
+        val localfile = File.createTempFile("temp", "jpg")
+        storage.getFile(localfile).addOnSuccessListener {
+
+
+
+            val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+            binding.imageView.setImageBitmap(bitmap)
+
+
+        }.addOnFailureListener{
+
+
+            Toast.makeText(this, "raté", Toast.LENGTH_SHORT).show()
+
+        }
+    }
+
+
+
+}}
+
+
