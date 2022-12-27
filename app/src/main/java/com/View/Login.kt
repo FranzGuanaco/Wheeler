@@ -15,7 +15,7 @@ import com.Model.DataUsers
 import com.Model.User
 import com.ViewModel.Game
 import com.ViewModel.LoginViewModel
-import com.ViewModel.Prize
+import com.View.Prize
 import com.example.wheeler.R
 import com.example.wheeler.databinding.LoginBinding
 import com.example.wheeler.databinding.LoginSubstituteBinding
@@ -65,7 +65,7 @@ class Login: AppCompatActivity() {
                 val authentified = Intent(this, MainActivity::class.java)
                 startActivity(authentified)
             }  else {
-                val authentified = Intent(this, MainActivity::class.java)
+                val authentified = Intent(this, Prize::class.java)
                 startActivity(authentified)
             }
 
