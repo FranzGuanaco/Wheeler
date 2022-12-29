@@ -37,10 +37,11 @@ override fun onCreate(savedInstanceState: Bundle?) {
     progressDialog.show() */
 
 
-    binding.button.setOnClickListener(){
-
 
         val storage = FirebaseStorage.getInstance().reference.child("Image/Store.jpeg")
+        val storage2 = FirebaseStorage.getInstance().reference.child("Image/cine.jpeg")
+        val storage3 = FirebaseStorage.getInstance().reference.child("Image/Store.jpeg")
+        val storage4 = FirebaseStorage.getInstance().reference.child("Image/Store.jpeg")
 
         val localfile = File.createTempFile("temp", "jpg")
         storage.getFile(localfile).addOnSuccessListener {
@@ -51,16 +52,17 @@ override fun onCreate(savedInstanceState: Bundle?) {
             binding.imageView.setImageBitmap(bitmap)
 
 
-        }.addOnFailureListener{
-
-
-            Toast.makeText(this, "raté", Toast.LENGTH_SHORT).show()
-
         }
-    }
+
+    storage2.getFile(localfile).addOnSuccessListener {
+
+        val bitmap2 = BitmapFactory.decodeFile(localfile.absolutePath)
+         binding.imageView2.setImageBitmap(bitmap2)
+
+    }}
 
 
 
-}}
+}
 
 

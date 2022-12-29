@@ -3,13 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/SplashScreen">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.wheeler.FirstFragment"
+        android:id="@+id/SplashScreen"
+        android:name="com.View.Splash"
         android:label=""
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/activity_splash">
+
+
+        <action
+            android:id="@+id/action_SplashScreen_to_Login"
+            app:destination="@id/Login" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/Login"
+        android:name="com.View.Login"
+        android:label=""
+        tools:layout="@layout/login_substitute">
+
+
+        <action
+            android:id="@+id/action_Login_to_PrizeMarket"
+            app:destination="@id/PrizeMarket" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/PrizeMarket"
+        android:name="com.View.Prize"
+        android:label=""
+        tools:layout="@layout/activity_prize">
 
 
     </fragment>
