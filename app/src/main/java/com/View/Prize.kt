@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import com.ViewModel.Game
 import com.example.wheeler.databinding.ActivityPrizeBinding
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
@@ -29,13 +30,18 @@ override fun onCreate(savedInstanceState: Bundle?) {
     binding = ActivityPrizeBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
+    binding.button.setOnClickListener(){
+        val intent = Intent(this, anychart::class.java)
+        startActivity(intent)
+    }
+
+    /*
     var database = FirebaseDatabase.getInstance().reference
 
     /*val progressDialog = ProgressDialog(this)
     progressDialog.setMessage("fetch")
     progressDialog.setCancelable(false)
     progressDialog.show() */
-
 
 
         val storage = FirebaseStorage.getInstance().reference.child("Image/Store.jpeg")
@@ -59,10 +65,14 @@ override fun onCreate(savedInstanceState: Bundle?) {
         val bitmap2 = BitmapFactory.decodeFile(localfile.absolutePath)
          binding.imageView2.setImageBitmap(bitmap2)
 
-    }}
+    }
+
+    } */
 
 
 
-}
+
+
+}}
 
 

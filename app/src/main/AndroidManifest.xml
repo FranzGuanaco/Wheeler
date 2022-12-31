@@ -17,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Draft.NoActionBar"
         tools:targetApi="31">
+
         <activity
             android:name="com.View.Splash"
             android:exported="true">
@@ -39,8 +40,15 @@
         <activity
             android:name="com.View.Prize"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity
+            android:name="com.View.anychart"
+            android:exported="true" />
         <activity
             android:name="com.View.MainActivity"
             android:exported="true">
