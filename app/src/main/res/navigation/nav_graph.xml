@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_SplashScreen_to_Login"
             app:destination="@id/Login" />
+        <action
+            android:id="@+id/action_SplashScreen_to_CreateAccount"
+            app:destination="@id/CreateAccount" />
     </fragment>
 
     <fragment
@@ -34,8 +37,37 @@
         android:name="com.View.Prize"
         android:label=""
         tools:layout="@layout/activity_prize">
-
-
+        <action
+            android:id="@+id/action_PrizeMarket_to_Gamble"
+            app:destination="@id/Gamble" />
     </fragment>
+
+    <fragment
+        android:id="@+id/CreateAccount"
+        android:name="com.ViewModel.Create_account"
+        android:label=""
+        tools:layout="@layout/create_account">
+        <action
+            android:id="@+id/action_CreateAccount_to_PrizeMarket"
+            app:destination="@id/PrizeMarket" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/Gamble"
+        android:name="com.View.MainActivity"
+        android:label=""
+        tools:layout="@layout/first_gamble">
+        <action
+            android:id="@+id/action_Gamble_to_Result"
+            app:destination="@id/Result" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/Result"
+        android:name="com.ViewModel.Game"
+        android:label=""
+        tools:layout="@layout/game_start">
+    </fragment>
+
 
 </navigation>
