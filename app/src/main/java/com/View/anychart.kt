@@ -1,7 +1,10 @@
 package com.View
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import com.anychart.AnyChart
 import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
@@ -10,24 +13,25 @@ import com.anychart.charts.Pie
 import com.example.wheeler.R
 
 
-class anychart : AppCompatActivity() {
+open class anychart : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anychart)
 
         chart = findViewById(R.id.pie)
+        var button = findViewById<Button>(R.id.button)
 
         configChartView() }
 
         var chart: AnyChartView? = null
 
-        val salary = listOf(200, 300, 400, 600)
-        val month = listOf("January", "February", "March", "April")
+
 
         fun configChartView() {
-            val pie: Pie = AnyChart.pie()
-
+            val salary = listOf(200, 300, 400, 600)
+            val month = listOf("January", "February", "March", "April")
+            var pie: Pie = AnyChart.pie()
             val dataPieChart: MutableList<DataEntry> = mutableListOf()
 
             for (index in salary.indices) {
@@ -37,7 +41,6 @@ class anychart : AppCompatActivity() {
             pie.data(dataPieChart)
             pie.title("Salaries Overview")
             chart!!.setChart(pie)
-        }
-        }
 
 
+        }}

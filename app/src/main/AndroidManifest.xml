@@ -47,7 +47,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.View.anychart"
+            android:name="com.View.anychart2"
             android:exported="true" />
         <activity
             android:name="com.View.MainActivity"
