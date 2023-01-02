@@ -28,7 +28,7 @@ open class anychart : AppCompatActivity() {
         var chart: AnyChartView? = null
 
 
-        fun configChartView() {
+        open fun configChartView() {
             val salary = listOf(200, 200, 200, 200)
             val month = listOf("January", "February", "March", "April")
             var pie: Pie = AnyChart.pie()

@@ -64,9 +64,12 @@
 
     <fragment
         android:id="@+id/Result"
-        android:name="com.ViewModel.Game"
+        android:name="com.View.anychart2"
         android:label=""
-        tools:layout="@layout/game_start">
+        tools:layout="@layout/activity_anychart">
+        <action
+            android:id="@+id/action_Result_to_PrizeMarket"
+            app:destination="@id/PrizeMarket" />
     </fragment>
 
 
