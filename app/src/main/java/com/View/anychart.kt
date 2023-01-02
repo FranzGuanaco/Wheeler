@@ -24,22 +24,22 @@ open class anychart : AppCompatActivity() {
 
         configChartView() }
 
+
         var chart: AnyChartView? = null
 
 
-
         fun configChartView() {
-            val salary = listOf(200, 300, 400, 600)
+            val salary = listOf(200, 200, 200, 200)
             val month = listOf("January", "February", "March", "April")
             var pie: Pie = AnyChart.pie()
+            var legend = pie.legend()
+            legend.enabled(false)
             val dataPieChart: MutableList<DataEntry> = mutableListOf()
-
             for (index in salary.indices) {
                 dataPieChart.add(ValueDataEntry(month.elementAt(index), salary.elementAt(index)))
             }
 
             pie.data(dataPieChart)
-            pie.title("Salaries Overview")
             chart!!.setChart(pie)
 
 

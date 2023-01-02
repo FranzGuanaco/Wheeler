@@ -35,7 +35,6 @@ override fun onCreate(savedInstanceState: Bundle?) {
         startActivity(intent)
     }
 
-    /*
     var database = FirebaseDatabase.getInstance().reference
 
     /*val progressDialog = ProgressDialog(this)
@@ -65,14 +64,6 @@ override fun onCreate(savedInstanceState: Bundle?) {
         val bitmap2 = BitmapFactory.decodeFile(localfile.absolutePath)
          binding.imageView2.setImageBitmap(bitmap2)
 
-    }
-
-    } */
-
-
-
-
-
-}}
+    }}}
 
 
