@@ -38,9 +38,12 @@
         android:label=""
         tools:layout="@layout/activity_prize">
         <action
-            android:id="@+id/action_PrizeMarket_to_Gamble"
-            app:destination="@id/Gamble" />
+            android:id="@+id/action_PrizeMarket_to_Choice"
+            app:destination="@id/Choice" />
     </fragment>
+    <action
+        android:id="@+id/action_Login_to_PrizeMarket"
+        app:destination="@id/Choice" />
 
     <fragment
         android:id="@+id/CreateAccount"
@@ -53,24 +56,31 @@
     </fragment>
 
     <fragment
-        android:id="@+id/Gamble"
-        android:name="com.View.MainActivity"
+        android:id="@+id/Choice"
+        android:name="com.View.Choice"
+        android:label=""
+        tools:layout="@layout/choice">
+        <action
+            android:id="@+id/action_CreateAccount_to_PrizeMarket"
+            app:destination="@id/Game" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/Game"
+        android:name="com.View.Choice"
         android:label=""
         tools:layout="@layout/first_gamble">
         <action
-            android:id="@+id/action_Gamble_to_Result"
+            android:id="@+id/action_CreateAccount_to_PrizeMarket"
             app:destination="@id/Result" />
     </fragment>
 
     <fragment
         android:id="@+id/Result"
-        android:name="com.View.anychart2"
+        android:name="com.View.Choice"
         android:label=""
-        tools:layout="@layout/activity_anychart">
-        <action
-            android:id="@+id/action_Result_to_PrizeMarket"
-            app:destination="@id/PrizeMarket" />
-    </fragment>
+        tools:layout="@layout/game_start"/>
 
 
 </navigation>

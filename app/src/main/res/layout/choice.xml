@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/yesWheel"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="82dp"
+        android:layout_marginBottom="180dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/noWheel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/greenwheel" />
+
+    <ImageView
+        android:id="@+id/noWheel"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/yesWheel"
+        app:layout_constraintTop_toTopOf="@+id/yesWheel"
+        app:srcCompat="@drawable/graywheel" />
+
+    <TextView
+        android:id="@+id/Yes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="37dp"
+        android:text="Yes"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/yesWheel"
+        app:layout_constraintTop_toBottomOf="@+id/yesWheel" />
+
+    <TextView
+        android:id="@+id/No"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="39dp"
+        android:text="No"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/noWheel"
+        app:layout_constraintTop_toBottomOf="@+id/noWheel" />
+
+
+    <Button
+        android:id="@+id/create_account"
+        android:layout_width="370dp"
+        android:layout_height="60dp"
+        android:background="@drawable/button_style"
+        android:text="Would you like to win this prize ?"
+        android:textColor="#3e2723"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
