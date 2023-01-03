@@ -15,6 +15,8 @@ import com.example.wheeler.R
 
 open class anychart : AppCompatActivity() {
 
+    var newValue = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anychart)
@@ -22,14 +24,14 @@ open class anychart : AppCompatActivity() {
         chart = findViewById(R.id.pie)
         var button = findViewById<Button>(R.id.button)
 
-        configChartView() }
+        configChartView(newValue) }
 
 
         var chart: AnyChartView? = null
 
 
-        open fun configChartView() {
-            val salary = listOf(200, 200, 200, 200)
+        open fun configChartView(newValue: Int) {
+            val salary = listOf(newValue, 0, 0, 2)
             val month = listOf("January", "February", "March", "April")
             var pie: Pie = AnyChart.pie()
             var legend = pie.legend()

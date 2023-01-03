@@ -22,7 +22,7 @@ class anychart2 : anychart() {
         var button = findViewById<Button>(R.id.button)
         var text = findViewById<TextView>(R.id.text)
         chart = findViewById(R.id.pie)
-        configChartView()
+        configChartView(newValue)
 
         var random = Random.nextInt(360, 3600)
         var random2 = random.toFloat()

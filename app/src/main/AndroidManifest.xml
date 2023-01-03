@@ -47,17 +47,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.View.anychart2"
+            android:name="com.View.Gamble"
             android:exported="true" />
-        <activity
-            android:name="com.View.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
     </application>
 
 </manifest>
