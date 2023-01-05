@@ -1,48 +1,64 @@
 package com.View
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.anychart.AnyChart
 import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.anychart.charts.Pie
 import com.example.wheeler.R
+import com.razerdp.widget.animatedpieview.AnimatedPieView
+import com.razerdp.widget.animatedpieview.AnimatedPieViewConfig
+import com.razerdp.widget.animatedpieview.data.SimplePieInfo
 
 
-open class anychart : AppCompatActivity() {
+open class anychart : Gamble() {
 
-    var newValue = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anychart)
 
-        chart = findViewById(R.id.pie)
+
         var button = findViewById<Button>(R.id.button)
-
-        configChartView(newValue) }
-
-
-        var chart: AnyChartView? = null
-
-
-        open fun configChartView(newValue: Int) {
-            val salary = listOf(newValue, 0, 0, 2)
-            val month = listOf("January", "February", "March", "April")
-            var pie: Pie = AnyChart.pie()
-            var legend = pie.legend()
-            legend.enabled(false)
-            val dataPieChart: MutableList<DataEntry> = mutableListOf()
-            for (index in salary.indices) {
-                dataPieChart.add(ValueDataEntry(month.elementAt(index), salary.elementAt(index)))
-            }
-
-            pie.data(dataPieChart)
-            chart!!.setChart(pie)
+        var button2 = findViewById<Button>(R.id.button2)
+        var edit = findViewById<EditText>(R.id.editText)
+        var text = findViewById<TextView>(R.id.text)
+        var config : AnimatedPieViewConfig = AnimatedPieViewConfig()
+        var anim : AnimatedPieView = findViewById(R.id.pieView)
 
 
-        }}
+        var chiffre = edit.text.toString()
+
+
+        button.setOnClickListener(){
+            valeur = 220.2
+
+            config.addData(SimplePieInfo(2000.0, Color.parseColor("#AAFF0000"), "A"))
+            config.addData(SimplePieInfo(valeur, Color.parseColor("#000000"), "B"))
+            config.drawText(true)
+            config.strokeMode(false)
+
+            anim.applyConfig(config)
+            anim.start()}
+
+
+        button2.setOnClickListener(){
+            valeur = 22.2
+
+        config.addData(SimplePieInfo(2000.0, Color.parseColor("#AAFF0000"), "A"))
+        config.addData(SimplePieInfo(valeur, Color.parseColor("#000000"), "B"))
+        config.drawText(true)
+        config.strokeMode(false)
+
+        anim.applyConfig(config)
+        anim.start()}
+
+    }}

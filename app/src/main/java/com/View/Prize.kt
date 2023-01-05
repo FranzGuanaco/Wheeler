@@ -31,7 +31,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
     setContentView(binding.root)
 
     binding.button.setOnClickListener(){
-        val intent = Intent(this, Gamble::class.java)
+        val intent = Intent(this, anychart::class.java)
         startActivity(intent)
     }
 
