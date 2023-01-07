@@ -1,5 +1,7 @@
 package com.View
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -25,22 +27,24 @@ open class Gamble : anychart() {
 
 
         var button = findViewById<Button>(R.id.button)
-        var returned = findViewById<Button>(R.id.returned)
         var button2 = findViewById<Button>(R.id.button2)
-        var next = findViewById<Button>(R.id.next)
+        var play = findViewById<Button>(R.id.play)
         var anim : AnimatedPieView = findViewById(R.id.pieView)
         var config : AnimatedPieViewConfig = AnimatedPieViewConfig()
         var name = intent.getDoubleExtra("valeur",1.1 )
 
 
-        config.addData(SimplePieInfo(2000.0, Color.parseColor("#AAFF0000")))
+        var chif = 300
+        var cif = chif.toFloat()
+
+        config.addData(SimplePieInfo(2000.0, Color.parseColor("#ADB7AE")))
         config.drawText(true)
         config.strokeMode(false)
         anim.applyConfig(config)
         anim.start()
 
 
-        config.addData(SimplePieInfo(name, Color.parseColor("#000000"), "B"))
+        config.addData(SimplePieInfo(name, Color.parseColor("#FCE300"), "B"))
         config.drawText(true)
         config.strokeMode(false)
         anim.applyConfig(config)
@@ -49,17 +53,6 @@ open class Gamble : anychart() {
         fun refresh(valeurReturn : Double){
             val intent = Intent(this, Gamble2::class.java)
             intent.putExtra("valeurReturn", valeurReturn)
-            startActivity(intent)
-        }
-
-        fun returned(){
-            val intent = Intent(this, anychart::class.java)
-            startActivity(intent)
-        }
-
-        fun nextactivity(){
-            val intent = Intent(this, anychart2::class.java)
-            intent.putExtra("valNext", name)
             startActivity(intent)
         }
 
@@ -72,13 +65,16 @@ open class Gamble : anychart() {
             refresh(valeurReturn = 100.0)
         }
 
-        returned.setOnClickListener(){
-            returned()
-        }
+        play.setOnClickListener(){
 
-        next.setOnClickListener(){
-            nextactivity()
-        }
+                val animations =
+                    ObjectAnimator.ofFloat(anim, "rotation", 0f, cif).apply {
+                        duration = 1800
+                    }
 
-}
+                val set = AnimatorSet()
+                set.playTogether(animations)
+                set.start()
+        }
+    }
 }

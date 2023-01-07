@@ -26,29 +26,23 @@ open class Gamble2 : anychart() {
 
         var button = findViewById<Button>(R.id.button)
         var button2 = findViewById<Button>(R.id.button2)
-        var returned = findViewById<Button>(R.id.returned)
-        var next = findViewById<Button>(R.id.next)
+        var play = findViewById<Button>(R.id.play)
         var anim: AnimatedPieView = findViewById(R.id.pieView)
         var config: AnimatedPieViewConfig = AnimatedPieViewConfig()
         val name2 = intent.getDoubleExtra("valeurReturn", 1.1)
 
-        config.addData(SimplePieInfo(2000.0, Color.parseColor("#AAFF0000")))
+        config.addData(SimplePieInfo(2000.0, Color.parseColor("#ADB7AE")))
         config.drawText(true)
         config.strokeMode(false)
         anim.applyConfig(config)
         anim.start()
 
 
-        config.addData(SimplePieInfo(name2, Color.parseColor("#000000"), "B"))
+        config.addData(SimplePieInfo(name2, Color.parseColor("#FCE300"), "B"))
         config.drawText(true)
         config.strokeMode(false)
         anim.applyConfig(config)
         anim.start()
-
-        fun returned(){
-            val intent = Intent(this, anychart::class.java)
-            startActivity(intent)
-        }
 
 
         fun refresh2(valeur: Double){
@@ -67,14 +61,6 @@ open class Gamble2 : anychart() {
             refresh2(valeur = 100.0)
         }
 
-
-        returned.setOnClickListener(){
-            returned()
-        }
-
-        next.setOnClickListener(){
-            returned()
-        }
 
     }
 

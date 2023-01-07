@@ -30,14 +30,12 @@ open class anychart : AppCompatActivity() {
 
         var button = findViewById<Button>(R.id.button)
         var button2 = findViewById<Button>(R.id.button2)
-        var edit = findViewById<EditText>(R.id.editText)
-        var text = findViewById<TextView>(R.id.text)
         var anim : AnimatedPieView = findViewById(R.id.pieView)
         var config : AnimatedPieViewConfig = AnimatedPieViewConfig()
-        
 
 
-        config.addData(SimplePieInfo(2000.0, Color.parseColor("#AAFF0000")))
+
+        config.addData(SimplePieInfo(2000.0, Color.parseColor("#ADB7AE")))
         config.strokeMode(false)
         anim.applyConfig(config)
         anim.start()
@@ -46,7 +44,7 @@ open class anychart : AppCompatActivity() {
 
         fun newPie(valeur: Double){
 
-        config.addData(SimplePieInfo(valeur, Color.parseColor("#000000")))
+        config.addData(SimplePieInfo(valeur, Color.parseColor("#FCE300")))
         config.drawText(true)
         config.strokeMode(false)
         anim.applyConfig(config)
