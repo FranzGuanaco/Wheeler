@@ -12,7 +12,7 @@ import java.util.stream.IntStream
 import kotlin.random.Random
 
 
-class anychart2 : anychart() {
+class anychart2 : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,9 +21,6 @@ class anychart2 : anychart() {
 
         var button = findViewById<Button>(R.id.button)
         var text = findViewById<TextView>(R.id.text)
-        //chart = findViewById(R.id.pie)
-       // configChartView(newValue)
-
         var random = Random.nextInt(360, 3600)
         var random2 = random.toFloat()
         var list = arrayOf(360, 180, 90)
@@ -42,7 +39,7 @@ class anychart2 : anychart() {
             }
         }
 
-       /* button.setOnClickListener(){
+       button.setOnClickListener(){
        val animations =
             ObjectAnimator.ofFloat(chart, "rotation", 0f, cif).apply {
                 duration = 1800
@@ -53,7 +50,7 @@ class anychart2 : anychart() {
         set.start()
         game()}
 
-}*/}}
+}}
 
 
 

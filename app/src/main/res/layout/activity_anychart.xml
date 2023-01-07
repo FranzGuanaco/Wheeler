@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.View.anychart">
 
+
     <com.razerdp.widget.animatedpieview.AnimatedPieView
 
         android:id="@+id/pieView"
@@ -16,15 +17,28 @@
 
     </com.razerdp.widget.animatedpieview.AnimatedPieView>
 
-    <com.razerdp.widget.animatedpieview.AnimatedPieView
+    <Button
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="63dp"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        android:id="@+id/pieView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <Button
+        android:id="@+id/returned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="620dp"
+        android:layout_marginEnd="42dp"
+        android:text="return"
+        app:layout_constraintEnd_toStartOf="@+id/editText"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </com.razerdp.widget.animatedpieview.AnimatedPieView>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editText"
