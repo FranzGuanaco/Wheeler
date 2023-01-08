@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/wheel"
         android:layout_width="200dp"
         android:layout_height="30dp"
         android:layout_marginBottom="616dp"
@@ -21,12 +22,13 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/buttonMail"
-        android:layout_width="290dp"
-        android:layout_height="70dp"
-        android:layout_marginBottom="300dp"
+        android:id="@+id/buttonTwitter"
+        android:layout_width="300dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="250dp"
         android:background="@drawable/button_style"
-        android:text="Connection with Gmail"
+        android:text="Twitter connection"
+        android:drawableLeft="@drawable/twitter_logo"
         android:textAllCaps="false"
         android:textColor="#3e2723"
         android:textSize="16sp"
@@ -34,41 +36,63 @@
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintHorizontal_bias="0.576"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonGmail"
+        android:layout_width="300dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="340dp"
+        android:background="@drawable/button_style"
+        android:text="Gmail connection"
+        android:drawableLeft="@drawable/gmail_icon"
+        android:textAllCaps="false"
+        android:textColor="#3e2723"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.576"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonFb"
-        android:layout_width="290dp"
-        android:layout_height="70dp"
-        android:layout_marginBottom="400dp"
+        android:layout_width="300dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="430dp"
         android:background="@drawable/button_style"
-        android:text="Connection with Fb"
+        android:text="   Facebook connection"
+        android:drawableLeft="@drawable/facebook_logo"
         android:textAllCaps="false"
         android:textColor="#3e2723"
+        android:gravity="center"
         android:textSize="16sp"
         android:textStyle="bold"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintHorizontal_bias="0.576"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonPhone"
-        android:layout_width="290dp"
-        android:layout_height="70dp"
-        android:layout_marginBottom="504dp"
+        android:layout_width="300dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="520dp"
         android:background="@drawable/button_style"
-        android:text="Connection with Phone"
+        android:text="Phone connection"
+        android:drawableLeft="@drawable/phone_icon"
         android:textAllCaps="false"
+        android:gravity="center"
         android:textColor="#3e2723"
         android:textSize="16sp"
         android:textStyle="bold"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintHorizontal_bias="0.576"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -76,7 +100,7 @@
         android:layout_width="170dp"
         android:layout_height="100dp"
         android:layout_marginStart="132dp"
-        android:layout_marginTop="488dp"
+        android:layout_marginTop="532dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/animation" />

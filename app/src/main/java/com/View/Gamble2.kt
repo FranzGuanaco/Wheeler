@@ -1,6 +1,8 @@
 package com.View
 
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -31,6 +33,9 @@ open class Gamble2 : anychart() {
         var config: AnimatedPieViewConfig = AnimatedPieViewConfig()
         val name2 = intent.getDoubleExtra("valeurReturn", 1.1)
 
+        var chif = 300
+        var cif = chif.toFloat()
+
         config.addData(SimplePieInfo(2000.0, Color.parseColor("#ADB7AE")))
         config.drawText(true)
         config.strokeMode(false)
@@ -45,7 +50,7 @@ open class Gamble2 : anychart() {
         anim.start()
 
 
-        fun refresh2(valeur: Double){
+        fun refresh2(valeur: Double) {
             val intent = Intent(this, Gamble::class.java)
             intent.putExtra("valeur", valeur)
             startActivity(intent)
@@ -53,16 +58,27 @@ open class Gamble2 : anychart() {
 
 
 
-        button.setOnClickListener(){
+        button.setOnClickListener() {
             refresh2(valeur = 1000.0)
         }
 
-        button2.setOnClickListener(){
+        button2.setOnClickListener() {
             refresh2(valeur = 100.0)
         }
 
 
+
+        play.setOnClickListener() {
+
+            val animations =
+                ObjectAnimator.ofFloat(anim, "rotation", 0f, cif).apply {
+                    duration = 1800
+                }
+
+            val set = AnimatorSet()
+            set.playTogether(animations)
+            set.start()
+
+            }
+        }
     }
-
-
-}
