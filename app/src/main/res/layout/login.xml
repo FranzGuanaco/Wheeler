@@ -35,6 +35,8 @@
         android:id="@+id/textView6"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="264dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:text="orem ipsum dolor sit amet, consectetur
 adipiscing elit, sed do eiusmod tempor incididunt ut lab
@@ -42,10 +44,11 @@ ore et dolore magna aliqua. Ut enim ad
 minim veniam, quis nostrud exercitation
 ullamco laboris nisi ut aliquip ex ea com"
         android:textSize="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPhone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="264dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonTwitter"
@@ -105,8 +108,8 @@ ullamco laboris nisi ut aliquip ex ea com"
     <Button
         android:id="@+id/buttonPhone"
         android:layout_width="300dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="330dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="329dp"
         android:background="@drawable/button_style"
         android:drawableLeft="@drawable/phone_icon"
         android:gravity="center"
@@ -119,7 +122,8 @@ ullamco laboris nisi ut aliquip ex ea com"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

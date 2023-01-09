@@ -36,7 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ViewModel.Create_account" />
+        <activity android:name="com.View.Create_account" />
         <activity
             android:name="com.View.Prize"
             android:exported="true">

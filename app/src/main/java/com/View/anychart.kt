@@ -22,10 +22,13 @@ import com.razerdp.widget.animatedpieview.data.SimplePieInfo
 
 open class anychart : AppCompatActivity() {
 
+    // lateinit var anim : AnimatedPieView   changer en declarant le pie view avant create et utiliser binding pour declarer "pieview"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anychart)
+
 
 
         var button = findViewById<Button>(R.id.button)

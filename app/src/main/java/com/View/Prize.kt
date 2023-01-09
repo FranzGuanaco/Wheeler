@@ -7,10 +7,13 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.ViewModel.Game
+import com.example.wheeler.R
 import com.example.wheeler.databinding.ActivityPrizeBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
@@ -23,17 +26,13 @@ class Prize : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: DatabaseReference
     private lateinit var dialog: Dialog
+    lateinit var auth: FirebaseAuth
 
 
 override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = ActivityPrizeBinding.inflate(layoutInflater)
     setContentView(binding.root)
-
-    binding.button.setOnClickListener(){
-        val intent = Intent(this, anychart::class.java)
-        startActivity(intent)
-    }
 
     var database = FirebaseDatabase.getInstance().reference
 

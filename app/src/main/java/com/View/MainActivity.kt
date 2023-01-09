@@ -6,10 +6,10 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.ViewModel.Game
 import com.example.wheeler.R
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MainActivity : AppCompatActivity() {
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/CreateAccount"
-        android:name="com.ViewModel.Create_account"
+        android:name="com.View.Create_account"
         android:label=""
         tools:layout="@layout/create_account">
         <action
