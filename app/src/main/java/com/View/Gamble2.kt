@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.anychart.AnyChart
 import com.example.wheeler.R
+import com.example.wheeler.databinding.ActivityAnychartBinding
 import com.razerdp.widget.animatedpieview.AnimatedPieView
 import com.razerdp.widget.animatedpieview.AnimatedPieViewConfig
 import com.razerdp.widget.animatedpieview.data.SimplePieInfo
@@ -20,6 +21,7 @@ import com.razerdp.widget.animatedpieview.data.SimplePieInfo
 
 open class Gamble2 : anychart() {
 
+    private lateinit var binding: ActivityAnychartBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,8 +67,6 @@ open class Gamble2 : anychart() {
         button2.setOnClickListener() {
             refresh2(valeur = 100.0)
         }
-
-
 
         play.setOnClickListener() {
 
