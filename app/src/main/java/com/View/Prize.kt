@@ -26,7 +26,6 @@ class Prize : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: DatabaseReference
     private lateinit var dialog: Dialog
-    lateinit var auth: FirebaseAuth
 
 
 override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +34,14 @@ override fun onCreate(savedInstanceState: Bundle?) {
     setContentView(binding.root)
 
     var database = FirebaseDatabase.getInstance().reference
+
+
+    binding.button.setOnClickListener(){
+
+        val intent = Intent(this, anychart::class.java)
+        startActivity(intent)
+        database.setValue("hello c'est un test")
+    }
 
     /*val progressDialog = ProgressDialog(this)
     progressDialog.setMessage("fetch")
@@ -48,20 +55,18 @@ override fun onCreate(savedInstanceState: Bundle?) {
         val storage4 = FirebaseStorage.getInstance().reference.child("Image/Store.jpeg")
 
         val localfile = File.createTempFile("temp", "jpg")
+
         storage.getFile(localfile).addOnSuccessListener {
-
-
 
             val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
             binding.imageView.setImageBitmap(bitmap)
-
 
         }
 
     storage2.getFile(localfile).addOnSuccessListener {
 
         val bitmap2 = BitmapFactory.decodeFile(localfile.absolutePath)
-         binding.imageView2.setImageBitmap(bitmap2)
+        binding.imageView2.setImageBitmap(bitmap2)
 
     }}}
 
