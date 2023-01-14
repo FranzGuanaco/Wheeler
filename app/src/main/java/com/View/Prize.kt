@@ -88,6 +88,20 @@ override fun onCreate(savedInstanceState: Bundle?) {
         "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fcastle.jpeg?alt=media&token=b97b65a9-8968-4983-b465-a3e36622c84d"
     Glide.with(baseContext).asBitmap().load(castle).into(binding.other3)
 
+    Thread.sleep(10)
+
+    var spotify =
+        "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fstay_prize.jpeg?alt=media&token=9c6f0296-64b0-4997-b7b4-97cc45f9efa2"
+    Glide.with(baseContext).asBitmap().load(stay).into(binding.SpotifyPrize)
+
+
+    binding.NetflixPrize.setOnClickListener(){
+
+        Toast.makeText(this@Prize,"Successfully written",Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, Choice::class.java)
+        startActivity(intent)
+    }
+
 
 }}
 
