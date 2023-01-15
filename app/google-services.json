@@ -44,6 +44,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "620599289921-dfnspondk6lpn1pmss6pdt35rccrncm0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wheeler",
+            "certificate_hash": "65542d064c7bc4ac0e8c1eb75d225804eb371cdf"
+          }
+        },
+        {
           "client_id": "620599289921-h7qe8aetf748tm2s4almaans18kdia7s.apps.googleusercontent.com",
           "client_type": 3
         }
