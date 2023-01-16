@@ -11,7 +11,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.anychart.AnyChart
 import com.example.wheeler.R
 import com.razerdp.widget.animatedpieview.AnimatedPieView
 import com.razerdp.widget.animatedpieview.AnimatedPieViewConfig

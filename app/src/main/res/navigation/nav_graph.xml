@@ -59,7 +59,7 @@
         android:id="@+id/Choice"
         android:name="com.View.Choice"
         android:label=""
-        tools:layout="@layout/choice">
+        tools:layout="@layout/activity_choice">
         <action
             android:id="@+id/action_CreateAccount_to_PrizeMarket"
             app:destination="@id/Game" />

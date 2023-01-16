@@ -108,7 +108,7 @@ ullamco laboris nisi ut aliquip ex ea com"
     <Button
         android:id="@+id/buttonPhone"
         android:layout_width="300dp"
-        android:layout_height="0dp"
+        android:layout_height="64dp"
         android:layout_marginBottom="329dp"
         android:background="@drawable/button_style"
         android:drawableLeft="@drawable/phone_icon"

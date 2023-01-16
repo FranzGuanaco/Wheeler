@@ -1,77 +1,113 @@
 package com.View
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.ViewDebug
 import android.widget.*
-import androidx.room.Entity
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.Model.DBHelper
-import com.Model.DataUsers
-import com.Model.User
-import com.ViewModel.Game
-import com.ViewModel.LoginViewModel
-import com.View.Prize
 import com.example.wheeler.R
-import com.example.wheeler.databinding.LoginBinding
-import com.example.wheeler.databinding.LoginSubstituteBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.example.wheeler.databinding.ActivityLoginBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 
 
 class Login: AppCompatActivity() {
 
-    lateinit var viewModel: ViewModel
-    lateinit var appDB: DataUsers
-    private lateinit var binding: LoginSubstituteBinding //layout used in this activity
+    lateinit var binding: ActivityLoginBinding
+    lateinit var gsc: GoogleSignInClient
+    lateinit var auth: FirebaseAuth //layout used in this activity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = LoginSubstituteBinding.inflate(layoutInflater) //Layoutinflater ?
+        binding = ActivityLoginBinding.inflate(layoutInflater) //Layoutinflater ?
         setContentView(binding.root)
 
-        appDB = DataUsers.getDatabase(this) //Call
+            auth = FirebaseAuth.getInstance()
 
-        binding.print.setOnClickListener {
-           writeData()
-        } //fonction pour inserer des données
+
+            val gso : GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+
+            gsc = GoogleSignIn.getClient(this, gso)
+
+
+            binding.buttonGmail.setOnClickListener() {
+                signIn()
+            }
+        }
+
+        fun out(){
+            gsc.signOut()
+                .addOnCompleteListener(this, OnCompleteListener{
+                    signout()
+                })
+        }
+
+        private fun signout() {
+            Toast.makeText(this@Login, "deconnect", Toast.LENGTH_SHORT)
+        }
+
+        private fun signIn() {
+            var singinintent : Intent = gsc.signInIntent
+            launcher.launch(singinintent)
+
+        }
+
+        private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+
+                result ->
+
+            if (result.resultCode == Activity.RESULT_OK){
+
+                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                handleResults(task)
+            }
+        }
+
+        private fun handleResults(task: Task<GoogleSignInAccount>) {
+
+            if (task.isSuccessful){
+
+                val account : GoogleSignInAccount = task.result
+                if (account != null){
+                    updateUI(account)
+                }
+
+            }
+            else{
+
+                Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+        private fun updateUI(account: GoogleSignInAccount) {
+
+            val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+            auth.signInWithCredential(credential).addOnCompleteListener{
+                if (it.isSuccessful){
+
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                else{
+                    Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        }
+
     }
 
-        private fun writeData(){
-
-        var Name = binding.userName.text.toString() // Name =  text du widget
-
-
-        if(Name.isNotEmpty()) {
-            var user = User(
-                null, Name.toString()  )   //new array
-            GlobalScope.launch(Dispatchers.IO) {
-                //coroutine ? Globalscope ??
-                appDB.datalogin().insert(user)  //appDB variable representant le class dataUser qui a la fun datalogin qui est l'extension de detalogin interface
-                // qui est l'extension de user qui a la fun insert
-            }
-
-            binding.userName.text.clear()
-
-
-            if (Name.equals("PierreChev")) {
-                val authentified = Intent(this, MainActivity::class.java)
-                startActivity(authentified)
-            }  else {
-                val authentified = Intent(this, Prize::class.java)
-                startActivity(authentified)
-            }
-
-
-            Toast.makeText(this@Login,"Successfully written",Toast.LENGTH_SHORT).show()
-        } else Toast.makeText(this,"PLease Enter Data",Toast.LENGTH_SHORT).show()
-    }}
 
 

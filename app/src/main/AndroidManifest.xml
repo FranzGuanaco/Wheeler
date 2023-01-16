@@ -45,7 +45,7 @@
         </intent-filter>
         </activity>
         <activity
-            android:name="com.View.Prize"
+            android:name="com.View.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

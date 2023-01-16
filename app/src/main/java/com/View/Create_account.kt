@@ -6,19 +6,16 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.ViewModel.Game
 import com.example.wheeler.databinding.ActivityCreateAccountBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.example.wheeler.R
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.GoogleAuthProvider
-import kotlin.math.sign
 
 open class Create_account: AppCompatActivity() {
 
@@ -97,7 +94,7 @@ open class Create_account: AppCompatActivity() {
         auth.signInWithCredential(credential).addOnCompleteListener{
             if (it.isSuccessful){
 
-                val intent = Intent(this, Prize::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
             else{

@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../.gradle/caches/transforms-3/6b2e908a6279da329f2f3a27f464112f/transformed/jetified-facebook-share-4.42.0/res/drawable/com_facebook_button_send_background.xml" value="0.2385" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1675" />
         <entry key="app/src/main/res/drawable/arrow.xml" value="0.1385" />
         <entry key="app/src/main/res/drawable/arrow_shape.xml" value="0.1615" />
         <entry key="app/src/main/res/drawable/button_style.xml" value="0.165" />

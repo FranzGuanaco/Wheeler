@@ -3,17 +3,8 @@ package com.View
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
 import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.ViewModel.Game
-import com.anychart.AnyChart
-import com.anychart.AnyChartView
-import com.anychart.chart.common.dataentry.DataEntry
-import com.anychart.chart.common.dataentry.ValueDataEntry
-import com.anychart.charts.Pie
 import com.example.wheeler.R
 import com.razerdp.widget.animatedpieview.AnimatedPieView
 import com.razerdp.widget.animatedpieview.AnimatedPieViewConfig
