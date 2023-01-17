@@ -30,6 +30,16 @@ open class Create_account: AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        binding.buttonPhone.setOnClickListener(){
+            var intent = Intent(this, PhoneNumber::class.java)
+            startActivity(intent)
+        }
+
+        binding.buttonGmail.setOnClickListener() {
+            signIn()
+        }
+
+
         val gso : GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -37,10 +47,6 @@ open class Create_account: AppCompatActivity() {
 
          gsc = GoogleSignIn.getClient(this, gso)
 
-
-        binding.buttonGmail.setOnClickListener() {
-            signIn()
-        }
     }
 
     fun out(){
