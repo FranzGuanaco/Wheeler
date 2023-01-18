@@ -7,22 +7,26 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.wheeler.R
+import com.example.wheeler.databinding.ActivityPrizeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.storage.FirebaseStorage
 
 
-class MainActivity : Create_account() {
+ class MainActivity : AppCompatActivity() {
 
 //BINDING ???
 
         private lateinit var databaseReference: DatabaseReference
         private lateinit var storageReference: DatabaseReference
-        private lateinit var dialog: Dialog
+        lateinit var binding: ActivityPrizeBinding
+        lateinit var image: String
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_prize)
+             binding = ActivityPrizeBinding.inflate(layoutInflater)
+            setContentView(binding.root)
 
             var GooglePay = findViewById<ImageView>(R.id.GooglePay)
             var Stayprize = findViewById<ImageView>(R.id.StayPrize)
@@ -39,16 +43,20 @@ class MainActivity : Create_account() {
             var logout = findViewById<ImageButton>(R.id.logout)
 
 
+            cinema()
 
-            auth = FirebaseAuth.getInstance()
+            var test = Create_account()
+            test.auth = FirebaseAuth.getInstance()
 
             logout.setOnClickListener(){
-
-                out()
+                test.out()
                 var intent = Intent(this, Create_account::class.java)
                 startActivity(intent)
 
             }
+
+            cinema()
+            Thread.sleep(10)
 
 
             var imageRef = FirebaseStorage.getInstance().reference
@@ -65,11 +73,6 @@ class MainActivity : Create_account() {
 
             Thread.sleep(10)
 
-            var cinema =
-                "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fphoto-1574267432553-4b4628081c31.jpeg?alt=media&token=39dc7762-a5e5-41ad-8e6c-727680154b41"
-            Glide.with(baseContext).asBitmap().load(cinema).into(NetflixPrize)
-
-            Thread.sleep(10)
 
             var xbox =
                 "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fxbox_price.jpeg?alt=media&token=a2a52487-2ecb-4c4b-a5f6-a67656258d60"
@@ -124,9 +127,15 @@ class MainActivity : Create_account() {
 
                 Toast.makeText(this@MainActivity,"Successfully written",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Choice::class.java)
+                image = "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fstay_prize.jpeg?alt=media&token=9c6f0296-64b0-4997-b7b4-97cc45f9efa2"
+                intent.putExtra("img", image)
                 startActivity(intent)
-            }
+            }}
 
 
-        }}
+            private fun cinema(){
+                var cinema =
+                    "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fphoto-1574267432553-4b4628081c31.jpeg?alt=media&token=39dc7762-a5e5-41ad-8e6c-727680154b41"
+                Glide.with(baseContext).asBitmap().load(cinema).into(binding.NetflixPrize)}
+        }
 

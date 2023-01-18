@@ -35,6 +35,10 @@ open class Create_account: AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.buttonTwitter.setOnClickListener(){
+
+        }
+
         binding.buttonGmail.setOnClickListener() {
             signIn()
         }

@@ -24,7 +24,7 @@
         android:id="@+id/Login"
         android:name="com.View.Login"
         android:label=""
-        tools:layout="@layout/login_substitute">
+        tools:layout="@layout/activity_login">
 
 
         <action
@@ -49,7 +49,7 @@
         android:id="@+id/CreateAccount"
         android:name="com.View.Create_account"
         android:label=""
-        tools:layout="@layout/create_account">
+        tools:layout="@layout/activity_create_account">
         <action
             android:id="@+id/action_CreateAccount_to_PrizeMarket"
             app:destination="@id/PrizeMarket" />
@@ -70,7 +70,7 @@
         android:id="@+id/Game"
         android:name="com.View.Choice"
         android:label=""
-        tools:layout="@layout/first_gamble">
+        tools:layout="@layout/activity_anychart">
         <action
             android:id="@+id/action_CreateAccount_to_PrizeMarket"
             app:destination="@id/Result" />
@@ -80,7 +80,7 @@
         android:id="@+id/Result"
         android:name="com.View.Choice"
         android:label=""
-        tools:layout="@layout/game_start"/>
+        tools:layout="@layout/activity_anychart"/>
 
 
 </navigation>
