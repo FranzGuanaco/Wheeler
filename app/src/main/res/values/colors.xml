@@ -23,5 +23,12 @@
     <color name="forthcoming_arrow">#C4C4C4</color>
     <color name="forthcoming">#898880</color>
 
+        <color name="colorPrimary">#008577</color>
+        <color name="colorPrimaryDark">#00574B</color>
+        <color name="colorAccent">#D81B60</color>
+        <color name="media">#EA6D78</color>
+        <color name="white2">#FFFFFF</color>
+
+
 
 </resources>
