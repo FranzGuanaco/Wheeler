@@ -41,7 +41,7 @@
 
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/NetflixPrize"
+                android:id="@+id/Best1"
                 android:layout_width="140dp"
                 android:layout_height="100dp"
                 android:layout_alignParentEnd="true"
@@ -51,8 +51,53 @@
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
 
+
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/StayPrize"
+                android:id="@+id/Best2"
+                android:layout_width="140dp"
+                android:layout_height="100dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="165dp"
+                android:layout_marginBottom="370dp"
+                app:shapeAppearanceOverlay="@style/Circular"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/Best3"
+                android:layout_width="140dp"
+                android:layout_height="100dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="320dp"
+                android:layout_marginBottom="370dp"
+                app:shapeAppearanceOverlay="@style/Circular"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/TravelPrize"
+                android:layout_width="140dp"
+                android:layout_height="100dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="320dp"
+                android:layout_marginBottom="220dp"
+                app:shapeAppearanceOverlay="@style/Circular"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/CastlePrize"
+                android:layout_width="140dp"
+                android:layout_height="100dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="165dp"
+                android:layout_marginBottom="220dp"
+                app:shapeAppearanceOverlay="@style/Circular"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/LondonPrize"
                 android:layout_width="140dp"
                 android:layout_height="100dp"
                 android:layout_alignParentEnd="true"
@@ -68,62 +113,29 @@
                 android:layout_height="100dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="165dp"
-                android:layout_marginBottom="370dp"
-                app:shapeAppearanceOverlay="@style/Circular"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/other2"
-                android:layout_width="140dp"
-                android:layout_height="100dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
                 android:layout_marginStart="320dp"
-                android:layout_marginBottom="370dp"
+                android:layout_marginBottom="65dp"
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/other3"
-                android:layout_width="140dp"
-                android:layout_height="100dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="320dp"
-                android:layout_marginBottom="220dp"
-                app:shapeAppearanceOverlay="@style/Circular"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/WeekendPrize"
+                android:id="@+id/NetflixPrize"
                 android:layout_width="140dp"
                 android:layout_height="100dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="165dp"
-                android:layout_marginBottom="220dp"
+                android:layout_marginBottom="65dp"
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/other"
+                android:id="@+id/GooglePlayPrize"
                 android:layout_width="140dp"
                 android:layout_height="100dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginBottom="220dp"
-                app:shapeAppearanceOverlay="@style/Circular"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/other1"
-                android:layout_width="140dp"
-                android:layout_height="100dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="320dp"
                 android:layout_marginBottom="65dp"
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
@@ -134,35 +146,13 @@
                 android:layout_height="100dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="165dp"
-                android:layout_marginBottom="65dp"
-                app:shapeAppearanceOverlay="@style/Circular"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/GooglePay"
-                android:layout_width="140dp"
-                android:layout_height="100dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="65dp"
-                app:shapeAppearanceOverlay="@style/Circular"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/VideoGame"
-                android:layout_width="140dp"
-                android:layout_height="100dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
                 android:layout_marginStart="470dp"
                 android:layout_marginBottom="65dp"
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/Mexico"
+                android:id="@+id/TokyoPrize"
                 android:layout_width="140dp"
                 android:layout_height="100dp"
                 android:layout_alignParentEnd="true"
@@ -173,7 +163,7 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/Rio"
+                android:id="@+id/Best4"
                 android:layout_width="140dp"
                 android:layout_height="100dp"
                 android:layout_alignParentEnd="true"
@@ -189,7 +179,7 @@
 
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/VideoGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
