@@ -97,7 +97,7 @@ import com.google.firebase.storage.FirebaseStorage
 
                 Toast.makeText(this@MainActivity,"Good choice",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Choice::class.java)
-                image = "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fprime.png?alt=media&token=b093fa27-bf0e-4460-825b-e083fa6399fb"
+                image = "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fprimev.png?alt=media&token=4b70b2f9-4ec0-44a0-afe2-d7c4f40f122b"
                 intent.putExtra("img", image)
                 startActivity(intent)
             }
@@ -124,7 +124,7 @@ import com.google.firebase.storage.FirebaseStorage
 
                 Toast.makeText(this@MainActivity,"Good choice",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Choice::class.java)
-                image = "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Flondon.jpeg?alt=media&token=67ab9081-7091-4703-bba5-721d38942645"
+                image = "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2FLondon.png?alt=media&token=0491ca35-861d-431e-af04-514dc921a52c"
                 intent.putExtra("img", image)
                 startActivity(intent)
             }
@@ -201,7 +201,7 @@ import com.google.firebase.storage.FirebaseStorage
 
      private fun prime() {
          var prime =
-             "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fprime.png?alt=media&token=b093fa27-bf0e-4460-825b-e083fa6399fb"
+             "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fprimev.png?alt=media&token=4b70b2f9-4ec0-44a0-afe2-d7c4f40f122b"
          Glide.with(baseContext).asBitmap().load(prime).into(binding.PrimePrize)
      }
 
@@ -219,7 +219,7 @@ import com.google.firebase.storage.FirebaseStorage
 
      private fun london() {
          var lond =
-             "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Flondon.jpeg?alt=media&token=67ab9081-7091-4703-bba5-721d38942645"
+             "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2FLondon.png?alt=media&token=0491ca35-861d-431e-af04-514dc921a52c"
          Glide.with(baseContext).asBitmap().load(lond).into(binding.LondonPrize)
      }
 
@@ -237,7 +237,7 @@ import com.google.firebase.storage.FirebaseStorage
 
      private fun best2() {
          var b2 =
-             "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Flondon.jpeg?alt=media&token=67ab9081-7091-4703-bba5-721d38942645"
+             "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2FLondon.png?alt=media&token=0491ca35-861d-431e-af04-514dc921a52c"
          Glide.with(baseContext).asBitmap().load(b2).into(binding.Best2)
      }
 

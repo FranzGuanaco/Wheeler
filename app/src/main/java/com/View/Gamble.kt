@@ -15,6 +15,7 @@ import com.example.wheeler.R
 import com.razerdp.widget.animatedpieview.AnimatedPieView
 import com.razerdp.widget.animatedpieview.AnimatedPieViewConfig
 import com.razerdp.widget.animatedpieview.data.SimplePieInfo
+import kotlin.random.Random
 
 
 open class Gamble : anychart() {
@@ -56,6 +57,12 @@ open class Gamble : anychart() {
         }
 
 
+            var random = Random.nextInt(0,3600)
+            var randomDuration = Random.nextInt(1800,6000)
+            var randomToFloat = random.toFloat()
+
+
+
         button.setOnClickListener(){
             refresh(valeurReturn = 1000.0)
         }
@@ -67,8 +74,8 @@ open class Gamble : anychart() {
         play.setOnClickListener(){
 
                 val animations =
-                    ObjectAnimator.ofFloat(anim, "rotation", 0f, cif).apply {
-                        duration = 1800
+                    ObjectAnimator.ofFloat(anim, "rotation", randomToFloat).apply {
+                        duration = randomDuration.toLong()
                     }
 
                 val set = AnimatorSet()
