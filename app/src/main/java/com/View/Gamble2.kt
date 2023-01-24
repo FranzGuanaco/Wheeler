@@ -23,6 +23,10 @@ open class Gamble2 : anychart() {
 
     private lateinit var binding: ActivityAnychartBinding
 
+    var random = Random.nextInt(1800,3600)
+    var randomDuration = Random.nextInt(1800,6000)
+    var randomToFloat = random.toFloat()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anychart)
@@ -34,9 +38,9 @@ open class Gamble2 : anychart() {
         var anim: AnimatedPieView = findViewById(R.id.pieView)
         var config: AnimatedPieViewConfig = AnimatedPieViewConfig()
         val name2 = intent.getDoubleExtra("valeurReturn", 1.1)
+        var text = findViewById<TextView>(R.id.textview3)
 
-        var chif = 300
-        var cif = chif.toFloat()
+
 
         config.addData(SimplePieInfo(2000.0, Color.parseColor("#ADB7AE")))
         config.drawText(true)
@@ -57,10 +61,6 @@ open class Gamble2 : anychart() {
             intent.putExtra("valeur", valeur)
             startActivity(intent)
         }
-
-        var random = Random.nextInt(1800,3600)
-        var randomDuration = Random.nextInt(1800,6000)
-        var randomToFloat = random.toFloat()
 
 
         button.setOnClickListener() {

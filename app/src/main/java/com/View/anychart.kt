@@ -58,7 +58,6 @@ open class anychart : AppCompatActivity() {
         }
 
 
-
         button2.setOnClickListener(){
                 refresh(valeur = 100.0)
             }

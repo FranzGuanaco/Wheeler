@@ -12,6 +12,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wheeler.R
+import com.example.wheeler.databinding.ActivityAnychartBinding
+import com.example.wheeler.databinding.ActivityPrizeBinding
 import com.razerdp.widget.animatedpieview.AnimatedPieView
 import com.razerdp.widget.animatedpieview.AnimatedPieViewConfig
 import com.razerdp.widget.animatedpieview.data.SimplePieInfo
@@ -20,35 +22,38 @@ import kotlin.random.Random
 
 open class Gamble : anychart() {
 
+    var random = Random.nextInt(1,360)
+    var randomDuration = Random.nextInt(1800,6000)
+    var randomToFloat = random.toFloat()
+    private lateinit var binding: ActivityAnychartBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anychart)
 
+        binding = ActivityAnychartBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        var button = findViewById<Button>(R.id.button)
-        var button2 = findViewById<Button>(R.id.button2)
-        var play = findViewById<Button>(R.id.play)
-        var anim : AnimatedPieView = findViewById(R.id.pieView)
-        var config : AnimatedPieViewConfig = AnimatedPieViewConfig()
-        var name = intent.getDoubleExtra("valeur",1.1 )
+        val button = findViewById<Button>(R.id.button)
+        val button2 = findViewById<Button>(R.id.button2)
+        val play = findViewById<Button>(R.id.play)
+        val anim : AnimatedPieView = findViewById(R.id.pieView)
+        val config : AnimatedPieViewConfig = AnimatedPieViewConfig()
+        val name = intent.getDoubleExtra("valeur",1.1 )
 
-
-        var chif = 300
-        var cif = chif.toFloat()
 
         config.addData(SimplePieInfo(2000.0, Color.parseColor("#ADB7AE")))
-        config.drawText(true)
-        config.strokeMode(false)
-        anim.applyConfig(config)
-        anim.start()
-
-
         config.addData(SimplePieInfo(name, Color.parseColor("#FCE300"), "B"))
         config.drawText(true)
         config.strokeMode(false)
         anim.applyConfig(config)
         anim.start()
+
+       /* config.addData(SimplePieInfo(name, Color.parseColor("#FCE300"), "B"))
+        config.drawText(true)
+        config.strokeMode(false)
+        anim.applyConfig(config)
+        anim.start() */
 
         fun refresh(valeurReturn : Double){
             val intent = Intent(this, Gamble2::class.java)
@@ -57,19 +62,15 @@ open class Gamble : anychart() {
         }
 
 
-            var random = Random.nextInt(0,3600)
-            var randomDuration = Random.nextInt(1800,6000)
-            var randomToFloat = random.toFloat()
-
-
-
         button.setOnClickListener(){
             refresh(valeurReturn = 1000.0)
         }
 
+
         button2.setOnClickListener(){
             refresh(valeurReturn = 100.0)
         }
+
 
         play.setOnClickListener(){
 
@@ -81,6 +82,25 @@ open class Gamble : anychart() {
                 val set = AnimatorSet()
                 set.playTogether(animations)
                 set.start()
+                win()
         }
     }
-}
+
+    private fun win(){
+        var newrandom = random.toInt()
+
+        for (x in 10..360){
+        var ess = random % x
+        if(ess == 0 ){
+            println("gagné")
+            binding.calcul.text = "gagné"
+            binding.textview3.text = random.toString()
+            break
+        }
+            else{
+            println("perdu")
+            binding.textview3.text = random.toString()
+
+        }
+    }
+}}
