@@ -42,18 +42,13 @@ open class Gamble : anychart() {
         val name = intent.getDoubleExtra("valeur",1.1 )
 
 
-        config.addData(SimplePieInfo(2000.0, Color.parseColor("#ADB7AE")))
+        config.addData(SimplePieInfo((2000.0-name), Color.parseColor("#ADB7AE")))
         config.addData(SimplePieInfo(name, Color.parseColor("#FCE300"), "B"))
         config.drawText(true)
         config.strokeMode(false)
         anim.applyConfig(config)
         anim.start()
 
-       /* config.addData(SimplePieInfo(name, Color.parseColor("#FCE300"), "B"))
-        config.drawText(true)
-        config.strokeMode(false)
-        anim.applyConfig(config)
-        anim.start() */
 
         fun refresh(valeurReturn : Double){
             val intent = Intent(this, Gamble2::class.java)
@@ -74,8 +69,12 @@ open class Gamble : anychart() {
 
         play.setOnClickListener(){
 
+            var turned = listOf(720, 1080, 1440)
+            var randomturn = turned.random()
+            var turn = randomToFloat + randomturn
+
                 val animations =
-                    ObjectAnimator.ofFloat(anim, "rotation", randomToFloat).apply {
+                    ObjectAnimator.ofFloat(anim, "rotation", turn).apply {
                         duration = randomDuration.toLong()
                     }
 
@@ -87,20 +86,17 @@ open class Gamble : anychart() {
     }
 
     private fun win(){
-        var newrandom = random.toInt()
 
-        for (x in 10..360){
-        var ess = random % x
-        if(ess == 0 ){
-            println("gagné")
+        if (random in 350..360){
+
+            println("gagné" )
             binding.calcul.text = "gagné"
             binding.textview3.text = random.toString()
-            break
         }
-            else{
+        else{
             println("perdu")
             binding.textview3.text = random.toString()
 
         }
     }
-}}
+}

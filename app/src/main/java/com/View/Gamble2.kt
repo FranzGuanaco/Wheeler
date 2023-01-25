@@ -23,13 +23,16 @@ open class Gamble2 : anychart() {
 
     private lateinit var binding: ActivityAnychartBinding
 
-    var random = Random.nextInt(1800,3600)
+    var random = Random.nextInt(1,360)
     var randomDuration = Random.nextInt(1800,6000)
     var randomToFloat = random.toFloat()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anychart)
+
+        binding = ActivityAnychartBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
         var button = findViewById<Button>(R.id.button)
@@ -42,13 +45,7 @@ open class Gamble2 : anychart() {
 
 
 
-        config.addData(SimplePieInfo(2000.0, Color.parseColor("#ADB7AE")))
-        config.drawText(true)
-        config.strokeMode(false)
-        anim.applyConfig(config)
-        anim.start()
-
-
+        config.addData(SimplePieInfo((2000.0-name2), Color.parseColor("#ADB7AE")))
         config.addData(SimplePieInfo(name2, Color.parseColor("#FCE300"), "B"))
         config.drawText(true)
         config.strokeMode(false)
@@ -73,14 +70,34 @@ open class Gamble2 : anychart() {
 
         play.setOnClickListener() {
 
+            var turned = listOf(720, 1080, 1440)
+            var randomturn = turned.random()
+            var turn = randomToFloat + randomturn
+
             val animations =
-                ObjectAnimator.ofFloat(anim, "rotation", randomToFloat).apply {
+                ObjectAnimator.ofFloat(anim, "rotation", turn).apply {
                     duration = randomDuration.toLong()
                 }
 
             val set = AnimatorSet()
             set.playTogether(animations)
             set.start()
+            win()
+
+            }
+        }
+
+    private fun win(){
+
+        if (random in 2..180){
+
+                println("gagné" )
+                binding.calcul.text = "gagné"
+                binding.textview3.text = random.toString()
+            }
+            else{
+                println("perdu")
+                binding.textview3.text = random.toString()
 
             }
         }
