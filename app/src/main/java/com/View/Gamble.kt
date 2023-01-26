@@ -22,8 +22,8 @@ import kotlin.random.Random
 
 open class Gamble : anychart() {
 
-    var random = Random.nextInt(1,360)
-    var randomDuration = Random.nextInt(1800,6000)
+    var random = Random.nextInt(1, 360)
+    var randomDuration = Random.nextInt(1800, 6000)
     var randomToFloat = random.toFloat()
     private lateinit var binding: ActivityAnychartBinding
 
@@ -37,12 +37,12 @@ open class Gamble : anychart() {
         val button = findViewById<Button>(R.id.button)
         val button2 = findViewById<Button>(R.id.button2)
         val play = findViewById<Button>(R.id.play)
-        val anim : AnimatedPieView = findViewById(R.id.pieView)
-        val config : AnimatedPieViewConfig = AnimatedPieViewConfig()
-        val name = intent.getDoubleExtra("valeur",1.1 )
+        val anim: AnimatedPieView = findViewById(R.id.pieView)
+        val config: AnimatedPieViewConfig = AnimatedPieViewConfig()
+        val name = intent.getDoubleExtra("valeur", 1.1)
 
 
-        config.addData(SimplePieInfo((2000.0-name), Color.parseColor("#ADB7AE")))
+        config.addData(SimplePieInfo((2000.0 - name), Color.parseColor("#ADB7AE")))
         config.addData(SimplePieInfo(name, Color.parseColor("#FCE300"), "B"))
         config.drawText(true)
         config.strokeMode(false)
@@ -50,50 +50,68 @@ open class Gamble : anychart() {
         anim.start()
 
 
-        fun refresh(valeurReturn : Double){
+        fun refresh(valeurReturn: Double) {
             val intent = Intent(this, Gamble2::class.java)
             intent.putExtra("valeurReturn", valeurReturn)
             startActivity(intent)
         }
 
 
-        button.setOnClickListener(){
+        button.setOnClickListener() {
             refresh(valeurReturn = 1000.0)
         }
 
 
-        button2.setOnClickListener(){
+        button2.setOnClickListener() {
             refresh(valeurReturn = 100.0)
         }
 
 
-        play.setOnClickListener(){
+        play.setOnClickListener() {
 
             var turned = listOf(720, 1080, 1440)
             var randomturn = turned.random()
             var turn = randomToFloat + randomturn
 
-                val animations =
-                    ObjectAnimator.ofFloat(anim, "rotation", turn).apply {
-                        duration = randomDuration.toLong()
-                    }
+            val animations =
+                ObjectAnimator.ofFloat(anim, "rotation", turn).apply {
+                    duration = randomDuration.toLong()
+                }
 
-                val set = AnimatorSet()
-                set.playTogether(animations)
-                set.start()
+            val set = AnimatorSet()
+            set.playTogether(animations)
+            set.start()
+
+            if (name == 100.0) {
                 win()
+            } else {
+                win2()
+            }
         }
     }
 
-    private fun win(){
+    private fun win() {
 
-        if (random in 350..360){
+        if (random in 350..360 || random in 1..12) {
 
-            println("gagné" )
+            println("gagné")
             binding.calcul.text = "gagné"
             binding.textview3.text = random.toString()
+        } else {
+            println("perdu")
+            binding.textview3.text = random.toString()
+
         }
-        else{
+    }
+
+    private fun win2() {
+
+        if (random in 1..180) {
+
+            println("gagné")
+            binding.calcul.text = "gagné"
+            binding.textview3.text = random.toString()
+        } else {
             println("perdu")
             binding.textview3.text = random.toString()
 

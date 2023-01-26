@@ -45,7 +45,7 @@ open class Gamble2 : anychart() {
 
 
 
-        config.addData(SimplePieInfo((2000.0-name2), Color.parseColor("#ADB7AE")))
+        config.addData(SimplePieInfo((2000.0 - name2), Color.parseColor("#ADB7AE")))
         config.addData(SimplePieInfo(name2, Color.parseColor("#FCE300"), "B"))
         config.drawText(true)
         config.strokeMode(false)
@@ -82,14 +82,33 @@ open class Gamble2 : anychart() {
             val set = AnimatorSet()
             set.playTogether(animations)
             set.start()
-            win()
 
+            if (name2 == 100.0) {
+                win()
+            } else {
+                win2()
             }
         }
+    }
 
     private fun win(){
 
-        if (random in 2..180){
+        if (random in 350..360 || random in 1..12){
+
+            println("gagné" )
+            binding.calcul.text = "gagné"
+            binding.textview3.text = random.toString()
+        }
+        else{
+            println("perdu")
+            binding.textview3.text = random.toString()
+
+        }
+    }
+
+    private fun win2(){
+
+        if (random in 1..180){
 
                 println("gagné" )
                 binding.calcul.text = "gagné"
