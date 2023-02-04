@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class Choice : AppCompatActivity()
+open class Choice : AppCompatActivity()
 {
     lateinit var binding: ActivityChoiceBinding
     lateinit var storage: FirebaseStorage
@@ -32,15 +32,13 @@ class Choice : AppCompatActivity()
         binding = ActivityChoiceBinding.inflate(layoutInflater)
         setContentView(binding.root)
         var img = intent.getStringExtra("img")
-        var figure = intent.getStringExtra("figure")
+        var data = intent.getStringExtra("figure")
+        var price = data.toString()
 
 
             Glide.with(baseContext).asBitmap().load(img).into(binding.imageView4)
 
-
-
-            binding.Price.text = figure
-
+            binding.Price.text = "${data} €"
 
 
             auth = FirebaseAuth.getInstance()

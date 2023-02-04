@@ -21,8 +21,6 @@ import com.google.firebase.storage.FirebaseStorage
         private lateinit var storageReference: DatabaseReference
         lateinit var binding: ActivityPrizeBinding
         lateinit var image: String
-        lateinit var pic: String
-        lateinit var figure: String
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -74,39 +72,44 @@ import com.google.firebase.storage.FirebaseStorage
 
                 Toast.makeText(this@MainActivity,"Good choice",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Choice::class.java)
-                image = "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2FComponent%201.png?alt=media&token=859b98f4-a6dd-4edd-a678-367f397dd201"
-                intent.putExtra("img", image)
-                startActivity(intent)
+
+                var parent = FirebaseDatabase.getInstance().getReference("img")
+                var dataChild = parent.child("Netflix")
+                dataChild.child("imgNetflix").get().addOnSuccessListener {
+                    Log.i("firebase", "Got value ${it.value}")
+                    var pic = "${it.value}"
+                    intent.putExtra("img", pic)
+
+                    dataChild.child("data").get().addOnSuccessListener {
+                        Log.i("firebase", "Got value ${it.value}")
+                        var figure = "${it.value}"
+                        intent.putExtra("figure", figure)
+
+                        startActivity(intent) }
+                }
+
             }
 
             binding.GooglePlayPrize.setOnClickListener(){
 
-             /*   var database = FirebaseDatabase.getInstance().getReference("img")
-                database.child("imgGoogleplay").get().addOnSuccessListener {
-                    Log.i("firebase", "Got value ${it.value}")
-                    var pic = "${it.value}"
-                    intent.putExtra("img", pic)
-                    startActivity(intent)} */
-
                 Toast.makeText(this@MainActivity,"Good choice",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Choice::class.java)
 
-                  /*  var data = FirebaseDatabase.getInstance().getReference("img")
-                    data.child("data").get().addOnSuccessListener {
-                        Log.i("firebase", "Got value ${it.value}")
-                        var figure = "${it.value}"
-                        intent.putExtra("figure", figure) */
 
-                   var database = FirebaseDatabase.getInstance().getReference("img")
-                        database.child("imgGoogleplay").get().addOnSuccessListener {
+                   var parent = FirebaseDatabase.getInstance().getReference("img")
+                        var dataChild = parent.child("Google")
+                        dataChild.child("imgGoogle").get().addOnSuccessListener {
                             Log.i("firebase", "Got value ${it.value}")
                             var pic = "${it.value}"
                             intent.putExtra("img", pic)
-                            database.child("data").get().addOnSuccessListener {
+
+                            dataChild.child("data").get().addOnSuccessListener {
                                 Log.i("firebase", "Got value ${it.value}")
                                 var figure = "${it.value}"
                                 intent.putExtra("figure", figure)
-                                startActivity(intent) }}
+
+                                startActivity(intent) }
+                        }
                 }
 
 
@@ -115,95 +118,192 @@ import com.google.firebase.storage.FirebaseStorage
 
                 Toast.makeText(this@MainActivity,"Good choice",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Choice::class.java)
-                image = "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fspotify.png?alt=media&token=c3facf8c-b820-44c8-92dd-8e87ac950798"
-                intent.putExtra("img", image)
-                startActivity(intent)
-            }
+
+                var parent = FirebaseDatabase.getInstance().getReference("img")
+                var dataChild = parent.child("Spotify")
+                dataChild.child("imgSpotify").get().addOnSuccessListener {
+                    Log.i("firebase", "Got value ${it.value}")
+                    var pic = "${it.value}"
+                    intent.putExtra("img", pic)
+
+                    dataChild.child("data").get().addOnSuccessListener {
+                        Log.i("firebase", "Got value ${it.value}")
+                        var figure = "${it.value}"
+                        intent.putExtra("figure", figure)
+
+                        startActivity(intent)
+            }}}
 
             binding.PrimePrize.setOnClickListener(){
 
                 Toast.makeText(this@MainActivity,"Good choice",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Choice::class.java)
-                image = "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fprimev.png?alt=media&token=4b70b2f9-4ec0-44a0-afe2-d7c4f40f122b"
-                intent.putExtra("img", image)
-                startActivity(intent)
-            }
+
+                var parent = FirebaseDatabase.getInstance().getReference("img")
+                var dataChild = parent.child("Prime")
+                dataChild.child("imgPrime").get().addOnSuccessListener {
+                    Log.i("firebase", "Got value ${it.value}")
+                    var pic = "${it.value}"
+                    intent.putExtra("img", pic)
+
+                    dataChild.child("data").get().addOnSuccessListener {
+                        Log.i("firebase", "Got value ${it.value}")
+                        var figure = "${it.value}"
+                        intent.putExtra("figure", figure)
+
+                        startActivity(intent)
+            }}}
 
             binding.TravelPrize.setOnClickListener(){
 
                 Toast.makeText(this@MainActivity,"Good choice",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Choice::class.java)
-                image = "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Ftravel.png?alt=media&token=36e86672-8e58-4aec-b5e3-3333040d3f88"
-                intent.putExtra("img", image)
-                startActivity(intent)
+
+                var parent = FirebaseDatabase.getInstance().getReference("img")
+                var dataChild = parent.child("Travel")
+                dataChild.child("imgTravel").get().addOnSuccessListener {
+                    Log.i("firebase", "Got value ${it.value}")
+                    var pic = "${it.value}"
+                    intent.putExtra("img", pic)
+
+                    dataChild.child("data").get().addOnSuccessListener {
+                        Log.i("firebase", "Got value ${it.value}")
+                        var figure = "${it.value}"
+                        intent.putExtra("figure", figure)
+
+                        startActivity(intent)
+                    }}
             }
 
             binding.TokyoPrize.setOnClickListener(){
 
                 Toast.makeText(this@MainActivity,"Good choice",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Choice::class.java)
-                image = "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Ftokyo.png?alt=media&token=3f6290a9-4845-4378-b852-acd47a7a3062"
-                intent.putExtra("img", image)
-                startActivity(intent)
-            }
+
+                var parent = FirebaseDatabase.getInstance().getReference("img")
+                var dataChild = parent.child("Tokyo")
+                dataChild.child("imgTokyo").get().addOnSuccessListener {
+                    Log.i("firebase", "Got value ${it.value}")
+                    var pic = "${it.value}"
+                    intent.putExtra("img", pic)
+
+                    dataChild.child("data").get().addOnSuccessListener {
+                        Log.i("firebase", "Got value ${it.value}")
+                        var figure = "${it.value}"
+                        intent.putExtra("figure", figure)
+
+                        startActivity(intent)
+                    }
+            }}
 
             binding.LondonPrize.setOnClickListener(){
 
                 Toast.makeText(this@MainActivity,"Good choice",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Choice::class.java)
-                image = "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2FLondon.png?alt=media&token=0491ca35-861d-431e-af04-514dc921a52c"
-                intent.putExtra("img", image)
-                startActivity(intent)
+
+                var parent = FirebaseDatabase.getInstance().getReference("img")
+                var dataChild = parent.child("London")
+                dataChild.child("imgLondon").get().addOnSuccessListener {
+                    Log.i("firebase", "Got value ${it.value}")
+                    var pic = "${it.value}"
+                    intent.putExtra("img", pic)
+
+                    dataChild.child("data").get().addOnSuccessListener {
+                        Log.i("firebase", "Got value ${it.value}")
+                        var figure = "${it.value}"
+                        intent.putExtra("figure", figure)
+
+                        startActivity(intent) }
+                }
             }
 
 
-            binding.CastlePrize.setOnClickListener(){
+            binding.CastlePrize.setOnClickListener() {
 
-                Toast.makeText(this@MainActivity,"Good choice",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "Good choice", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Choice::class.java)
-                image = "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fcastle.png?alt=media&token=4140b6fc-576b-4fef-8398-5e9cc29f1a1f"
-                intent.putExtra("img", image)
-                startActivity(intent)
-            }
 
+                var parent = FirebaseDatabase.getInstance().getReference("img")
+                var dataChild = parent.child("Castle")
+                dataChild.child("imgCastle").get().addOnSuccessListener {
+                    Log.i("firebase", "Got value ${it.value}")
+                    var pic = "${it.value}"
+                    intent.putExtra("img", pic)
+
+                    dataChild.child("data").get().addOnSuccessListener {
+                        Log.i("firebase", "Got value ${it.value}")
+                        var figure = "${it.value}"
+                        intent.putExtra("figure", figure)
+
+                        startActivity(intent)
+                    }
+                }
+            }
 
             binding.Best1.setOnClickListener(){
 
                 Toast.makeText(this@MainActivity,"Good choice",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Choice::class.java)
-                image = "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fgoogle%20play.png?alt=media&token=c0bce8e7-9b3d-4597-9233-975262ba35bb"
-                intent.putExtra("img", image)
-                startActivity(intent)
-            }
+
+                var parent = FirebaseDatabase.getInstance().getReference("img")
+                var dataChild = parent.child("Google")
+                dataChild.child("imgGoogle").get().addOnSuccessListener {
+                    Log.i("firebase", "Got value ${it.value}")
+                    var pic = "${it.value}"
+                    intent.putExtra("img", pic)
+
+                    dataChild.child("data").get().addOnSuccessListener {
+                        Log.i("firebase", "Got value ${it.value}")
+                        var figure = "${it.value}"
+                        intent.putExtra("figure", figure)
+
+                        startActivity(intent) }
+            }}
 
             binding.Best2.setOnClickListener(){
 
                 Toast.makeText(this@MainActivity,"Good choice",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Choice::class.java)
-                image = "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Flondon.jpeg?alt=media&token=67ab9081-7091-4703-bba5-721d38942645"
-                intent.putExtra("img", image)
-                startActivity(intent)
-            }
+
+                var parent = FirebaseDatabase.getInstance().getReference("img")
+                var dataChild = parent.child("London")
+                dataChild.child("imgLondon").get().addOnSuccessListener {
+                    Log.i("firebase", "Got value ${it.value}")
+                    var pic = "${it.value}"
+                    intent.putExtra("img", pic)
+
+                    dataChild.child("data").get().addOnSuccessListener {
+                        Log.i("firebase", "Got value ${it.value}")
+                        var figure = "${it.value}"
+                        intent.putExtra("figure", figure)
+
+                        startActivity(intent) }
+            }}
 
             binding.Best3.setOnClickListener(){
 
                 Toast.makeText(this@MainActivity,"Good choice",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Choice::class.java)
-                image = "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Ftokyo.png?alt=media&token=3f6290a9-4845-4378-b852-acd47a7a3062"
-                intent.putExtra("img", image)
-                startActivity(intent)
+
+
+                var parent = FirebaseDatabase.getInstance().getReference("img")
+                var dataChild = parent.child("Tokyo")
+                dataChild.child("imgTokyo").get().addOnSuccessListener {
+                    Log.i("firebase", "Got value ${it.value}")
+                    var pic = "${it.value}"
+                    intent.putExtra("img", pic)
+
+                    dataChild.child("data").get().addOnSuccessListener {
+                        Log.i("firebase", "Got value ${it.value}")
+                        var figure = "${it.value}"
+                        intent.putExtra("figure", figure)
+
+                        startActivity(intent)
+                    }
             }
 
-            binding.Best4.setOnClickListener(){
 
-                Toast.makeText(this@MainActivity,"Good choice",Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, Choice::class.java)
-                image = "https://.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fxbox.png?alt=media&token=7009da2f-7ff4-4e7c-a391-377097016e67"
-                intent.putExtra("img", image)
-                startActivity(intent)
-            }
-
-        }
+        }}
 
 
 
