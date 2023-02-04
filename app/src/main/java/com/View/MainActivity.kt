@@ -3,6 +3,7 @@ package com.View
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -10,6 +11,7 @@ import com.example.wheeler.R
 import com.example.wheeler.databinding.ActivityPrizeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 
 
@@ -19,6 +21,8 @@ import com.google.firebase.storage.FirebaseStorage
         private lateinit var storageReference: DatabaseReference
         lateinit var binding: ActivityPrizeBinding
         lateinit var image: String
+        lateinit var pic: String
+        lateinit var figure: String
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -77,12 +81,35 @@ import com.google.firebase.storage.FirebaseStorage
 
             binding.GooglePlayPrize.setOnClickListener(){
 
+             /*   var database = FirebaseDatabase.getInstance().getReference("img")
+                database.child("imgGoogleplay").get().addOnSuccessListener {
+                    Log.i("firebase", "Got value ${it.value}")
+                    var pic = "${it.value}"
+                    intent.putExtra("img", pic)
+                    startActivity(intent)} */
+
                 Toast.makeText(this@MainActivity,"Good choice",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Choice::class.java)
-                image = "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fgoogle%20play.png?alt=media&token=c0bce8e7-9b3d-4597-9233-975262ba35bb"
-                intent.putExtra("img", image)
-                startActivity(intent)
-            }
+
+                  /*  var data = FirebaseDatabase.getInstance().getReference("img")
+                    data.child("data").get().addOnSuccessListener {
+                        Log.i("firebase", "Got value ${it.value}")
+                        var figure = "${it.value}"
+                        intent.putExtra("figure", figure) */
+
+                   var database = FirebaseDatabase.getInstance().getReference("img")
+                        database.child("imgGoogleplay").get().addOnSuccessListener {
+                            Log.i("firebase", "Got value ${it.value}")
+                            var pic = "${it.value}"
+                            intent.putExtra("img", pic)
+                            database.child("data").get().addOnSuccessListener {
+                                Log.i("firebase", "Got value ${it.value}")
+                                var figure = "${it.value}"
+                                intent.putExtra("figure", figure)
+                                startActivity(intent) }}
+                }
+
+
 
             binding.SpotifyPrize.setOnClickListener(){
 

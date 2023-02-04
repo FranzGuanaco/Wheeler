@@ -26,28 +26,22 @@ class Choice : AppCompatActivity()
     lateinit var auth: FirebaseAuth
     lateinit var databaseReference: DatabaseReference
 
-
     override fun onCreate(savedInstanceState:Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choice)
         binding = ActivityChoiceBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        var img = intent.getStringExtra("img")
+        var figure = intent.getStringExtra("figure")
 
-        var database = FirebaseDatabase.getInstance().getReference("img")
-        database.child("imgGoogleplay").get().addOnSuccessListener {
-            Log.i("firebase", "Got value ${it.value}")
-            Glide.with(baseContext).asBitmap().load(it.value).into(binding.imageView4)
-        }.addOnFailureListener{
-            Log.e("firebase", "Error getting data", it)
-        }
 
-        var databaseText = FirebaseDatabase.getInstance().getReference("img")
-        databaseText.child("data").get().addOnSuccessListener {
-            Log.i("firebase", "Got value ${it.value}")
-            binding.Price.text = "Price: ${it.value} €"
-        }.addOnFailureListener{
-            Log.e("firebase", "Error getting data", it)
-        }
+            Glide.with(baseContext).asBitmap().load(img).into(binding.imageView4)
+
+
+
+            binding.Price.text = figure
+
+
 
             auth = FirebaseAuth.getInstance()
 
