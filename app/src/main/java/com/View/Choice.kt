@@ -11,10 +11,7 @@ import com.example.wheeler.databinding.ActivityChoiceBinding
 import com.example.wheeler.databinding.ActivityCreateAccountBinding
 import com.example.wheeler.databinding.ActivityPhoneBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
@@ -27,6 +24,7 @@ class Choice : AppCompatActivity()
     lateinit var binding: ActivityChoiceBinding
     lateinit var storage: FirebaseStorage
     lateinit var auth: FirebaseAuth
+    lateinit var databaseReference: DatabaseReference
 
 
     override fun onCreate(savedInstanceState:Bundle?) {
@@ -35,19 +33,29 @@ class Choice : AppCompatActivity()
         binding = ActivityChoiceBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var database = FirebaseDatabase.getInstance()
-        var img = intent.getStringExtra("img")
-
-        auth = FirebaseAuth.getInstance()
-
-
-        binding.yesWheel.setOnClickListener(){
-            var intent = Intent(this, anychart::class.java)
-            startActivity(intent)
+        var database = FirebaseDatabase.getInstance().getReference("img")
+        database.child("imgGoogleplay").get().addOnSuccessListener {
+            Log.i("firebase", "Got value ${it.value}")
+            Glide.with(baseContext).asBitmap().load(it.value).into(binding.imageView4)
+        }.addOnFailureListener{
+            Log.e("firebase", "Error getting data", it)
         }
 
-        Glide.with(baseContext).asBitmap().load(img).into(binding.imageView4)
+        var databaseText = FirebaseDatabase.getInstance().getReference("img")
+        databaseText.child("data").get().addOnSuccessListener {
+            Log.i("firebase", "Got value ${it.value}")
+            binding.Price.text = "Price: ${it.value} €"
+        }.addOnFailureListener{
+            Log.e("firebase", "Error getting data", it)
+        }
 
+            auth = FirebaseAuth.getInstance()
 
+           // var img = intent.getStringExtra("img")
 
-    }}
+            binding.yesWheel.setOnClickListener() {
+                var intent = Intent(this, anychart::class.java)
+                startActivity(intent)
+            }
+        }
+    }
