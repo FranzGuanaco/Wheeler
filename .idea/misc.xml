@@ -34,6 +34,8 @@
         <entry key="app/src/main/res/layout/activity_anychart.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_choice.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.3736413043478261" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.35520833333333335" />
+        <entry key="app/src/main/res/layout/activity_loser_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.14108409321175278" />
         <entry key="app/src/main/res/layout/activity_mctivity.xml" value="0.3582427536231884" />
@@ -42,6 +44,7 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_splash_screen2.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/activity_winner_screen.xml" value="0.375" />
         <entry key="app/src/main/res/layout/anim_intro.xml" value="0.35635223388671877" />
         <entry key="app/src/main/res/layout/button_style.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/choice.xml" value="0.32182703432829485" />
