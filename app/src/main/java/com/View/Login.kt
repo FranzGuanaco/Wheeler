@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
 
-class Login: AppCompatActivity() {
+ class Login: AppCompatActivity() {
 
     lateinit var binding: ActivityLoginBinding
     lateinit var gsc: GoogleSignInClient

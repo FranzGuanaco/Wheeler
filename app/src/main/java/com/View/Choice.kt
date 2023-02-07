@@ -33,12 +33,11 @@ open class Choice : AppCompatActivity()
         setContentView(binding.root)
         var img = intent.getStringExtra("img")
         var data = intent.getStringExtra("figure")
-        var price = data.toString()
 
 
             Glide.with(baseContext).asBitmap().load(img).into(binding.imageView4)
 
-            binding.Price.text = "${data} €"
+            binding.Price.text = "Price: ${data} $"
 
 
             auth = FirebaseAuth.getInstance()
@@ -49,5 +48,10 @@ open class Choice : AppCompatActivity()
                 var intent = Intent(this, anychart::class.java)
                 startActivity(intent)
             }
+
+            binding.noWheel.setOnClickListener() {
+                var intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+        }
         }
     }

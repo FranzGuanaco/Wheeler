@@ -41,7 +41,6 @@ open class Gamble2 : anychart() {
         var anim: AnimatedPieView = findViewById(R.id.pieView)
         var config: AnimatedPieViewConfig = AnimatedPieViewConfig()
         val name2 = intent.getDoubleExtra("valeurReturn", 1.1)
-        var text = findViewById<TextView>(R.id.textview3)
 
 
 
@@ -96,8 +95,6 @@ open class Gamble2 : anychart() {
         if (random in 360..370 || random in 1..12){
 
             println("gagné" )
-            binding.calcul.text = "c'est gagné"
-            binding.textview3.text = random.toString()
 
             Handler().postDelayed({
                 val intent = Intent(this, RedirectionWin::class.java)
@@ -108,7 +105,6 @@ open class Gamble2 : anychart() {
         }
         else{
             println("perdu")
-            binding.textview3.text = random.toString()
 
             Handler().postDelayed({
                 val intent = Intent(this, RedirectionLose::class.java)
@@ -123,8 +119,6 @@ open class Gamble2 : anychart() {
         if (random in 1..180){
 
                 println("gagné" )
-                binding.calcul.text = "gagné"
-                binding.textview3.text = random.toString()
 
                 Handler().postDelayed({
                 val intent = Intent(this, RedirectionWin::class.java)
@@ -133,7 +127,6 @@ open class Gamble2 : anychart() {
             }
             else{
                 println("perdu")
-                binding.textview3.text = random.toString()
 
                 Handler().postDelayed({
                 val intent = Intent(this, RedirectionLose::class.java)

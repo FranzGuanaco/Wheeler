@@ -95,8 +95,6 @@ open class Gamble : anychart() {
         if (random in 360..370 || random in 1..12) {
 
             println("gagné")
-            binding.calcul.text = "gagné"
-            binding.textview3.text = random.toString()
 
             Handler().postDelayed({
                 val intent = Intent(this, RedirectionWin::class.java)
@@ -104,7 +102,6 @@ open class Gamble : anychart() {
             }, 6000)
         } else {
             println("perdu")
-            binding.textview3.text = random.toString()
 
             Handler().postDelayed({
                 val intent = Intent(this, RedirectionLose::class.java)
@@ -119,8 +116,6 @@ open class Gamble : anychart() {
         if (random in 1..180) {
 
             println("gagné")
-            binding.calcul.text = "gagné"
-            binding.textview3.text = random.toString()
 
             Handler().postDelayed({ val intent = Intent(this, RedirectionWin::class.java)
                 startActivity(intent)
@@ -128,7 +123,6 @@ open class Gamble : anychart() {
 
         } else {
             println("perdu")
-            binding.textview3.text = random.toString()
 
             Handler().postDelayed({
                 val intent = Intent(this, RedirectionLose::class.java)

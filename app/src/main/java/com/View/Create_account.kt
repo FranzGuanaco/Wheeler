@@ -17,7 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.GoogleAuthProvider
 
-open class Create_account: AppCompatActivity() {
+ class Create_account: AppCompatActivity() {
 
     lateinit var binding: ActivityCreateAccountBinding
     lateinit var gsc: GoogleSignInClient

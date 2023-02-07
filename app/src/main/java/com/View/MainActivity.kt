@@ -172,7 +172,8 @@ import com.google.firebase.storage.FirebaseStorage
                         intent.putExtra("figure", figure)
 
                         startActivity(intent)
-                    }}
+                    }
+                }
             }
 
             binding.TokyoPrize.setOnClickListener(){
@@ -194,7 +195,8 @@ import com.google.firebase.storage.FirebaseStorage
 
                         startActivity(intent)
                     }
-            }}
+                }
+            }
 
             binding.LondonPrize.setOnClickListener(){
 
