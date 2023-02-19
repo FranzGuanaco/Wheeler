@@ -53,12 +53,12 @@ import com.google.firebase.storage.FirebaseStorage
             Thread.sleep(10)
             best4()
 
-            var test = Create_account()
-            test.auth = FirebaseAuth.getInstance()
+           var test = Login()
+          //  test.auth = FirebaseAuth.getInstance()
 
             binding.logout.setOnClickListener(){
-                test.out()
-                var intent = Intent(this, Create_account::class.java)
+              // test.out()
+                var intent = Intent(this, Login::class.java)
                 startActivity(intent)
 
             }

@@ -12,7 +12,7 @@
         android:layout_height="30dp"
         android:layout_marginBottom="592dp"
         android:gravity="center"
-        android:text="Create account"
+        android:text="Wheeler"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -21,52 +21,91 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/buttonPhone"
+    <EditText
+        android:id="@+id/date"
         android:layout_width="300dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="464dp"
-        android:background="@drawable/button_style"
-        android:drawableLeft="@drawable/phone_icon"
-        android:gravity="center"
-        android:text="Phone connection"
-        android:textAllCaps="false"
-        android:textColor="#3e2723"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:backgroundTint="@null"
+        android:layout_height="50dp"
+        android:layout_marginBottom="368dp"
+        android:background="@drawable/edittext_style"
+        android:hint="Date of birth"
+        android:padding="11dp"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.576"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="504dp"
+        android:background="@drawable/edittext_style"
+        android:hint="email"
+        android:padding="11dp"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="436dp"
+        android:background="@drawable/edittext_style"
+        android:hint="password"
+        android:padding="11dp"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/buttonGmail"
+        android:id="@+id/create"
         android:layout_width="300dp"
         android:layout_height="64dp"
-        android:layout_marginBottom="360dp"
+        android:layout_marginBottom="272dp"
         android:background="@drawable/button_style"
-        android:drawableLeft="@drawable/gmail_icon"
-        android:text="Gmail connection"
+        android:text="Create account"
         android:textAllCaps="false"
-        android:textColor="#3e2723"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:backgroundTint="@null"
+        app:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.576"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="170dp"
         android:layout_height="100dp"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="456dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="508dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/animation" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:gravity="center"
+        android:text="orem ipsum dolor sit amet, consectetur
+adipiscing elit, sed do eiusmod tempor incididunt ut lab
+ore et dolore magna aliqua. Ut enim ad
+minim veniam, quis nostrud exercitation
+ullamco laboris nisi ut aliquip ex ea com"
+        android:textSize="11dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
