@@ -7,8 +7,10 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1675" />
         <entry key="app/src/main/res/drawable/arrow.xml" value="0.1385" />
         <entry key="app/src/main/res/drawable/arrow_shape.xml" value="0.1615" />
+        <entry key="app/src/main/res/drawable/black_staar.xml" value="0.2375" />
         <entry key="app/src/main/res/drawable/button_style.xml" value="0.165" />
         <entry key="app/src/main/res/drawable/choice_wheel.xml" value="0.45" />
+        <entry key="app/src/main/res/drawable/cup.xml" value="0.2375" />
         <entry key="app/src/main/res/drawable/cursor.xml" value="0.244" />
         <entry key="app/src/main/res/drawable/edittext_style.xml" value="0.2375" />
         <entry key="app/src/main/res/drawable/ic_arrow_background.xml" value="0.1545" />
@@ -32,9 +34,11 @@
         <entry key="app/src/main/res/drawable/triangle_red.xml" value="0.171" />
         <entry key="app/src/main/res/drawable/triangle_yellow.xml" value="0.171" />
         <entry key="app/src/main/res/drawable/wheel.xml" value="0.334" />
+        <entry key="app/src/main/res/layout/activity_account.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_anychart.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_choice.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.3736413043478261" />
+        <entry key="app/src/main/res/layout/activity_disconnect.xml" value="0.3736413043478261" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_loser_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -45,6 +49,8 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_splash_screen2.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/activity_user_interface.xml" value="0.3736413043478261" />
+        <entry key="app/src/main/res/layout/activity_userinterface.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_winner_screen.xml" value="0.375" />
         <entry key="app/src/main/res/layout/anim_intro.xml" value="0.35635223388671877" />
         <entry key="app/src/main/res/layout/button_style.xml" value="0.2546875" />
@@ -68,6 +74,7 @@
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_arrow.xml" value="0.2365" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_arrow_round.xml" value="0.2365" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_phone.xml" value="0.2365" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/param.xml" value="0.2375" />
       </map>
     </option>
   </component>

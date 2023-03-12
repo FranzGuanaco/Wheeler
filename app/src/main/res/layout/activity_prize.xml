@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Theme.Night"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -26,20 +27,6 @@
             android:orientation="horizontal">
 
 
-            <ImageButton
-                android:id="@+id/StayPriz"
-                android:layout_width="140dp"
-                android:layout_height="100dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="410dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginBottom="220dp"
-                android:background="@drawable/image_button"
-                tools:srcCompat="@tools:sample/avatars" />
-
-
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/Best1"
                 android:layout_width="140dp"
@@ -47,7 +34,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginBottom="370dp"
+                android:layout_marginBottom="440dp"
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -59,7 +46,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="165dp"
-                android:layout_marginBottom="370dp"
+                android:layout_marginBottom="440dp"
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -70,7 +57,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="320dp"
-                android:layout_marginBottom="370dp"
+                android:layout_marginBottom="440dp"
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -81,7 +68,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="320dp"
-                android:layout_marginBottom="220dp"
+                android:layout_marginBottom="290dp"
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -92,7 +79,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="165dp"
-                android:layout_marginBottom="220dp"
+                android:layout_marginBottom="290dp"
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -103,7 +90,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginBottom="220dp"
+                android:layout_marginBottom="290dp"
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -114,7 +101,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="320dp"
-                android:layout_marginBottom="65dp"
+                android:layout_marginBottom="135dp"
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -125,7 +112,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="165dp"
-                android:layout_marginBottom="65dp"
+                android:layout_marginBottom="135dp"
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -136,7 +123,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginBottom="65dp"
+                android:layout_marginBottom="135dp"
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -147,7 +134,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="470dp"
-                android:layout_marginBottom="65dp"
+                android:layout_marginBottom="135dp"
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -158,7 +145,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="470dp"
-                android:layout_marginBottom="220dp"
+                android:layout_marginBottom="290dp"
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -169,9 +156,31 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="470dp"
-                android:layout_marginBottom="370dp"
+                android:layout_marginBottom="440dp"
                 app:shapeAppearanceOverlay="@style/Circular"
                 tools:srcCompat="@tools:sample/avatars" />
+
+            <Button
+                android:id="@+id/play"
+                android:layout_width="320dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="640dp"
+                android:background="@drawable/button_style"
+                android:text="Try golden subscription"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:backgroundTint="@color/gold" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="21dp"
+                android:text="Button" />
 
 
         </RelativeLayout>
@@ -185,7 +194,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="529dp"
+        android:layout_marginTop="469dp"
         android:text="Video-on-demand prices"
         android:textColor="@color/black"
         android:textSize="18dp"
@@ -198,7 +207,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="383dp"
+        android:layout_marginTop="323dp"
         android:text="Stay and holiday prices"
         android:textColor="@color/black"
         android:textSize="18dp"
@@ -211,7 +220,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="170dp"
         android:text="Popular prizes"
         android:textColor="@color/black"
         android:textSize="18dp"
@@ -224,53 +233,37 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="100dp"
         android:text="Explore the current games"
         android:textColor="@color/black"
         android:textSize="24dp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/play"
-        android:layout_width="320dp"
-        android:layout_height="43dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="158dp"
-        android:background="@drawable/button_style"
-        android:text="Try golden subscription"
-        android:textColor="@color/white"
         android:textStyle="bold"
-        app:backgroundTint="@color/gold" />
+        android:onClick="toggleDarkMode"/>
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:background="#000000">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehend"
-            android:textColor="#FFFFFF"
-            android:lineSpacingMultiplier="1.2"
-            android:textSize="13sp"/>
-
-    </androidx.appcompat.widget.Toolbar>
 
     <ImageButton
         android:id="@+id/logout"
-        android:layout_width="40dp"
+        android:layout_width="25dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/icon_user" />
+
+    <ImageButton
+        android:id="@+id/coin"
+        android:layout_width="50dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="21dp"
-        android:background="@drawable/logout_icon" />
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/coin_pic" />
+
+
 
 </RelativeLayout>
 

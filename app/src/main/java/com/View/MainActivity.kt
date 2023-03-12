@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.wheeler.R
 import com.example.wheeler.databinding.ActivityPrizeBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -21,12 +24,20 @@ import com.google.firebase.storage.FirebaseStorage
         private lateinit var storageReference: DatabaseReference
         lateinit var binding: ActivityPrizeBinding
         lateinit var image: String
+        lateinit var gsc: GoogleSignInClient
+        lateinit var auth: FirebaseAuth
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_prize)
              binding = ActivityPrizeBinding.inflate(layoutInflater)
             setContentView(binding.root)
+
+        /*   binding.coin.setOnClickListener(){
+
+                var intent = Intent(this, Userinterface::class.java)
+                startActivity(intent)
+            } */
 
 
             netflix()
@@ -53,11 +64,19 @@ import com.google.firebase.storage.FirebaseStorage
             Thread.sleep(10)
             best4()
 
-           var test = Login()
+            val gso: GoogleSignInOptions =
+                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestEmail()
+                    .build()
+
+            gsc = GoogleSignIn.getClient(this, gso)
+
+          var test = Login()
           //  test.auth = FirebaseAuth.getInstance()
 
-            binding.logout.setOnClickListener(){
-              // test.out()
+            binding.coin.setOnClickListener(){
+                test.out()
                 var intent = Intent(this, Login::class.java)
                 startActivity(intent)
 

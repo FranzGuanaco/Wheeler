@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/PrizeMarket"
-        android:name="com.View.Prize"
+        android:name="com.View.MainActivity"
         android:label=""
         tools:layout="@layout/activity_prize">
         <action

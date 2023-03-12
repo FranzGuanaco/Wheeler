@@ -18,6 +18,12 @@
         android:theme="@style/Theme.Draft.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".account"
+            android:exported="false" />
+        <activity
+            android:name=".UserInterface"
+            android:exported="false" />
+        <activity
             android:name="com.View.Splash"
             android:exported="true">
             <intent-filter>
@@ -45,9 +51,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.View.PhoneNumber"
-            android:exported="true" />
-        <activity
             android:name="com.View.MainActivity"
             android:exported="true">
             <intent-filter>
@@ -58,7 +61,25 @@
         </activity>
         <activity
             android:name="com.View.Choice"
-            android:exported="true"></activity>
+            android:exported="true" />
+        <activity
+            android:name="com.View.Userinterface"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.View.Disconnect"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.View.anychart"
             android:exported="true">
@@ -79,39 +100,35 @@
         </activity>
         <activity
             android:name="com.View.Gamble2"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
-
-        <activity
-            android:name="com.View.RedirectionWin"
-            android:exported="true"
-            android:label="@string/title_activity_redirection_screen"
-            android:theme="@style/Theme.Draft.NoActionBar.NoActionBar" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.View.RedirectionWin"
+            android:exported="true"
+            android:label="@string/title_activity_redirection_screen"
+            android:theme="@style/Theme.Draft.NoActionBar.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.View.RedirectionLose"
             android:exported="true"
             android:label="@string/title_activity_redirection_screen"
-            android:theme="@style/Theme.Draft.NoActionBar.NoActionBar" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.Draft.NoActionBar.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-
     </application>
-
 
 </manifest>
