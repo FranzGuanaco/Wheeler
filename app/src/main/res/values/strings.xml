@@ -25,7 +25,8 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
+    <string name="password_changed">Changing your password will log you out of all your active Wheeler sessions except the one you are currently using. The 6 applications that have access to your account will not be affected. Learn more
+about Wheeler</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_redirection_screen">RedirectionScreen</string>
