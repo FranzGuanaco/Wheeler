@@ -40,10 +40,10 @@
         <action
             android:id="@+id/action_PrizeMarket_to_Choice"
             app:destination="@id/Choice" />
+        <action
+            android:id="@+id/action_PrizeMarket_to_userInterface"
+            app:destination="@id/userInterface" />
     </fragment>
-    <action
-        android:id="@+id/action_Login_to_PrizeMarket"
-        app:destination="@id/Choice" />
 
     <fragment
         android:id="@+id/CreateAccount"
@@ -53,6 +53,32 @@
         <action
             android:id="@+id/action_CreateAccount_to_PrizeMarket"
             app:destination="@id/PrizeMarket" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/userInterface"
+        android:name="com.View.Choice"
+        android:label=""
+        tools:layout="@layout/activity_userinterface">
+        <action
+            android:id="@+id/action_userInterface_to_account"
+            app:destination="@id/account" />
+        <action
+            android:id="@+id/action_userInterface_to_history"
+            app:destination="@id/history" />
+        <action
+            android:id="@+id/action_userInterface_to_Security"
+            app:destination="@id/Security" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/account"
+        android:name="com.View.Choice"
+        android:label=""
+        tools:layout="@layout/activity_account">
+        <action
+            android:id="@+id/action_account_to_password"
+            app:destination="@id/password" />
     </fragment>
 
     <fragment
@@ -81,6 +107,24 @@
         android:name="com.View.Choice"
         android:label=""
         tools:layout="@layout/activity_anychart"/>
+
+    <fragment
+        android:id="@+id/history"
+        android:name="com.View.Choice"
+        android:label=""
+        tools:layout="@layout/activity_history"/>
+
+    <fragment
+        android:id="@+id/password"
+        android:name="com.View.Choice"
+        android:label=""
+        tools:layout="@layout/activity_change_password"/>
+
+    <fragment
+        android:id="@+id/Security"
+        android:name="com.View.Choice"
+        android:label=""
+        tools:layout="@layout/activity_security"/>
 
 
 </navigation>
