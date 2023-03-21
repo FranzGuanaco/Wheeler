@@ -4,8 +4,17 @@
         <!-- Primary brand color. -->
 
 
-            <item name="android:background">@color/nightmode</item>
-        <item name="android:textColor">@color/white</item>
+            <item name="android:background">#121212</item>
 
     </style>
+
+    <style name="TEXT">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">#363636</item>
+        <item name="android:tint">#363636</item>
+    </style>
+
+
+
+
 </resources>

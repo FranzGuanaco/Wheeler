@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.View.account">
+    tools:context="com.View.Account">
 
     <ImageView
         android:id="@+id/imageView9"
@@ -14,6 +14,7 @@
         android:layout_marginTop="90dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        style="@style/TEXT"
         app:srcCompat="@mipmap/padlocj" />
 
     <ImageView
@@ -24,6 +25,7 @@
         android:layout_marginTop="205dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        style="@style/TEXT"
         app:srcCompat="@mipmap/gift_foreground" />
 
     <ImageView
@@ -34,6 +36,7 @@
         android:layout_marginTop="320dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        style="@style/TEXT"
         app:srcCompat="@mipmap/award_foreground" />
 
     <View
@@ -58,6 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view6"
         android:text="Stay up to date with news"
+        style="@style/TEXT"
         android:textSize="18dp"/>
 
     <Button
@@ -84,6 +88,7 @@
         android:layout_marginBottom="92dp"
         android:text="change your password"
         android:textSize="22dp"
+        style="@style/TEXT"
         app:layout_constraintBottom_toTopOf="@+id/textgift"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
         app:layout_constraintTop_toTopOf="parent" />
@@ -96,6 +101,7 @@
         android:layout_marginBottom="211dp"
         android:text="look your gifs"
         android:textSize="22dp"
+        style="@style/TEXT"
         app:layout_constraintBottom_toTopOf="@+id/view6"
         app:layout_constraintStart_toEndOf="@+id/gift"
         app:layout_constraintTop_toBottomOf="@+id/textpassword" />
@@ -107,6 +113,7 @@
         android:layout_marginStart="22dp"
         android:text="change your preferences"
         android:textSize="22dp"
+        style="@style/TEXT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/star"
         app:layout_constraintTop_toTopOf="parent"

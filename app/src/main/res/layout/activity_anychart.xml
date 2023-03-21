@@ -45,6 +45,7 @@
         android:layout_marginBottom="419dp"
         android:foregroundGravity="center"
         android:rotationX="193"
+        style="@style/TEXT"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -61,10 +62,10 @@
         android:background="@drawable/button_style"
         android:drawableRight="@drawable/coin_pic"
         android:text="50$"
-        android:textColor="#3e2723"
         android:textSize="22dp"
         android:textStyle="bold"
         app:backgroundTint="@null"
+        style="@style/TEXT"
         app:layout_constraintBottom_toTopOf="@+id/play"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -77,10 +78,10 @@
         android:background="@drawable/button_style"
         android:drawableRight="@drawable/coin_pic"
         android:text="10$"
-        android:textColor="#3e2723"
         android:textSize="22dp"
         android:textStyle="bold"
         app:backgroundTint="@null"
+        style="@style/TEXT"
         app:layout_constraintBaseline_toBaselineOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent" />
 

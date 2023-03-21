@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/TEXT"
     tools:context="com.View.Security">
 
 
@@ -16,7 +17,7 @@
         android:background="@drawable/button_style"
         android:text="ID"
         android:textAllCaps="false"
-        android:textColor="#3e2723"
+        style="@style/TEXT"
         android:textSize="20sp"
         android:textStyle="bold"
         app:backgroundTint="@null"
@@ -35,7 +36,7 @@
         android:background="@drawable/button_style"
         android:text="Bank account"
         android:textAllCaps="false"
-        android:textColor="#3e2723"
+        style="@style/TEXT"
         android:textSize="20sp"
         android:textStyle="bold"
         app:backgroundTint="@null"
@@ -53,7 +54,7 @@
         android:background="@drawable/button_style"
         android:text="Log out"
         android:textAllCaps="false"
-        android:textColor="#3e2723"
+        style="@style/TEXT"
         android:textSize="20sp"
         android:textStyle="bold"
         app:backgroundTint="@null"
@@ -71,7 +72,7 @@
         android:background="@drawable/button_style"
         android:text="Delete account"
         android:textAllCaps="false"
-        android:textColor="#3e2723"
+        style="@style/TEXT"
         android:textSize="20sp"
         android:textStyle="bold"
         app:backgroundTint="@null"
@@ -79,5 +80,8 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
