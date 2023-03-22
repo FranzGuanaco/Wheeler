@@ -8,8 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.wheeler.R
 import com.example.wheeler.databinding.ActivityChoiceBinding
-import com.example.wheeler.databinding.ActivityCreateAccountBinding
-import com.example.wheeler.databinding.ActivityPhoneBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
