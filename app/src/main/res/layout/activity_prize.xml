@@ -208,11 +208,9 @@
                 app:backgroundTint="@color/gold" />
 
 
-
-
-
     <TextView
         android:id="@+id/VideoGame"
+        style="@style/TEXT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -221,11 +219,11 @@
         android:layout_marginTop="445dp"
         android:text="Video-on-demand prices"
         android:textSize="18dp"
-        style="@style/TEXT"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/stay"
+        style="@style/TEXT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -234,11 +232,11 @@
         android:layout_marginTop="290dp"
         android:text="Stay and holiday prices"
         android:textSize="18dp"
-        style="@style/TEXT"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/popular"
+        style="@style/TEXT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -247,8 +245,7 @@
         android:layout_marginTop="140dp"
         android:text="Popular prizes"
         android:textSize="18dp"
-        style="@style/TEXT"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/Explore"

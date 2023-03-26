@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 
 
- class Login: AppCompatActivity() {
+ open class Login: AppCompatActivity() {
 
      lateinit var binding: ActivityLoginBinding
      lateinit var gsc: GoogleSignInClient
@@ -29,11 +29,10 @@ import com.google.firebase.auth.GoogleAuthProvider
      override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
 
-         binding = ActivityLoginBinding.inflate(layoutInflater) //Layoutinflater ?
+         binding = ActivityLoginBinding.inflate(layoutInflater)
          setContentView(binding.root)
 
          auth = FirebaseAuth.getInstance()
-
 
          val gso: GoogleSignInOptions =
              GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -43,16 +42,17 @@ import com.google.firebase.auth.GoogleAuthProvider
 
          gsc = GoogleSignIn.getClient(this, gso)
 
+         binding.pwForgotten.setOnClickListener(){
+             var intent = Intent(this, ChangePassword::class.java)
+             startActivity(intent)
+         }
 
          binding.buttonGmail.setOnClickListener() {
              signIn()
          }
 
-
-
          binding.Login.setOnClickListener {
              signInUser()
-
          }
      }
 

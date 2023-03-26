@@ -15,9 +15,9 @@ class Userinterface : AppCompatActivity() {
         binding = ActivityUserinterfaceBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.account.setOnClickListener(){
+        binding.security.setOnClickListener(){
 
-            var intent = Intent(this, Disconnect::class.java)
+            var intent = Intent(this, Security::class.java)
             startActivity(intent)
         }
 

@@ -33,11 +33,11 @@ import com.google.firebase.storage.FirebaseStorage
              binding = ActivityPrizeBinding.inflate(layoutInflater)
             setContentView(binding.root)
 
-        /*   binding.coin.setOnClickListener(){
+          binding.coin.setOnClickListener(){
 
                 var intent = Intent(this, Userinterface::class.java)
                 startActivity(intent)
-            } */
+            }
 
 
             netflix()
@@ -71,16 +71,6 @@ import com.google.firebase.storage.FirebaseStorage
                     .build()
 
             gsc = GoogleSignIn.getClient(this, gso)
-
-          var test = Login()
-          //  test.auth = FirebaseAuth.getInstance()
-
-            binding.coin.setOnClickListener(){
-                test.out()
-                var intent = Intent(this, Login::class.java)
-                startActivity(intent)
-
-            }
 
 
 
