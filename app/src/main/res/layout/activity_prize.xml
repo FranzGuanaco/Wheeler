@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -249,6 +248,7 @@
 
     <TextView
         android:id="@+id/Explore"
+        style="@style/TEXT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -256,11 +256,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="55dp"
+        android:onClick="toggleDarkMode"
         android:text="Welcome"
         android:textSize="24dp"
-        android:textStyle="bold"
-        style="@style/TEXT"
-        android:onClick="toggleDarkMode"/>
+        android:textStyle="bold" />
 
 
 
@@ -283,6 +282,16 @@
         android:layout_marginTop="55dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/coin_pic" />
+
+    <ImageButton
+        android:id="@+id/parameter"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="74dp"
+        android:background="@mipmap/parametre" />
 
 
 

@@ -14,8 +14,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 
 
@@ -34,10 +36,6 @@ class Security : AppCompatActivity() {
         binding = ActivitySecurityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var test = Login()
-
-
-
         val gso: GoogleSignInOptions =
             GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -46,6 +44,8 @@ class Security : AppCompatActivity() {
 
         gsc = GoogleSignIn.getClient(this, gso)
         auth = FirebaseAuth.getInstance()
+        val user = Firebase.auth.currentUser
+
 
         binding.Logout.setOnClickListener(){
             auth.signOut()
@@ -55,14 +55,16 @@ class Security : AppCompatActivity() {
         }
 
         binding.Deleteaccount.setOnClickListener {
-            auth.currentUser?.delete()?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(this, "Compte supprimé", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, Login::class.java)
-                    startActivity(intent)
-                    finish()
+                user?.delete()
+                    ?.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Log.d("test", "User account deleted.")
+                            val intent = Intent(this, Login::class.java)
+                            startActivity(intent)
+
                 } else {
                     Toast.makeText(this, "Erreur lors de la suppression du compte", Toast.LENGTH_SHORT).show()
                 }
 
-  }}}}
+
+            }}}}

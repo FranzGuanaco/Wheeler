@@ -18,6 +18,15 @@
         android:theme="@style/Theme.Draft.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".PreferenceNewAccount"
+            android:exported="false" />
+        <activity
+            android:name=".PicNewAccount"
+            android:exported="false" />
+        <activity
+            android:name=".PhoneNumberNewAccount"
+            android:exported="false" />
+        <activity
             android:name="com.View.Splash"
             android:exported="true">
             <intent-filter>
@@ -35,6 +44,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.View.ChangePassword"
+            android:exported="true" />
         <activity
             android:name="com.View.Create_account"
             android:exported="true">
@@ -74,7 +86,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.View.anychart"
             android:exported="true">
