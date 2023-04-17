@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PhoneNumberNewAccount">
+    tools:context="com.View.PhoneNumberNewAccount">
 
 
     <EditText
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/Login"
+        android:id="@+id/Validate"
         android:layout_width="300dp"
         android:layout_height="64dp"
         android:layout_marginBottom="128dp"

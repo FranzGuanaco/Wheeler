@@ -6,4 +6,175 @@
     android:layout_height="match_parent"
     tools:context=".PreferenceNewAccount">
 
+
+    <Button
+        android:id="@+id/pref1"
+        android:layout_width="160dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="216dp"
+        android:layout_marginBottom="436dp"
+        android:background="@drawable/button_style"
+        android:text="Gmail connection"
+        android:textAllCaps="false"
+        android:textColor="#3e2723"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pref8" />
+
+    <Button
+        android:id="@+id/pref2"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="216dp"
+        android:background="@drawable/button_style"
+        android:text="Gmail connection"
+        android:textAllCaps="false"
+        android:textColor="#3e2723"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/pref3"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="216dp"
+        android:background="@drawable/button_style"
+        android:text="Gmail connection"
+        android:textAllCaps="false"
+        android:textColor="#3e2723"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.625" />
+
+    <Button
+        android:id="@+id/pref4"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/button_style"
+        android:text="Gmail connectn"
+        android:textAllCaps="false"
+        android:textColor="#3e2723"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toTopOf="@+id/pref9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/pref5"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:background="@drawable/button_style"
+        android:text="Gmail connection"
+        android:textAllCaps="false"
+        android:textColor="#3e2723"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/pref6"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:background="@drawable/button_style"
+        android:text="Gmail connection"
+        android:textAllCaps="false"
+        android:textColor="#3e2723"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.624" />
+
+    <Button
+        android:id="@+id/pref7"
+        android:layout_width="160dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="436dp"
+        android:background="@drawable/button_style"
+        android:text="Gmail connection"
+        android:textAllCaps="false"
+        android:textColor="#3e2723"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pref9" />
+
+    <Button
+        android:id="@+id/pref8"
+        android:layout_width="160dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="216dp"
+        android:layout_marginBottom="39dp"
+        android:background="@drawable/button_style"
+        android:text="Gmail connection"
+        android:textAllCaps="false"
+        android:textColor="#3e2723"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toTopOf="@+id/pref1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pref10" />
+
+    <Button
+        android:id="@+id/pref9"
+        android:layout_width="160dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="39dp"
+        android:background="@drawable/button_style"
+        android:text="Gmail connection"
+        android:textAllCaps="false"
+        android:textColor="#3e2723"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toTopOf="@+id/pref7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pref4" />
+
+    <Button
+        android:id="@+id/pref10"
+        android:layout_width="160dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="216dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/button_style"
+        android:text="Gmail connection"
+        android:textAllCaps="false"
+        android:textColor="#3e2723"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toTopOf="@+id/pref8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

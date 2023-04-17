@@ -33,6 +33,11 @@ import com.google.firebase.storage.FirebaseStorage
              binding = ActivityPrizeBinding.inflate(layoutInflater)
             setContentView(binding.root)
 
+            binding.play.setOnClickListener(){
+
+                Log.d("test", "voici le test")
+            }
+
           binding.parameter.setOnClickListener(){
 
                 var intent = Intent(this, Userinterface::class.java)

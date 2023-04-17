@@ -25,6 +25,8 @@ import com.google.firebase.auth.GoogleAuthProvider
      lateinit var binding: ActivityLoginBinding
      lateinit var gsc: GoogleSignInClient
      lateinit var auth: FirebaseAuth //layout used in this activity
+     val firebaseUser = FirebaseAuth.getInstance().currentUser
+     val uid = firebaseUser?.uid
 
      override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
@@ -41,6 +43,9 @@ import com.google.firebase.auth.GoogleAuthProvider
                  .build()
 
          gsc = GoogleSignIn.getClient(this, gso)
+         val firebaseUser = FirebaseAuth.getInstance().currentUser
+         val uid = firebaseUser?.uid
+
 
          binding.pwForgotten.setOnClickListener(){
              var intent = Intent(this, ChangePassword::class.java)
@@ -106,7 +111,6 @@ import com.google.firebase.auth.GoogleAuthProvider
          val credential = GoogleAuthProvider.getCredential(account.idToken, null)
          auth.signInWithCredential(credential).addOnCompleteListener {
              if (it.isSuccessful) {
-
                  val intent = Intent(this, MainActivity::class.java)
                  startActivity(intent)
              } else {
@@ -116,7 +120,6 @@ import com.google.firebase.auth.GoogleAuthProvider
      }
 
      private fun updateUI(user: FirebaseUser?) {
-
          val intent = Intent(this, MainActivity::class.java)
          startActivity(intent)
 
@@ -137,6 +140,7 @@ import com.google.firebase.auth.GoogleAuthProvider
                              Toast.LENGTH_SHORT
                          ).show()
                      } else {
+                         Log.d("test", "raté")
                          Toast.makeText(
                              baseContext, "Authentication foiré.",
                              Toast.LENGTH_SHORT

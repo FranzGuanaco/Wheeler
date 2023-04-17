@@ -90,7 +90,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.938"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/pass"
         app:layout_constraintVertical_bias="1.0" />
 
     <View
@@ -104,7 +104,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/pass"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
@@ -113,7 +113,7 @@
         android:layout_height="64dp"
         android:layout_marginBottom="96dp"
         android:background="@drawable/button_style"
-        android:drawableLeft="@drawable/gmail_icon"
+        android:drawableLeft="@mipmap/gmail_icon_foreground"
         android:text="Gmail connection"
         android:textAllCaps="false"
         android:textColor="#3e2723"
@@ -122,8 +122,12 @@
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_gravity="start"
+        android:drawablePadding="8dp"
+        android:paddingStart="1dp"
+        android:gravity="center_vertical|start" />
 
     <TextView
         android:id="@+id/textView4"
