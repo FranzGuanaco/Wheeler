@@ -1,5 +1,6 @@
 package com.View
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.*
 
 class Create_account: AppCompatActivity() {
 
@@ -23,6 +25,22 @@ class Create_account: AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         val db = Firebase.firestore
+
+        binding.date.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                this@Create_account,
+                { _, year1, month1, dayOfMonth ->
+                    binding.date.setText(String.format("%02d/%02d/%04d", dayOfMonth, (month1 + 1), year1))
+                },
+                year, month, day
+            )
+            datePickerDialog.show()
+        }
 
 
         binding.create.setOnClickListener {
@@ -53,7 +71,7 @@ class Create_account: AppCompatActivity() {
                     }
                 }
 
-FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val firebaseUser = FirebaseAuth.getInstance().currentUser

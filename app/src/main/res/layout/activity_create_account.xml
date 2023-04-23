@@ -27,13 +27,16 @@
         android:layout_height="50dp"
         android:layout_marginBottom="368dp"
         android:background="@drawable/edittext_style"
-        android:hint="Date of birth"
+        android:hint="Date de naissance"
+        android:focusable="false"
         android:padding="11dp"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
+
+
 
     <EditText
         android:id="@+id/email"
