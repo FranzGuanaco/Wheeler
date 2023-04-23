@@ -47,7 +47,7 @@ class Create_account: AppCompatActivity() {
             val email = binding.email.text.toString().trim()
             val password = binding.password.text.toString().trim()
             val birthdate = binding.date.text.toString().trim()
-            val birthday = if (birthdate.isNotEmpty()) birthdate.toInt() else 0
+            val birthday = if (birthdate.isNotEmpty()) birthdate else ""
 
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
@@ -61,6 +61,7 @@ class Create_account: AppCompatActivity() {
                         phoneNumberIntent.putExtra("mail", email)
                         phoneNumberIntent.putExtra("password", password)
                         phoneNumberIntent.putExtra("birth", birthday)
+
                         startActivity(phoneNumberIntent)
 
                     } else {

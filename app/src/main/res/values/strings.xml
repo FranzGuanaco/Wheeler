@@ -31,10 +31,5 @@ about Wheeler</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_redirection_screen">RedirectionScreen</string>
 
-    <string-array name="flags_array">
-        <item>rff</item>
-        <item>france</item>
-        <item>rrr</item>
-        <!-- ... -->
-    </string-array>
+    <string name="country_name_with_code">%1$s (%2$s)</string>
 </resources>
