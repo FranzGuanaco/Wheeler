@@ -1,5 +1,6 @@
 package com.View
 
+import android.content.Intent
 import android.os.Bundle
 import com.example.wheeler.R
 import android.util.Log
@@ -11,6 +12,7 @@ import com.View.Spinner
 import com.example.wheeler.databinding.ActivityPhoneNumberNewAccountBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.*
 
 class PhoneNumberNewAccount : AppCompatActivity() {
 
@@ -23,13 +25,16 @@ class PhoneNumberNewAccount : AppCompatActivity() {
 
         val db = Firebase.firestore
         val usersCollection = db.collection("users")
-        val mail = intent.getStringExtra("mail")
-        val password = intent.getStringExtra("password")
-        val birth = intent.getIntExtra("birth", 0)
+        val test = intent.getStringExtra("test") ?: "No email found"
+        val mail = intent.getStringExtra("mail") ?: "No email found"
+        val password = intent.getStringExtra("password") ?: "No password found"
+        val birth = intent.getLongExtra("birth", 0)
+        val birthDate = Date(birth)
         val countrySpinner = binding.spinner
 
         val adapter = Spinner(this, resources.getStringArray(R.array.countries_with_codes).toList())
 
+        Log.e("test", mail)
         countrySpinner.adapter = adapter
 
         countrySpinner.onItemSelectedListener = object : OnItemSelectedListener {
@@ -39,8 +44,6 @@ class PhoneNumberNewAccount : AppCompatActivity() {
                 val countryCode = countryInfo[0].trim()
                 val countryDialCode = countryInfo[1].trim()
 
-                // Affichez l'indicatif téléphonique du pays sélectionné dans un champ de texte ou une vue TextView
-                // Par exemple, si vous avez un champ de texte ou une vue TextView avec l'ID phoneCodeTextView :
                 binding.PhoneNumb.setText(countryDialCode)
             }
 
@@ -51,15 +54,24 @@ class PhoneNumberNewAccount : AppCompatActivity() {
 
         binding.Validate.setOnClickListener() {
             val phoneNumberStr = binding.PhoneNumb.text.toString()
-            val phoneNumber = phoneNumberStr.toInt()
+            val phoneNumberStrWithoutPlus = phoneNumberStr.replace("+", "")
+            val phoneNumber = phoneNumberStrWithoutPlus
+
+            // Log email and password for debugging purposes
+            Log.d("debug", "Email: $mail")
+            Log.d("debug", "Password: $password")
+            Log.d("debug", "Birth: $birthDate")
+            Log.d("debug", "test: $test")
+
 
             val newUser = hashMapOf(
-                "name" to "John Doe",
+                "name" to "Pierre", // Vous pouvez également récupérer le nom de l'utilisateur et le stocker ici.
                 "email" to mail,
-                "birthdate" to birth,
-                "password" to password,
+                "birthdate" to birthDate,
+                "password" to password, // Storing passwords in Firestore is not recommended for security reasons.
                 "phone" to phoneNumber
             )
+
 
             usersCollection.add(newUser)
                 .addOnSuccessListener { documentReference ->
@@ -68,9 +80,11 @@ class PhoneNumberNewAccount : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     Log.w("test", "Error adding document", e)
                 }
+
+            val intent = Intent(this, PhoneNumberNewAccount::class.java) // Changez cette ligne pour rediriger vers l'activité souhaitée après la création du compte
+            startActivity(intent)
         }
     }
 }
-
 
 

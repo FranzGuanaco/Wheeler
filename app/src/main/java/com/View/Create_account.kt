@@ -11,7 +11,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
 import java.util.*
+import java.util.Locale
 
 class Create_account: AppCompatActivity() {
 
@@ -27,6 +29,8 @@ class Create_account: AppCompatActivity() {
         val db = Firebase.firestore
 
         binding.date.setOnClickListener {
+
+            // creation du datePicker
             val calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)
             val month = calendar.get(Calendar.MONTH)
@@ -42,37 +46,43 @@ class Create_account: AppCompatActivity() {
             datePickerDialog.show()
         }
 
-
         binding.create.setOnClickListener {
             val email = binding.email.text.toString().trim()
             val password = binding.password.text.toString().trim()
             val birthdate = binding.date.text.toString().trim()
-            val birthday = if (birthdate.isNotEmpty()) birthdate else ""
+            val birthday = if (birthdate.isNotEmpty()) SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(birthdate) else null
+
+            var phoneNumberIntent = Intent(this, PhoneNumberNewAccount::class.java)
 
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("", "createUserWithEmail:success")
-                        val user = auth.currentUser
-                        updateUI(user)
+                        val user = task.result?.user
+                        user?.sendEmailVerification()
 
-                        val phoneNumberIntent = Intent(this, PhoneNumberNewAccount::class.java)
-                        phoneNumberIntent.putExtra("mail", email)
-                        phoneNumberIntent.putExtra("password", password)
-                        phoneNumberIntent.putExtra("birth", birthday)
+                            ?.addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Toast.makeText(this, "Verification email sent to ${user.email}", Toast.LENGTH_SHORT).show()
 
-                        startActivity(phoneNumberIntent)
+                                    val test = "yooooooooo"
+                                    phoneNumberIntent.putExtra("test", test)
+                                    phoneNumberIntent.putExtra("mail", email)
+                                    phoneNumberIntent.putExtra("password", password)
+                                    phoneNumberIntent.putExtra("birth", birthday?.time)
 
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w("", "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(baseContext, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show()
-                    }
+                                    startActivity(phoneNumberIntent)
+                                } else {
+                                    Log.e("", "sendEmailVerification", task.exception)
+                                    Toast.makeText(this, "Failed to send verification email.", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+
+
                 }
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val firebaseUser = FirebaseAuth.getInstance().currentUser
@@ -85,17 +95,8 @@ class Create_account: AppCompatActivity() {
                     }
                 }
         }
-
-
     }
-
-    private fun updateUI(user: FirebaseUser?) {
-
-        val intent = Intent(this, PhoneNumberNewAccount::class.java)
-        startActivity(intent)
-
-    }
-}
+}}
 
 
 
