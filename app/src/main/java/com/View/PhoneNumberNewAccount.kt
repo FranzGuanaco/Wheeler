@@ -24,8 +24,8 @@ class PhoneNumberNewAccount : AppCompatActivity() {
         setContentView(binding.root)
 
         val db = Firebase.firestore
-        val usersCollection = db.collection("users")
         val countrySpinner = binding.spinner
+
         val adapter = Spinner(this, resources.getStringArray(R.array.countries_with_codes).toList())
 
 
@@ -51,10 +51,14 @@ class PhoneNumberNewAccount : AppCompatActivity() {
             val phoneNumberStrWithoutPlus = phoneNumberStr.replace("+", "")
             val phoneNumber = phoneNumberStrWithoutPlus
 
-            val photo = Intent(this, PhotoNewAccount::class.java)
-            startActivity(photo)
-            photo.putExtra("phoneNumb", phoneNumberStr)
-
+            val intent = Intent(this, PhotoNewAccount::class.java)
+            intent.putExtra("phonenumb", phoneNumberStr)
+            // Ajouter les valeurs reçues de la Classe 1 ici
+            intent.putExtra("test", getIntent().getStringExtra("test"))
+            intent.putExtra("mail", getIntent().getStringExtra("mail"))
+            intent.putExtra("password", getIntent().getStringExtra("password"))
+            intent.putExtra("birth", getIntent().getLongExtra("birth", 0))
+            startActivity(intent)
         }
     }
 }

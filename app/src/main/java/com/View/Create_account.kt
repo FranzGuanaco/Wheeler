@@ -52,7 +52,8 @@ class Create_account: AppCompatActivity() {
             val birthdate = binding.date.text.toString().trim()
             val birthday = if (birthdate.isNotEmpty()) SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(birthdate) else null
 
-            var photoNewAccount = Intent(this, PhotoNewAccount::class.java)
+            var phoneNumberIntent = Intent(this, PhoneNumberNewAccount::class.java)
+            var photoAccountIntent = Intent(this, PhotoNewAccount::class.java)
 
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
@@ -67,36 +68,34 @@ class Create_account: AppCompatActivity() {
                                     Toast.makeText(this, "Verification email sent to ${user.email}", Toast.LENGTH_SHORT).show()
 
                                     val test = "yooooooooo"
-                                    photoNewAccount.putExtra("test", test)
-                                    photoNewAccount.putExtra("mail", email)
-                                    photoNewAccount.putExtra("password", password)
-                                    photoNewAccount.putExtra("birth", birthday?.time)
+                                    phoneNumberIntent.putExtra("test", test)
+                                    phoneNumberIntent.putExtra("mail", email)
+                                    phoneNumberIntent.putExtra("password", password)
+                                    phoneNumberIntent.putExtra("birth", birthday?.time)
 
-                                    startActivity(photoNewAccount)
+                                    startActivity(phoneNumberIntent)
                                 } else {
                                     Log.e("", "sendEmailVerification", task.exception)
                                     Toast.makeText(this, "Failed to send verification email.", Toast.LENGTH_SHORT).show()
                                 }
                             }
+                        }
 
-
-                }
-
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val firebaseUser = FirebaseAuth.getInstance().currentUser
-                        val uid = firebaseUser?.uid
-                        Log.d("test", "voici le test: $uid")
-                        // Utilisez l'ID de l'utilisateur ici
-                    } else {
-                        Log.w("test", "raté", task.exception)
-                        // La connexion a échoué
-                    }
-                }
+                    FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val firebaseUser = FirebaseAuth.getInstance().currentUser
+                                val uid = firebaseUser?.uid
+                                Log.d("test", "voici le test: $uid")
+                                // Utilisez l'ID de l'utilisateur ici
+                            } else {
+                                Log.w("test", "raté", task.exception)
+                                // La connexion a échoué
+                            }
+                        }
+                     }
         }
-    }
-}}
+    }}
 
 
 

@@ -14,6 +14,7 @@ import android.util.Log
 import android.view.View
 import java.util.*
 
+
 class PhotoNewAccount : AppCompatActivity() {
 
     private lateinit var binding: ActivityPicNewAccountBinding
@@ -26,42 +27,35 @@ class PhotoNewAccount : AppCompatActivity() {
 
         val db = Firebase.firestore
         val usersCollection = db.collection("users")
-        val phoneNumber = intent.getStringExtra("phoneNumb")?: "No phone number found"
-        val test = intent.getStringExtra("test") ?: "No email found"
+        val test = intent.getStringExtra("test") ?: "No found"
         val mail = intent.getStringExtra("mail") ?: "No email found"
         val password = intent.getStringExtra("password") ?: "No password found"
+        val phone = intent.getStringExtra("phonenumb") ?: "No phone found"
         val birth = intent.getLongExtra("birth", 0)
         val birthDate = Date(birth)
 
-        binding.addPic.setOnClickListener(){
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(intent, REQUEST_IMAGE_PICK)
 
-            val intentdownload = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "image/*"
-            val uriDownloads = Uri.parse(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).path)
-            intent.setDataAndType(uriDownloads, "resource/folder")
+        Log.d("debug", "Email: $mail")
+        Log.d("debug", "Password: $password")
+        Log.d("debug", "Birth: $birthDate")
+        Log.d("debug", "test: $test")
+
+        binding.addPic.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, REQUEST_IMAGE_PICK)
         }
 
-        binding.Validate.setOnClickListener(){
+        binding.Validate.setOnClickListener {
             val name = binding.Name.text.toString().trim()
-            Log.d("", name)
-
-            Log.d("debug", "Email: $mail")
-            Log.d("debug", "Password: $password")
-            Log.d("debug", "Birth: $birthDate")
-            Log.d("debug", "Birth: $phoneNumber")
-            Log.d("debug", "test: $test")
+            Log.d("debug", "Name: $name")
 
             val newUser = hashMapOf(
-                "name" to name, // Vous pouvez également récupérer le nom de l'utilisateur et le stocker ici.
+                "name" to name,
                 "email" to mail,
                 "birthdate" to birthDate,
                 "password" to password, // Storing passwords in Firestore is not recommended for security reasons.
-                "phone" to phoneNumber
+                "phone" to phone
             )
-
 
             usersCollection.add(newUser)
                 .addOnSuccessListener { documentReference ->
@@ -72,12 +66,14 @@ class PhotoNewAccount : AppCompatActivity() {
                 }
         }
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK && data != null) {
             val selectedImageUri = data.data
             // Vous pouvez maintenant utiliser l'URI de l'image sélectionnée (par exemple, l'afficher dans un ImageView)
+            onBackPressed()
         }
     }
 }
