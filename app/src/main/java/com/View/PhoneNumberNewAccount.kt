@@ -25,16 +25,10 @@ class PhoneNumberNewAccount : AppCompatActivity() {
 
         val db = Firebase.firestore
         val usersCollection = db.collection("users")
-        val test = intent.getStringExtra("test") ?: "No email found"
-        val mail = intent.getStringExtra("mail") ?: "No email found"
-        val password = intent.getStringExtra("password") ?: "No password found"
-        val birth = intent.getLongExtra("birth", 0)
-        val birthDate = Date(birth)
         val countrySpinner = binding.spinner
-
         val adapter = Spinner(this, resources.getStringArray(R.array.countries_with_codes).toList())
 
-        Log.e("test", mail)
+
         countrySpinner.adapter = adapter
 
         countrySpinner.onItemSelectedListener = object : OnItemSelectedListener {
@@ -57,32 +51,10 @@ class PhoneNumberNewAccount : AppCompatActivity() {
             val phoneNumberStrWithoutPlus = phoneNumberStr.replace("+", "")
             val phoneNumber = phoneNumberStrWithoutPlus
 
-            // Log email and password for debugging purposes
-            Log.d("debug", "Email: $mail")
-            Log.d("debug", "Password: $password")
-            Log.d("debug", "Birth: $birthDate")
-            Log.d("debug", "test: $test")
+            val photo = Intent(this, PhotoNewAccount::class.java)
+            startActivity(photo)
+            photo.putExtra("phoneNumb", phoneNumberStr)
 
-
-            val newUser = hashMapOf(
-                "name" to "Pierre", // Vous pouvez également récupérer le nom de l'utilisateur et le stocker ici.
-                "email" to mail,
-                "birthdate" to birthDate,
-                "password" to password, // Storing passwords in Firestore is not recommended for security reasons.
-                "phone" to phoneNumber
-            )
-
-
-            usersCollection.add(newUser)
-                .addOnSuccessListener { documentReference ->
-                    Log.d("test", "DocumentSnapshot added with ID: ${documentReference.id}")
-                }
-                .addOnFailureListener { e ->
-                    Log.w("test", "Error adding document", e)
-                }
-
-            val intent = Intent(this, PhoneNumberNewAccount::class.java) // Changez cette ligne pour rediriger vers l'activité souhaitée après la création du compte
-            startActivity(intent)
         }
     }
 }

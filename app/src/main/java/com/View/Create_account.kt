@@ -52,7 +52,7 @@ class Create_account: AppCompatActivity() {
             val birthdate = binding.date.text.toString().trim()
             val birthday = if (birthdate.isNotEmpty()) SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(birthdate) else null
 
-            var phoneNumberIntent = Intent(this, PhoneNumberNewAccount::class.java)
+            var photoNewAccount = Intent(this, PhotoNewAccount::class.java)
 
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
@@ -67,12 +67,12 @@ class Create_account: AppCompatActivity() {
                                     Toast.makeText(this, "Verification email sent to ${user.email}", Toast.LENGTH_SHORT).show()
 
                                     val test = "yooooooooo"
-                                    phoneNumberIntent.putExtra("test", test)
-                                    phoneNumberIntent.putExtra("mail", email)
-                                    phoneNumberIntent.putExtra("password", password)
-                                    phoneNumberIntent.putExtra("birth", birthday?.time)
+                                    photoNewAccount.putExtra("test", test)
+                                    photoNewAccount.putExtra("mail", email)
+                                    photoNewAccount.putExtra("password", password)
+                                    photoNewAccount.putExtra("birth", birthday?.time)
 
-                                    startActivity(phoneNumberIntent)
+                                    startActivity(photoNewAccount)
                                 } else {
                                     Log.e("", "sendEmailVerification", task.exception)
                                     Toast.makeText(this, "Failed to send verification email.", Toast.LENGTH_SHORT).show()
