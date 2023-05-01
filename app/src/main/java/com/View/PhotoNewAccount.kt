@@ -26,19 +26,17 @@ class PhotoNewAccount : AppCompatActivity() {
         setContentView(binding.root)
 
         val db = Firebase.firestore
-        val usersCollection = db.collection("users")
-        val test = intent.getStringExtra("test") ?: "No found"
-        val mail = intent.getStringExtra("mail") ?: "No email found"
-        val password = intent.getStringExtra("password") ?: "No password found"
-        val phone = intent.getStringExtra("phonenumb") ?: "No phone found"
+        val test = intent.getStringExtra("test")
+        val mail = intent.getStringExtra("mail")
+        val password = intent.getStringExtra("password")
         val birth = intent.getLongExtra("birth", 0)
-        val birthDate = Date(birth)
+        val phone = intent.getStringExtra("phonenumb")
 
 
-        Log.d("debug", "Email: $mail")
-        Log.d("debug", "Password: $password")
-        Log.d("debug", "Birth: $birthDate")
-        Log.d("debug", "test: $test")
+        Log.d("voici le resultat", "Email: $mail")
+        Log.d("voici le resultat", "Password: $password")
+        Log.d("voici le resultat", "Birth: $birth")
+        Log.d("voici le resultat", "test: $test")
 
         binding.addPic.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -49,21 +47,18 @@ class PhotoNewAccount : AppCompatActivity() {
             val name = binding.Name.text.toString().trim()
             Log.d("debug", "Name: $name")
 
-            val newUser = hashMapOf(
-                "name" to name,
-                "email" to mail,
-                "birthdate" to birthDate,
-                "password" to password, // Storing passwords in Firestore is not recommended for security reasons.
-                "phone" to phone
-            )
 
-            usersCollection.add(newUser)
-                .addOnSuccessListener { documentReference ->
-                    Log.d("test", "DocumentSnapshot added with ID: ${documentReference.id}")
-                }
-                .addOnFailureListener { e ->
-                    Log.w("test", "Error adding document", e)
-                }
+            val intent = Intent(this, PinsNewAccount::class.java)
+            intent.putExtra("name", name)
+                .putExtra("phonenumb", intent.getStringExtra("phonenumb"))
+
+            // Ajouter les valeurs reçues de la Classe 1 ici
+            intent.putExtra("test", test)
+            intent.putExtra("mail", mail)
+            intent.putExtra("password", password)
+            intent.putExtra("birth", birth)
+            intent.putExtra("phonenumb", phone)
+            startActivity(intent)
         }
     }
 
