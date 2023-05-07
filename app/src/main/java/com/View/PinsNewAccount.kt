@@ -1,5 +1,6 @@
 package com.View
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -53,5 +54,8 @@ class PinsNewAccount : AppCompatActivity() {
             Log.d("debug", "Password: $password")
             Log.d("debug", "Birth: $birthDate")
             Log.d("debug", "test: $test")
+
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
 }}

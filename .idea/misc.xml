@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/drawable/button_style.xml" value="0.165" />
         <entry key="app/src/main/res/drawable/choice_wheel.xml" value="0.45" />
         <entry key="app/src/main/res/drawable/circle.xml" value="0.3115" />
+        <entry key="app/src/main/res/drawable/circlepic.xml" value="0.299" />
         <entry key="app/src/main/res/drawable/cup.xml" value="0.2375" />
         <entry key="app/src/main/res/drawable/cursor.xml" value="0.244" />
         <entry key="app/src/main/res/drawable/edittext_style.xml" value="0.2375" />
@@ -60,7 +61,7 @@
         <entry key="app/src/main/res/layout/activity_pic_new_account.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/activity_pins_new_account.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_preference_new_account.xml" value="0.35520833333333335" />
-        <entry key="app/src/main/res/layout/activity_prize.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/activity_prize.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_security.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.28229166666666666" />

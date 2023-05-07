@@ -69,7 +69,7 @@ import com.google.firebase.auth.GoogleAuthProvider
      }
 
      private fun signout() {
-         Toast.makeText(this@Login, "deconnect", Toast.LENGTH_SHORT)
+         Toast.makeText(this@Login, "deconnect", Toast.LENGTH_SHORT).show()
      }
 
      private fun signIn() {

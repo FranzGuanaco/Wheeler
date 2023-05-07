@@ -15,6 +15,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 
 
@@ -32,6 +35,9 @@ import com.google.firebase.storage.FirebaseStorage
             setContentView(R.layout.activity_prize)
              binding = ActivityPrizeBinding.inflate(layoutInflater)
             setContentView(binding.root)
+
+            val db = Firebase.firestore
+            val usersCollection = db.collection("users")
 
             binding.play.setOnClickListener(){
 
@@ -79,8 +85,24 @@ import com.google.firebase.storage.FirebaseStorage
 
 
 
-            var imageRef = FirebaseStorage.getInstance().reference
-
+            val userId = "qyXmoQnFnvJAst0drckB"
+            db.collection("users")
+                .document(userId)
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val document = task.result
+                        if (document != null && document.exists()) {
+                            // Les données sont disponibles dans l'objet 'document'
+                            Log.d("test", "DocumentSnapshot data: ${document.data}")
+                            displayUserData(document)
+                        } else {
+                            Log.d("test", "No such document")
+                        }
+                    } else {
+                        Log.d("test raté", "get failed with ", task.exception)
+                    }
+                }
 
             binding.NetflixPrize.setOnClickListener(){
 
@@ -322,7 +344,11 @@ import com.google.firebase.storage.FirebaseStorage
         }}
 
 
+     private fun displayUserData(document: DocumentSnapshot) {
+         val userName = document.getString("Pin")
 
+         binding.coinNumber.text = userName
+     }
 
       private fun googleplay() {
           var googlePlay =
@@ -395,7 +421,6 @@ import com.google.firebase.storage.FirebaseStorage
              "https://.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fxbox.png?alt=media&token=7009da2f-7ff4-4e7c-a391-377097016e67"
          Glide.with(baseContext).asBitmap().load(b4).into(binding.Best4)
      }
-
  }
 
 
