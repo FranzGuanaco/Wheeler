@@ -296,7 +296,8 @@ import com.google.firebase.storage.FirebaseStorage
                         intent.putExtra("figure", figure)
 
                         startActivity(intent) }
-            }}
+                    }
+                }
 
             binding.Best2.setOnClickListener(){
 
@@ -316,7 +317,8 @@ import com.google.firebase.storage.FirebaseStorage
                         intent.putExtra("figure", figure)
 
                         startActivity(intent) }
-            }}
+                }
+            }
 
             binding.Best3.setOnClickListener(){
 
@@ -338,16 +340,22 @@ import com.google.firebase.storage.FirebaseStorage
 
                         startActivity(intent)
                     }
+                }
             }
+        }
 
 
-        }}
-
-
+     // photo et nombre de point de l'utilisateur actuelle
      private fun displayUserData(document: DocumentSnapshot) {
          val userName = document.getString("Pin")
 
          binding.coinNumber.text = userName
+
+         var parent = FirebaseDatabase.getInstance().getReference("AvatarPicture")
+         var dataChild = parent.child("kFGCO7Kve7On2nwpHNeGNcuTwKE3")
+         var trav =
+             "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Ftravel.png?alt=media&token=36e86672-8e58-4aec-b5e3-3333040d3f88"
+         Glide.with(baseContext).asBitmap().load(trav).into(binding.avatar)
      }
 
       private fun googleplay() {

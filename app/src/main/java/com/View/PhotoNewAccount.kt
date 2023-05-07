@@ -12,6 +12,10 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.ktx.storage
 import java.util.*
 
 
@@ -19,13 +23,16 @@ class PhotoNewAccount : AppCompatActivity() {
 
     private lateinit var binding: ActivityPicNewAccountBinding
     private val REQUEST_IMAGE_PICK = 1
+    val db = Firebase.firestore
+    val storage =  Firebase.storage
+    val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPicNewAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val db = Firebase.firestore
+
         val test = intent.getStringExtra("test")
         val mail = intent.getStringExtra("mail")
         val password = intent.getStringExtra("password")
@@ -67,8 +74,64 @@ class PhotoNewAccount : AppCompatActivity() {
 
         if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK && data != null) {
             val selectedImageUri = data.data
-            // Vous pouvez maintenant utiliser l'URI de l'image sélectionnée (par exemple, l'afficher dans un ImageView)
-            onBackPressed()
+            if (selectedImageUri != null) {
+                // Utilisez l'URI de l'image sélectionnée pour afficher l'image ou effectuer d'autres opérations
+                displaySelectedImage(selectedImageUri)
+            }
+        }}
+
+        private fun displaySelectedImage(selectedImageUri: Uri) {
+            // Affichez l'image sélectionnée dans un ImageView
+            binding.userPic.setImageURI(selectedImageUri)
+            uploadImageToFirebase(selectedImageUri)
+        }
+
+    private fun uploadImageToFirebase(selectedImageUri: Uri) {
+        val user = auth.currentUser
+        if (user != null) {
+            val storageRef = storage.reference
+            val imageRef = storageRef.child("AvatarPicture/${user.uid}.jpg")
+
+            val uploadTask = imageRef.putFile(selectedImageUri)
+            uploadTask.addOnSuccessListener {
+                // Image téléchargée avec succès
+                imageRef.downloadUrl.addOnSuccessListener { downloadUri ->
+                    // Utilisez l'URL de téléchargement pour mettre à jour les données utilisateur dans Firestore ou Firebase Authentication
+                    updateUserProfile(downloadUri)
+                }
+            }.addOnFailureListener { exception ->
+                // Gestion des erreurs
+                Log.e("upload", "Image upload failed: ", exception)
+            }
+        } else {
+            Log.e("upload", "User not logged in")
         }
     }
+
+    private fun updateUserProfile(imageUrl: Uri) {
+        // Mise à jour du profil utilisateur dans Firebase Authentication
+        val user = auth.currentUser
+        val profileUpdates = UserProfileChangeRequest.Builder()
+            .setPhotoUri(imageUrl)
+            .build()
+        user?.updateProfile(profileUpdates)
+            ?.addOnSuccessListener {
+                Log.d("update", "User profile updated.")
+            }
+            ?.addOnFailureListener { exception ->
+                Log.e("update", "User profile update failed: ", exception)
+            }
+
+        // Mise à jour des données utilisateur dans Firestore
+        val db = FirebaseFirestore.getInstance()
+        val userDocRef = db.collection("users").document(user!!.uid)
+        userDocRef.update("photoUrl", imageUrl.toString())
+            .addOnSuccessListener {
+                Log.d("update", "User document updated.")
+            }
+            .addOnFailureListener { exception ->
+                Log.e("update", "User document update failed: ", exception)
+            }
+    }
+
 }
