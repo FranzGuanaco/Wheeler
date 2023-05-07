@@ -39,16 +39,23 @@ class PinsNewAccount : AppCompatActivity() {
                 "birthdate" to birthDate,
                 "password" to password, // Storing passwords in Firestore is not recommended for security reasons.
                 "phone" to phone,
-                "Pin" to 1
+                "Pin" to "10"
             )
 
-            usersCollection.add(newUser)
-                .addOnSuccessListener { documentReference ->
-                    Log.d("test", "DocumentSnapshot added with ID: ${documentReference.id}")
-                }
-                .addOnFailureListener { e ->
-                    Log.w("test", "Error adding document", e)
-                }
+            val user = FirebaseAuth.getInstance().currentUser
+            if (user != null) {
+                val userId = user.uid
+                usersCollection.document(userId)
+                    .set(newUser)
+                    .addOnSuccessListener {
+                        Log.d("test", "DocumentSnapshot added with ID: $userId")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w("test", "Error adding document", e)
+                    }
+            } else {
+                Log.e("test", "User not logged in")
+            }
 
             Log.d("debug", "Email: $mail")
             Log.d("debug", "Password: $password")

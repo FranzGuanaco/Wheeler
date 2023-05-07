@@ -260,7 +260,6 @@
         android:textSize="24dp"
         android:textStyle="bold" />
 
-
     <TextView
         android:id="@+id/Name"
         style="@style/TEXT"
