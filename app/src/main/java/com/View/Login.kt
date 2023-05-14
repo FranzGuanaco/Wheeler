@@ -122,7 +122,6 @@ import com.google.firebase.auth.GoogleAuthProvider
      private fun updateUI(user: FirebaseUser?) {
          val intent = Intent(this, MainActivity::class.java)
          startActivity(intent)
-
      }
 
 

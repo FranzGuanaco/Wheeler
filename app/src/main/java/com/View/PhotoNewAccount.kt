@@ -14,6 +14,7 @@ import android.util.Log
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.ktx.storage
 import java.util.*
@@ -32,13 +33,11 @@ class PhotoNewAccount : AppCompatActivity() {
         binding = ActivityPicNewAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val test = intent.getStringExtra("test")
         val mail = intent.getStringExtra("mail")
         val password = intent.getStringExtra("password")
         val birth = intent.getLongExtra("birth", 0)
         val phone = intent.getStringExtra("phonenumb")
-
 
         Log.d("voici le resultat", "Email: $mail")
         Log.d("voici le resultat", "Password: $password")
@@ -53,7 +52,6 @@ class PhotoNewAccount : AppCompatActivity() {
         binding.Validate.setOnClickListener {
             val name = binding.Name.text.toString().trim()
             Log.d("debug", "Name: $name")
-
 
             val intent = Intent(this, PinsNewAccount::class.java)
             intent.putExtra("name", name)
@@ -98,6 +96,23 @@ class PhotoNewAccount : AppCompatActivity() {
                 imageRef.downloadUrl.addOnSuccessListener { downloadUri ->
                     // Utilisez l'URL de téléchargement pour mettre à jour les données utilisateur dans Firestore ou Firebase Authentication
                     updateUserProfile(downloadUri)
+
+                    //Obtenir la référence à la base de données
+                    val database = FirebaseDatabase.getInstance()
+
+                    //Obtenir la référence à 'Avatar'/'uid'
+                    val avatarRef = database.getReference("Avatar/${user.uid}")
+
+                    //Mettre à jour la valeur
+                    avatarRef.setValue(downloadUri.toString())
+                        .addOnSuccessListener {
+                            //Écouteur pour le succès de l'opération de mise à jour
+                            Log.d("upload", "Image URL successfully written to database")
+                        }
+                        .addOnFailureListener { exception ->
+                            //Écouteur pour les échecs de l'opération de mise à jour
+                            Log.e("upload", "Failed to write image URL to database", exception)
+                        }
                 }
             }.addOnFailureListener { exception ->
                 // Gestion des erreurs

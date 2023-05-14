@@ -29,6 +29,7 @@ import com.google.firebase.storage.FirebaseStorage
         lateinit var image: String
         lateinit var gsc: GoogleSignInClient
         lateinit var auth: FirebaseAuth
+         var db = Firebase.firestore
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -36,7 +37,7 @@ import com.google.firebase.storage.FirebaseStorage
              binding = ActivityPrizeBinding.inflate(layoutInflater)
             setContentView(binding.root)
 
-            val db = Firebase.firestore
+
             val usersCollection = db.collection("users")
 
             binding.play.setOnClickListener(){
@@ -352,17 +353,24 @@ import com.google.firebase.storage.FirebaseStorage
 
      // photo et nombre de point de l'utilisateur actuelle
      private fun displayUserData(document: DocumentSnapshot) {
+         val user = FirebaseAuth.getInstance().currentUser
+         var userId = user?.uid
+
          val pin = document.getString("Pin")
          binding.coinNumber.text = pin
          val username = document.getString("name")
          binding.Name.text = username
 
-         var trav =
-             "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Ftravel.png?alt=media&token=36e86672-8e58-4aec-b5e3-3333040d3f88"
-         Glide.with(baseContext).asBitmap().load(trav).into(binding.avatar)
+         var parent = FirebaseDatabase.getInstance().getReference("Avatar")
+         var dataChild = parent.child(userId!!).get().addOnSuccessListener {
+             Log.i("firebase", "Got value ${it.value}")
+             var trav = it.value.toString()
+             Glide.with(baseContext).asBitmap().load(trav).into(binding.avatar)
+         }
      }
 
-      private fun googleplay() {
+
+     private fun googleplay() {
           var googlePlay =
                     "https://firebasestorage.googleapis.com/v0/b/wheeler-d6e1d.appspot.com/o/Image%2Fgoogle%20play.png?alt=media&token=c0bce8e7-9b3d-4597-9233-975262ba35bb"
           Glide.with(baseContext).asBitmap().load(googlePlay).into(binding.GooglePlayPrize)
