@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wheeler.R
+import com.example.wheeler.SendEmailToChangePassword
 import com.example.wheeler.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -48,7 +49,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 
 
          binding.pwForgotten.setOnClickListener(){
-             var intent = Intent(this, ChangePassword::class.java)
+             var intent = Intent(this, SendEmailToChangePassword::class.java)
              startActivity(intent)
          }
 
@@ -75,35 +76,26 @@ import com.google.firebase.auth.GoogleAuthProvider
      private fun signIn() {
          var singinintent: Intent = gsc.signInIntent
          launcher.launch(singinintent)
-
      }
 
      private val launcher =
          registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-
                  result ->
-
              if (result.resultCode == Activity.RESULT_OK) {
-
                  val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
                  handleResults(task)
              }
          }
 
      private fun handleResults(task: Task<GoogleSignInAccount>) {
-
          if (task.isSuccessful) {
-
              val account: GoogleSignInAccount = task.result
              if (account != null) {
                  updateUI(account)
              }
-
          } else {
-
              Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
          }
-
      }
 
      private fun updateUI(account: GoogleSignInAccount) {

@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 
@@ -55,16 +56,33 @@ class Security : AppCompatActivity() {
         }
 
         binding.Deleteaccount.setOnClickListener {
-                user?.delete()
-                    ?.addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Log.d("test", "User account deleted.")
-                            val intent = Intent(this, Login::class.java)
-                            startActivity(intent)
 
-                } else {
-                    Toast.makeText(this, "Erreur lors de la suppression du compte", Toast.LENGTH_SHORT).show()
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            currentUser?.delete()?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("TAG", "User account deleted.")
+
+                    // Marquez l'utilisateur comme "supprimé" dans votre base de données
+                    val db = FirebaseFirestore.getInstance()
+                    val docRef = db.collection("users").document(currentUser.uid)
+
+                    docRef.update("status", "deleted")
+                        .addOnSuccessListener {
+                            Log.d("TAG", "User marked as deleted.")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w("TAG", "Error updating document", e)
+                        }
+
+                    // Redirigez l'utilisateur vers la page de connexion ou effectuez d'autres actions appropriées ici.
+                    val intent = Intent(this, Login::class.java)
+                    startActivity(intent)
                 }
+                else {
+                    // Gestion des erreurs
+                    Log.d("TAG", "Failed to delete user account.")
+                }
+            }
 
-
-            }}}}
+        }
+    }}

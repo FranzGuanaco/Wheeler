@@ -18,6 +18,8 @@ class ChangePassword : AppCompatActivity() {
         binding = ActivityChangePasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        var newpassword = binding.newpassword
+
       //  <--->
 
         // Récupération de l'instance Firebase Auth
@@ -26,7 +28,7 @@ class ChangePassword : AppCompatActivity() {
         binding.Registter.setOnClickListener(){
 
 // Envoyer un e-mail de réinitialisation de mot de passe
-        val emailAddress = "chevin.pierre.tomas@gmail.com"
+        val emailAddress = binding.currentpassword.text.toString()
         auth.sendPasswordResetEmail(emailAddress)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
