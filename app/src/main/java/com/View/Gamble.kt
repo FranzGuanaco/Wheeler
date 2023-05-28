@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -14,6 +15,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.wheeler.R
 import com.example.wheeler.databinding.ActivityAnychartBinding
 import com.example.wheeler.databinding.ActivityPrizeBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.razerdp.widget.animatedpieview.AnimatedPieView
 import com.razerdp.widget.animatedpieview.AnimatedPieViewConfig
 import com.razerdp.widget.animatedpieview.data.SimplePieInfo
@@ -33,6 +37,7 @@ open class Gamble : anychart() {
 
         binding = ActivityAnychartBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         val button = findViewById<Button>(R.id.button)
         val button2 = findViewById<Button>(R.id.button2)
@@ -95,6 +100,19 @@ open class Gamble : anychart() {
         if (random in 360..370 || random in 1..12) {
 
             println("gagné")
+            val newUser = hashMapOf(
+                "Pin" to "100"
+            )
+            val user = FirebaseAuth.getInstance().currentUser
+            val db = Firebase.firestore
+            val usersCollection = db.collection("users")
+            if (user != null) {
+                val userId = user.uid
+                usersCollection.document(userId)
+                    .set(newUser)
+                    .addOnSuccessListener {
+                        Log.d("test", "DocumentSnapshot added with ID: $userId")
+                    }}
 
             Handler().postDelayed({
                 val intent = Intent(this, RedirectionWin::class.java)
@@ -102,6 +120,20 @@ open class Gamble : anychart() {
             }, 6000)
         } else {
             println("perdu")
+
+            val newUser = hashMapOf(
+                "Pin" to "0"
+            )
+            val user = FirebaseAuth.getInstance().currentUser
+            val db = Firebase.firestore
+            val usersCollection = db.collection("users")
+            if (user != null) {
+                val userId = user.uid
+                usersCollection.document(userId)
+                    .set(newUser)
+                    .addOnSuccessListener {
+                        Log.d("test", "DocumentSnapshot added with ID: $userId")
+                    }}
 
             Handler().postDelayed({
                 val intent = Intent(this, RedirectionLose::class.java)
