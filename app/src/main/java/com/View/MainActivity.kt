@@ -51,7 +51,7 @@ import com.google.firebase.storage.FirebaseStorage
                 startActivity(intent)
             }
 
-
+// Thread pour laisser le temps à toutes les images de se telecharger ( à ameliorer)
             netflix()
             Thread.sleep(10)
             googleplay()

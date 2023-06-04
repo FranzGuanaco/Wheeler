@@ -29,8 +29,7 @@ class Create_account: AppCompatActivity() {
         val db = Firebase.firestore
 
         binding.date.setOnClickListener {
-
-            // creation du datePicker
+            // Création du datePicker
             val calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)
             val month = calendar.get(Calendar.MONTH)
@@ -55,19 +54,22 @@ class Create_account: AppCompatActivity() {
             var pinsIntent = Intent(this, PinsNewAccount::class.java)
             var phone = Intent(this, PhoneNumberNewAccount::class.java)
 
+            // Création d'un nouvel utilisateur avec email et mot de passe
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
+                        // Connexion réussie, mettez à jour l'interface utilisateur avec les informations de l'utilisateur connecté
                         Log.d("", "createUserWithEmail:success")
                         val user = task.result?.user
-                        user?.sendEmailVerification()
 
+                        // Envoi d'un email de vérification à l'utilisateur
+                        user?.sendEmailVerification()
                             ?.addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
                                     Toast.makeText(this, "Verification email sent to ${user.email}", Toast.LENGTH_SHORT).show()
 
                                     val test = "yooooooooo"
+                                    // Démarrage de l'activité PhoneNumberNewAccount avec des données supplémentaires
                                     startActivity(phone.putExtra("test", test)
                                         .putExtra("mail", email)
                                         .putExtra("password", password)
@@ -78,8 +80,9 @@ class Create_account: AppCompatActivity() {
                                     Toast.makeText(this, "Failed to send verification email.", Toast.LENGTH_SHORT).show()
                                 }
                             }
-                        }
+                    }
 
+                    // Connexion de l'utilisateur avec email et mot de passe
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
@@ -92,9 +95,11 @@ class Create_account: AppCompatActivity() {
                                 // La connexion a échoué
                             }
                         }
-                     }
-                 }
-                }}
+                }
+        }
+    }
+}
+
 
 
 

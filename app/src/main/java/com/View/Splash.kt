@@ -15,6 +15,7 @@ class Splash : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        //variable se referant à chaque triangle
         val triangle1 = findViewById<ImageView>(R.id.triangleYellow)
         val triangle2 = findViewById<ImageView>(R.id.triangleYellow2)
         val triangle3 = findViewById<ImageView>(R.id.triangleRed)
@@ -26,7 +27,7 @@ class Splash : AppCompatActivity() {
         val login = findViewById<Button>(R.id.Loginbutton)
         val createAccount = findViewById<Button>(R.id.create_account)
 
-
+// mouvement pour chaque triangle
         val objectAnimator1x: ObjectAnimator =
             ObjectAnimator.ofFloat(triangle1, "translationX", 1000f)
         val objectAnimator1y: ObjectAnimator =
@@ -67,7 +68,7 @@ class Splash : AppCompatActivity() {
         val objectAnimator8y: ObjectAnimator =
             ObjectAnimator.ofFloat(triangle8, "translationY", 1500f)
 
-
+// déclenchement de toutes les animations
         val animatorSet = AnimatorSet()
         animatorSet.playTogether(objectAnimator1x, objectAnimator1y, objectAnimator2x, objectAnimator2y, objectAnimator3x, objectAnimator3y, objectAnimator4x, objectAnimator4y, objectAnimator5x, objectAnimator5y,
                 objectAnimator6x, objectAnimator6y, objectAnimator7x, objectAnimator7y, objectAnimator8x, objectAnimator8y)
@@ -76,15 +77,14 @@ class Splash : AppCompatActivity() {
 
         animatorSet.start()
 
-
+// bouton de login
         login.setOnClickListener() {
-
             val loginActivity = Intent(this, Login::class.java)
             startActivity(loginActivity)
         }
 
+ //bouton de creation de compte
         createAccount.setOnClickListener(){
-
             val accountActivity = Intent(this, Create_account::class.java)
             startActivity(accountActivity)
 

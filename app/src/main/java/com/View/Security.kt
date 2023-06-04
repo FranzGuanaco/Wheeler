@@ -37,6 +37,7 @@ class Security : AppCompatActivity() {
         binding = ActivitySecurityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // parametre Firebase pour se connecter via l'API Google
         val gso: GoogleSignInOptions =
             GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -47,7 +48,7 @@ class Security : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val user = Firebase.auth.currentUser
 
-
+// bouton de deconnexion
         binding.Logout.setOnClickListener(){
             auth.signOut()
             var intent = Intent(this, Login::class.java)
@@ -55,6 +56,7 @@ class Security : AppCompatActivity() {
 
         }
 
+        // bouton de suppression de compte
         binding.Deleteaccount.setOnClickListener {
 
             val currentUser = FirebaseAuth.getInstance().currentUser
@@ -62,7 +64,7 @@ class Security : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.d("TAG", "User account deleted.")
 
-                    // Marquez l'utilisateur comme "supprimé" dans votre base de données
+                    // Marquez l'utilisateur comme "supprimé" dans la base de données
                     val db = FirebaseFirestore.getInstance()
                     val docRef = db.collection("users").document(currentUser.uid)
 

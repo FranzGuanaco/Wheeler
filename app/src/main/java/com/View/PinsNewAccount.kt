@@ -21,7 +21,7 @@ class PinsNewAccount : AppCompatActivity() {
             setContentView(binding.root)
 
         val db = Firebase.firestore
-        val usersCollection = db.collection("users")
+        val usersCollection = db.collection("users") // utilisation de la base de données info clients
         val test = intent.getStringExtra("test")
         val mail = intent.getStringExtra("mail")
         val password = intent.getStringExtra("password")
@@ -32,7 +32,7 @@ class PinsNewAccount : AppCompatActivity() {
 
 
         binding.Validate.setOnClickListener(){
-
+// storage des données clients dans le Firestore
             val newUser = hashMapOf(
                 "name" to name,
                 "email" to mail,
@@ -46,7 +46,7 @@ class PinsNewAccount : AppCompatActivity() {
             if (user != null) {
                 val userId = user.uid
                 usersCollection.document(userId)
-                    .set(newUser)
+                    .set(newUser) // storage activé
                     .addOnSuccessListener {
                         Log.d("test", "DocumentSnapshot added with ID: $userId")
                     }
