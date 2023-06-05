@@ -62,6 +62,7 @@
         <entry key="app/src/main/res/layout/activity_pins_new_account.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_preference_new_account.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/activity_prize.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_random_numb_check.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_security.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/activity_send_email_to_change_password.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.335" />

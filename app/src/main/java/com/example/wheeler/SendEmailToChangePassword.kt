@@ -7,10 +7,15 @@ import android.widget.Toast
 import com.View.ChangePassword
 import com.example.wheeler.databinding.ActivitySendEmailToChangePasswordBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import kotlin.random.Random
+
 
 class SendEmailToChangePassword : AppCompatActivity() {
     lateinit var binding: ActivitySendEmailToChangePasswordBinding
     private lateinit var auth: FirebaseAuth
+    var db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +26,8 @@ class SendEmailToChangePassword : AppCompatActivity() {
 
         binding.Next.setOnClickListener {
             val email = binding.mail.text.toString()
+            val code = Random.nextInt(1000, 9999)
+            val newCode = code.toString()
 
             auth.fetchSignInMethodsForEmail(email)
                 .addOnCompleteListener { task ->
@@ -35,7 +42,7 @@ class SendEmailToChangePassword : AppCompatActivity() {
                             ).show()
                         } else {
                             // L'e-mail est associé à un compte, continuez la procédure
-                            sendPasswordResetEmail(email)
+                            sendPasswordResetEmail(email, newCode)
                         }
                     } else {
                         // Erreur lors de la récupération des méthodes de connexion, affichez une erreur
@@ -46,21 +53,37 @@ class SendEmailToChangePassword : AppCompatActivity() {
                         ).show()
                     }
                 }
-            }
-         }
+        }
+    }
 
-    private fun sendPasswordResetEmail(email: String) {
+    private fun sendPasswordResetEmail(email: String, newCode: String) {
+        // Envoi de l'e-mail avec le code de vérification
         auth.sendPasswordResetEmail(email)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(
-                        this,
-                        "Un e-mail de réinitialisation du mot de passe a été envoyé.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    // Redirection vers l'activité ChangePassword après l'envoi réussi de l'e-mail
-                    val intent = Intent(this, ChangePassword::class.java)
-                    startActivity(intent)
+                    // Récupération de l'utilisateur actuel
+                    val user = auth.currentUser
+
+                    // Mise à jour du mot de passe de l'utilisateur avec le code de vérification
+                    user?.updatePassword(newCode)
+                        ?.addOnCompleteListener { passwordUpdateTask ->
+                            if (passwordUpdateTask.isSuccessful) {
+                                Toast.makeText(
+                                    this,
+                                    "Un e-mail de réinitialisation du mot de passe a été envoyé.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                // Redirection vers l'activité ChangePassword après l'envoi réussi de l'e-mail
+                                val intent = Intent(this, ChangePassword::class.java)
+                                startActivity(intent)
+                            } else {
+                                Toast.makeText(
+                                    this,
+                                    "Erreur lors de la réinitialisation du mot de passe.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
                 } else {
                     Toast.makeText(
                         this,
@@ -69,5 +92,7 @@ class SendEmailToChangePassword : AppCompatActivity() {
                     ).show()
                 }
             }
-        }
     }
+}
+
+
