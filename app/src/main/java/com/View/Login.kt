@@ -105,15 +105,11 @@ import com.google.firebase.auth.GoogleAuthProvider
              if (it.isSuccessful) {
                  val intent = Intent(this, MainActivity::class.java)
                  startActivity(intent)
+                 finishAffinity()
              } else {
                  Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
              }
          }
-     }
-
-     private fun updateUI(user: FirebaseUser?) {
-         val intent = Intent(this, MainActivity::class.java)
-         startActivity(intent)
      }
 
 
@@ -126,6 +122,8 @@ import com.google.firebase.auth.GoogleAuthProvider
                  .addOnCompleteListener { signIn ->
                      if (signIn.isSuccessful) {
                          startActivity(Intent(this, MainActivity::class.java))
+                         startActivity(intent)
+                         finishAffinity()
                          Toast.makeText(
                              baseContext, "Authentication reussi.",
                              Toast.LENGTH_SHORT

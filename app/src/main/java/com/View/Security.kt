@@ -53,6 +53,7 @@ class Security : AppCompatActivity() {
             auth.signOut()
             var intent = Intent(this, Login::class.java)
             startActivity(intent)
+            finishAffinity()
 
         }
 
