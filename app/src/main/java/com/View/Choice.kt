@@ -11,6 +11,8 @@ import com.example.wheeler.databinding.ActivityChoiceBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
@@ -31,6 +33,8 @@ open class Choice : AppCompatActivity()
         setContentView(binding.root)
         var img = intent.getStringExtra("img")
         var data = intent.getStringExtra("figure")
+        val db = Firebase.firestore
+        val usersCollection = db.collection("Session")
 
 
             Glide.with(baseContext).asBitmap().load(img).into(binding.imageView4)
@@ -43,6 +47,25 @@ open class Choice : AppCompatActivity()
            // var img = intent.getStringExtra("img")
 
             binding.yesWheel.setOnClickListener() {
+
+                val newGame = hashMapOf(
+                    "State" to "test"
+                )
+                val user = FirebaseAuth.getInstance().currentUser
+                if (user != null) {
+                    val userId = user.uid
+                    usersCollection.document(userId)
+                        .set(newGame) // storage activé
+                        .addOnSuccessListener {
+                            Log.d("test", "DocumentSnapshot added with ID: $userId")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w("test", "Error adding document", e)
+                        }
+                } else {
+                    Log.e("test", "User not logged in")
+                }
+
                 var intent = Intent(this, anychart::class.java)
                 startActivity(intent)
             }
