@@ -84,7 +84,7 @@ import com.google.firebase.storage.FirebaseStorage
 
             gsc = GoogleSignIn.getClient(this, gso)
 
-
+// Affichage de l'avatar et du nombre de point
             val user = FirebaseAuth.getInstance().currentUser
             if (user != null) {
                 val userId = user.uid
@@ -120,16 +120,20 @@ import com.google.firebase.storage.FirebaseStorage
                 dataChild.child("imgNetflix").get().addOnSuccessListener {
                     Log.i("firebase", "Got value ${it.value}")
                     var pic = "${it.value}"
+                    var game = dataChild.key.toString()
+                    Log.d("lecture", "${game}")
                     intent.putExtra("img", pic)
+                    intent.putExtra("GameName", game)
 
-                    dataChild.child("data").get().addOnSuccessListener {
-                        Log.i("firebase", "Got value ${it.value}")
-                        var figure = "${it.value}"
+                    dataChild.child("data").get().addOnSuccessListener { dataSnapshot ->
+                        Log.i("firebase", "Got value ${dataSnapshot.value}")
+                        val figure = dataSnapshot.value.toString()
+                        val price = dataSnapshot.value.toString()
                         intent.putExtra("figure", figure)
-
-                        startActivity(intent) }
+                        intent.putExtra("price", price)
+                        startActivity(intent)
+                    }
                 }
-
             }
 
             binding.GooglePlayPrize.setOnClickListener(){

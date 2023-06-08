@@ -22,50 +22,50 @@ import com.squareup.picasso.Picasso
 open class Choice : AppCompatActivity()
 {
     lateinit var binding: ActivityChoiceBinding
-    lateinit var storage: FirebaseStorage
-    lateinit var auth: FirebaseAuth
-    lateinit var databaseReference: DatabaseReference
+    val user = FirebaseAuth.getInstance().currentUser
+    val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState:Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choice)
         binding = ActivityChoiceBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         var img = intent.getStringExtra("img")
         var data = intent.getStringExtra("figure")
-        val db = Firebase.firestore
+        var price = intent.getStringExtra("price")
+        var gamename = intent.getStringExtra("GameName")
         val usersCollection = db.collection("Session")
-
 
             Glide.with(baseContext).asBitmap().load(img).into(binding.imageView4)
 
             binding.Price.text = "Price: ${data} $"
 
 
-            auth = FirebaseAuth.getInstance()
-
-           // var img = intent.getStringExtra("img")
-
             binding.yesWheel.setOnClickListener() {
 
+                intent.putExtra("price", price)
+                intent.putExtra("GameName", gamename)
+
                 val newGame = hashMapOf(
-                    "State" to "test"
+                    "Prix" to price,
+
                 )
-                val user = FirebaseAuth.getInstance().currentUser
+
                 if (user != null) {
-                    val userId = user.uid
-                    usersCollection.document(userId)
-                        .set(newGame) // storage activé
-                        .addOnSuccessListener {
-                            Log.d("test", "DocumentSnapshot added with ID: $userId")
-                        }
-                        .addOnFailureListener { e ->
-                            Log.w("test", "Error adding document", e)
-                        }
+                    if (gamename != null) {
+                        usersCollection.document(gamename)
+                            .set(newGame) // storage activé
+                            .addOnSuccessListener {
+                                Log.d("test", "DocumentSnapshot added with ID: $gamename")
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w("test", "Error adding document", e)
+                            }
+                    }
                 } else {
                     Log.e("test", "User not logged in")
                 }
-
                 var intent = Intent(this, anychart::class.java)
                 startActivity(intent)
             }
@@ -73,6 +73,6 @@ open class Choice : AppCompatActivity()
             binding.noWheel.setOnClickListener() {
                 var intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-        }
+            }
         }
     }

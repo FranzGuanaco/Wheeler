@@ -62,13 +62,6 @@ import com.google.firebase.auth.GoogleAuthProvider
          }
      }
 
-     fun out() {
-         gsc.signOut()
-             .addOnCompleteListener(this, OnCompleteListener {
-                 signout()
-             })
-     }
-
      private fun signout() {
          Toast.makeText(this@Login, "deconnect", Toast.LENGTH_SHORT).show()
      }
@@ -105,7 +98,7 @@ import com.google.firebase.auth.GoogleAuthProvider
              if (it.isSuccessful) {
                  val intent = Intent(this, MainActivity::class.java)
                  startActivity(intent)
-                 finishAffinity()
+
              } else {
                  Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
              }
@@ -121,9 +114,9 @@ import com.google.firebase.auth.GoogleAuthProvider
              auth.signInWithEmailAndPassword(email, pass)
                  .addOnCompleteListener { signIn ->
                      if (signIn.isSuccessful) {
-                         startActivity(Intent(this, MainActivity::class.java))
+                         val intent = Intent(this, MainActivity::class.java)
                          startActivity(intent)
-                         finishAffinity()
+                          finishAffinity()
                          Toast.makeText(
                              baseContext, "Authentication reussi.",
                              Toast.LENGTH_SHORT

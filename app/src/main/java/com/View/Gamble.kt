@@ -26,10 +26,12 @@ import kotlin.random.Random
 
 open class Gamble : anychart() {
 
+    private lateinit var binding: ActivityAnychartBinding
+    val user = FirebaseAuth.getInstance().currentUser
+    val db = Firebase.firestore
     var random = Random.nextInt(1, 360)
     var randomDuration = Random.nextInt(1800, 6000)
     var randomToFloat = random.toFloat()
-    private lateinit var binding: ActivityAnychartBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,13 +40,16 @@ open class Gamble : anychart() {
         binding = ActivityAnychartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val intent = intent
+        val name = intent.getDoubleExtra("valeur", 1.1)
+        var price = intent.getStringExtra("price")
+        var gamename = intent.getStringExtra("GameName")
 
         val button = findViewById<Button>(R.id.button)
         val button2 = findViewById<Button>(R.id.button2)
         val play = findViewById<Button>(R.id.play)
         val anim: AnimatedPieView = findViewById(R.id.pieView)
         val config: AnimatedPieViewConfig = AnimatedPieViewConfig()
-        val name = intent.getDoubleExtra("valeur", 1.1)
 
 
         config.addData(SimplePieInfo((2000.0 - name), Color.parseColor("#ADB7AE")))
@@ -96,52 +101,79 @@ open class Gamble : anychart() {
     }
 
     private fun win() {
-
         if (random in 360..370 || random in 1..12) {
-
             println("gagné")
             val newUser = hashMapOf(
                 "Pin" to "100"
             )
+
             val user = FirebaseAuth.getInstance().currentUser
             val db = Firebase.firestore
             val usersCollection = db.collection("users")
+            val gameCollection = db.collection("Session")
+
             if (user != null) {
                 val userId = user.uid
+
                 usersCollection.document(userId)
                     .set(newUser)
                     .addOnSuccessListener {
-                        Log.d("test", "DocumentSnapshot added with ID: $userId")
-                    }}
+                        Log.d("test", "User document added with ID: $userId")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w("test", "Error adding user document", e)
+                    }
 
-            Handler().postDelayed({
-                val intent = Intent(this, RedirectionWin::class.java)
-                startActivity(intent)
-            }, 6000)
+                val newGame = hashMapOf(
+                    "Prix" to price,
+                    "Players" to user.uid,
+                    "State" to "Pending"
+                )
+
+                gameCollection.document(this.gamename)
+                    .set(newGame)
+                    .addOnSuccessListener {
+                        Log.d("test", "Game document added with ID: $gamename")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w("test", "Error adding game document", e)
+                    }
+
+                Handler().postDelayed({
+                    val intent = Intent(this, RedirectionWin::class.java)
+                    startActivity(intent)
+                }, 6000)
+            }
         } else {
             println("perdu")
+            val newUser = hashMapOf("Pin" to "0")
 
-            val newUser = hashMapOf(
-                "Pin" to "0"
-            )
             val user = FirebaseAuth.getInstance().currentUser
             val db = Firebase.firestore
             val usersCollection = db.collection("users")
+            val gameCollection = db.collection("Session")
+
             if (user != null) {
                 val userId = user.uid
+
                 usersCollection.document(userId)
                     .set(newUser)
                     .addOnSuccessListener {
-                        Log.d("test", "DocumentSnapshot added with ID: $userId")
-                    }}
+                        Log.d("test", "User document added with ID: $userId")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w("test", "Error adding user document", e)
+                    }
 
-            Handler().postDelayed({
-                val intent = Intent(this, RedirectionLose::class.java)
-                startActivity(intent)
-            }, 6000)
-
+                Handler().postDelayed({
+                    val intent = Intent(this, RedirectionLose::class.java)
+                    startActivity(intent)
+                }, 6000)
+            }
         }
     }
+
+
 
     private fun win2() {
 
