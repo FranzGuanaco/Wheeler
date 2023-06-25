@@ -35,42 +35,21 @@ open class Choice : AppCompatActivity()
         var data = intent.getStringExtra("figure")
         var price = intent.getStringExtra("price")
         var gamename = intent.getStringExtra("GameName")
-        val usersCollection = db.collection("Session")
 
             Glide.with(baseContext).asBitmap().load(img).into(binding.imageView4)
 
             binding.Price.text = "Price: ${data} $"
+        binding.texttest.text = price
+
+        binding.yesWheel.setOnClickListener() {
+            val intent = Intent(this, anychart::class.java)
+            intent.putExtra("price", price)
+            intent.putExtra("GameName", gamename)
+            startActivity(intent)
+        }
 
 
-            binding.yesWheel.setOnClickListener() {
-
-                intent.putExtra("price", price)
-                intent.putExtra("GameName", gamename)
-
-                val newGame = hashMapOf(
-                    "Prix" to price,
-
-                )
-
-                if (user != null) {
-                    if (gamename != null) {
-                        usersCollection.document(gamename)
-                            .set(newGame) // storage activé
-                            .addOnSuccessListener {
-                                Log.d("test", "DocumentSnapshot added with ID: $gamename")
-                            }
-                            .addOnFailureListener { e ->
-                                Log.w("test", "Error adding document", e)
-                            }
-                    }
-                } else {
-                    Log.e("test", "User not logged in")
-                }
-                var intent = Intent(this, anychart::class.java)
-                startActivity(intent)
-            }
-
-            binding.noWheel.setOnClickListener() {
+        binding.noWheel.setOnClickListener() {
                 var intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }

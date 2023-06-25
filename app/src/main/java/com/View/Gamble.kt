@@ -7,14 +7,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.wheeler.R
 import com.example.wheeler.databinding.ActivityAnychartBinding
-import com.example.wheeler.databinding.ActivityPrizeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -27,8 +21,6 @@ import kotlin.random.Random
 open class Gamble : anychart() {
 
     private lateinit var binding: ActivityAnychartBinding
-    val user = FirebaseAuth.getInstance().currentUser
-    val db = Firebase.firestore
     var random = Random.nextInt(1, 360)
     var randomDuration = Random.nextInt(1800, 6000)
     var randomToFloat = random.toFloat()
@@ -40,18 +32,15 @@ open class Gamble : anychart() {
         binding = ActivityAnychartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val intent = intent
         val name = intent.getDoubleExtra("valeur", 1.1)
         var price = intent.getStringExtra("price")
         var gamename = intent.getStringExtra("GameName")
+        binding.Gamblename.text = "Gamble"
+        Log.d("Price", "Price value: $price")
 
-        val button = findViewById<Button>(R.id.button)
-        val button2 = findViewById<Button>(R.id.button2)
-        val play = findViewById<Button>(R.id.play)
+// ANimation
         val anim: AnimatedPieView = findViewById(R.id.pieView)
         val config: AnimatedPieViewConfig = AnimatedPieViewConfig()
-
-
         config.addData(SimplePieInfo((2000.0 - name), Color.parseColor("#ADB7AE")))
         config.addData(SimplePieInfo(name, Color.parseColor("#FCE300"), "B"))
         config.drawText(true)
@@ -59,32 +48,33 @@ open class Gamble : anychart() {
         anim.applyConfig(config)
         anim.start()
 
-
         fun refresh(valeurReturn: Double) {
             val intent = Intent(this, Gamble2::class.java)
             intent.putExtra("valeurReturn", valeurReturn)
+            intent.putExtra("price", price)
+            intent.putExtra("GameName", gamename)
+
             startActivity(intent)
         }
 
-
-        button.setOnClickListener() {
+// changer d'activité et faire passer la valeur de la mise dans l'autre classe
+        binding.button.setOnClickListener() {
             refresh(valeurReturn = 1000.0)
         }
 
-
-        button2.setOnClickListener() {
+// changer d'activité et faire passer la valeur de la mise dans l'autre classe
+        binding.button2.setOnClickListener() {
             refresh(valeurReturn = 100.0)
         }
 
-
-        play.setOnClickListener() {
+//lancer le jeu
+        binding.play.setOnClickListener() {
 
             var turned = listOf(720, 1080, 1440)
             var randomturn = turned.random()
             var turn = randomToFloat + randomturn
 
-            val animations =
-                ObjectAnimator.ofFloat(anim, "rotation", turn).apply {
+            val animations = ObjectAnimator.ofFloat(anim, "rotation", turn).apply {
                     duration = randomDuration.toLong()
                 }
 
@@ -92,45 +82,40 @@ open class Gamble : anychart() {
             set.playTogether(animations)
             set.start()
 
+// deux option selon la mise pour calibrer l'arc de cercle
             if (name == 100.0) {
-                win()
+                if (price != null) {
+                    if (gamename != null) {
+                        win(price, gamename)
+                    }
+                }
             } else {
-                win2()
+                win2(price, gamename)
             }
         }
     }
 
-    private fun win() {
+    private fun win(price: String, gamename: String) {
+
+        val user = FirebaseAuth.getInstance().currentUser
+        val db = Firebase.firestore
+        // collection du joueur
+        val usersCollection = db.collection("users")
+        // collection du jeu
+        val gameCollection = db.collection("Session")
+
         if (random in 360..370 || random in 1..12) {
             println("gagné")
-            val newUser = hashMapOf(
-                "Pin" to "100"
-            )
-
-            val user = FirebaseAuth.getInstance().currentUser
-            val db = Firebase.firestore
-            val usersCollection = db.collection("users")
-            val gameCollection = db.collection("Session")
 
             if (user != null) {
-                val userId = user.uid
-
-                usersCollection.document(userId)
-                    .set(newUser)
-                    .addOnSuccessListener {
-                        Log.d("test", "User document added with ID: $userId")
-                    }
-                    .addOnFailureListener { e ->
-                        Log.w("test", "Error adding user document", e)
-                    }
-
                 val newGame = hashMapOf(
                     "Prix" to price,
                     "Players" to user.uid,
-                    "State" to "Pending"
+                    "State" to "Fini",
+                    "Winner" to user.uid
                 )
 
-                gameCollection.document(this.gamename)
+                gameCollection.document(gamename)
                     .set(newGame)
                     .addOnSuccessListener {
                         Log.d("test", "Game document added with ID: $gamename")
@@ -144,25 +129,32 @@ open class Gamble : anychart() {
                     startActivity(intent)
                 }, 6000)
             }
-        } else {
-            println("perdu")
-            val newUser = hashMapOf("Pin" to "0")
 
+        } else {
             val user = FirebaseAuth.getInstance().currentUser
             val db = Firebase.firestore
+            // collection du joueur
             val usersCollection = db.collection("users")
+            // collection du jeu
             val gameCollection = db.collection("Session")
 
-            if (user != null) {
-                val userId = user.uid
+            println("perdu")
 
-                usersCollection.document(userId)
-                    .set(newUser)
+            if (user != null) {
+                val newGame = hashMapOf(
+                    "Prix" to price,
+                    "Players" to user.uid,
+                    "State" to "Fini",
+                    "Winner" to "not you"
+                )
+
+                gameCollection.document(gamename)
+                    .set(newGame)
                     .addOnSuccessListener {
-                        Log.d("test", "User document added with ID: $userId")
+                        Log.d("test", "Game document added with ID: $gamename")
                     }
                     .addOnFailureListener { e ->
-                        Log.w("test", "Error adding user document", e)
+                        Log.w("test", "Error adding game document", e)
                     }
 
                 Handler().postDelayed({
@@ -175,24 +167,74 @@ open class Gamble : anychart() {
 
 
 
-    private fun win2() {
+    private fun win2(price: String?, gamename: String?) {
+
+        val user = FirebaseAuth.getInstance().currentUser
+        val db = Firebase.firestore
+        // collection du joueur
+        val usersCollection = db.collection("users")
+        // collection du jeu
+        val gameCollection = db.collection("Session")
 
         if (random in 1..180) {
 
             println("gagné")
 
-            Handler().postDelayed({ val intent = Intent(this, RedirectionWin::class.java)
+            if (user != null) {
+                val newGame = hashMapOf(
+                    "Prix" to price,
+                    "Players" to user.uid,
+                    "State" to "Fini",
+                    "Winner" to user.uid
+                )
+
+                gameCollection.document(gamename!!)
+                    .set(newGame)
+                    .addOnSuccessListener {
+                        Log.d("test", "Game document added with ID: $gamename")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w("test", "Error adding game document", e)
+                    }
+
+                Handler().postDelayed({ val intent = Intent(this, RedirectionWin::class.java)
                 startActivity(intent)
             }, 6000)
 
         } else {
+
+                val user = FirebaseAuth.getInstance().currentUser
+                val db = Firebase.firestore
+                // collection du joueur
+                val usersCollection = db.collection("users")
+                // collection du jeu
+                val gameCollection = db.collection("Session")
+
             println("perdu")
 
-            Handler().postDelayed({
+                if (user != null) {
+                    val newGame = hashMapOf(
+                        "Prix" to price,
+                        "Players" to user.uid,
+                        "State" to "Fini",
+                        "Winner" to "not you"
+                    )
+
+                    gameCollection.document(gamename!!)
+                        .set(newGame)
+                        .addOnSuccessListener {
+                            Log.d("test", "Game document added with ID: $gamename")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w("test", "Error adding game document", e)
+                        }
+
+
+                    Handler().postDelayed({
                 val intent = Intent(this, RedirectionLose::class.java)
                 startActivity(intent)
             }, 6000)
 
         }
     }
-}
+}}}

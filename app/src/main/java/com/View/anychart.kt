@@ -26,6 +26,8 @@ open class anychart : AppCompatActivity() {
         var button2 = findViewById<Button>(R.id.button2)
         var anim : AnimatedPieView = findViewById(R.id.pieView)
         var config : AnimatedPieViewConfig = AnimatedPieViewConfig()
+        var price = intent.getStringExtra("price")
+        var gamename = intent.getStringExtra("GameName")
 
 
 
@@ -48,6 +50,8 @@ open class anychart : AppCompatActivity() {
 
          fun refresh(valeur : Double) {
              val intent = Intent(this, Gamble::class.java)
+             intent.putExtra("price", price)
+             intent.putExtra("GameName", gamename)
              intent.putExtra("valeur", valeur)
              startActivity(intent)
         }
