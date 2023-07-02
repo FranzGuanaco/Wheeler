@@ -44,27 +44,15 @@ open class Gamble : anychart() {
 
         Log.d("Price", "Price value: $price")
 
-        binding.boutontest.setOnClickListener() {
-            val data : Double = 1000.0
-            if (name == 1000.0) {
-                val parisRef = gameRef.child("paris")
-                parisRef.setValue(data)
-                Log.d("valeur du paris", "La valeur introduite est 1000")
-            } else {
-                val parisRef = gameRef.child("paris")
-                parisRef.setValue(data)
-                Log.d("valeur du paris", "La valeur introduite est 100")
-            }
-        }
-
         // Animation
         val anim: AnimatedPieView = findViewById(R.id.pieView)
         val config: AnimatedPieViewConfig = AnimatedPieViewConfig()
 
         val messageListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val mise = dataSnapshot.value
                 if (dataSnapshot.exists()) {
-                    val mise = dataSnapshot.value
+
                     if (mise is Number) {
                         println("ca marche")
                         val lamise = mise.toDouble()
@@ -76,7 +64,7 @@ open class Gamble : anychart() {
                         anim.applyConfig(config)
                         anim.start()
                     }else {
-                        println("La valeur récupérée n'est pas de type Double")
+                        println("La valeur récupérée n'est pas de type Double ${mise}")
                     }
                     } else {
                         println("Aucune donnée trouvée")
@@ -96,7 +84,8 @@ open class Gamble : anychart() {
             }
         }
 
-        gameRef.child("paris").addValueEventListener(messageListener)
+        var stake = gameRef.child("Session ${gamename}/Stake")
+        stake.addValueEventListener(messageListener)
 
 
 
@@ -109,16 +98,33 @@ open class Gamble : anychart() {
         }
 
         binding.boutontest.setOnClickListener() {
+            println("voila le nom ${gamename}")
+            val user = FirebaseAuth.getInstance().currentUser
+            val data: Double = 1000.0
+            if (user != null) {
+                if (name == 1000.0) {
+                    val sessionRef = gameRef.child("Session ${gamename}")
+                    val playerRef = sessionRef.child("Player")
+                    playerRef.setValue(user.uid)
 
-            if (name == 1000.0) {
-            val data : Double = 1000.0
-                val parisRef = gameRef.child("paris")
-                parisRef.setValue(data)
-                Log.d("valeur du paris", "La valeur introduite est 1000")
+                    val stakeRef = sessionRef.child("Stake")
+                    stakeRef.setValue(data)
+
+                    Log.d("valeur du paris", "La valeur introduite est 1000")
+                } else {
+                    val sessionRef = gameRef.child("Session ${gamename}")
+                    val playerRef = sessionRef.child("Player")
+                    playerRef.setValue(user.uid)
+
+                    val stakeRef = sessionRef.child("Stake")
+                    stakeRef.setValue(data)
+
+                    Log.d("valeur du paris", "La valeur introduite est 100")
+                }
             } else {
-                val parisRef = gameRef.child("paris")
-                parisRef.setValue("100")
-                Log.d("valeur du paris", "La valeur introduite est 100")
+                // Utilisateur non connecté
+                // Faire quelque chose pour gérer ce cas
+                println("Utilisateur non connecté")
             }
         }
 
@@ -263,11 +269,12 @@ open class Gamble : anychart() {
                         Log.w("test", "Error adding game document", e)
                     }
 
-                Handler().postDelayed({ val intent = Intent(this, RedirectionWin::class.java)
-                startActivity(intent)
-            }, 6000)
+                Handler().postDelayed({
+                    val intent = Intent(this, RedirectionWin::class.java)
+                    startActivity(intent)
+                }, 6000)
 
-        } else {
+            } else {
 
                 val user = FirebaseAuth.getInstance().currentUser
                 val db = Firebase.firestore
@@ -276,7 +283,7 @@ open class Gamble : anychart() {
                 // collection du jeu
                 val gameCollection = db.collection("Session")
 
-            println("perdu")
+                println("perdu")
 
                 if (user != null) {
                     val newGame = hashMapOf(
@@ -297,10 +304,10 @@ open class Gamble : anychart() {
 
 
                     Handler().postDelayed({
-                val intent = Intent(this, RedirectionLose::class.java)
-                startActivity(intent)
-            }, 6000)
+                        val intent = Intent(this, RedirectionLose::class.java)
+                        startActivity(intent)
+                    }, 6000)
 
-        }
-    }
-}}}
+                }
+            }
+        }}}
