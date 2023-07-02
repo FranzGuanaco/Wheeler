@@ -10,6 +10,8 @@ import android.util.Log
 import com.example.wheeler.R
 import com.example.wheeler.databinding.ActivityAnychartBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.razerdp.widget.animatedpieview.AnimatedPieView
@@ -33,29 +35,93 @@ open class Gamble : anychart() {
         setContentView(binding.root)
 
         val name = intent.getDoubleExtra("valeur", 1.1)
-        var price = intent.getStringExtra("price")
-        var gamename = intent.getStringExtra("GameName")
+        val price = intent.getStringExtra("price")
+        val gamename = intent.getStringExtra("GameName")
+        val database = FirebaseDatabase.getInstance()
+        val gameRef = database.getReference("Game")
+
         binding.Gamblename.text = "Gamble"
+
         Log.d("Price", "Price value: $price")
 
-// ANimation
+        binding.boutontest.setOnClickListener() {
+            val data : Double = 1000.0
+            if (name == 1000.0) {
+                val parisRef = gameRef.child("paris")
+                parisRef.setValue(data)
+                Log.d("valeur du paris", "La valeur introduite est 1000")
+            } else {
+                val parisRef = gameRef.child("paris")
+                parisRef.setValue(data)
+                Log.d("valeur du paris", "La valeur introduite est 100")
+            }
+        }
+
+        // Animation
         val anim: AnimatedPieView = findViewById(R.id.pieView)
         val config: AnimatedPieViewConfig = AnimatedPieViewConfig()
-        config.addData(SimplePieInfo((2000.0 - name), Color.parseColor("#ADB7AE")))
-        config.addData(SimplePieInfo(name, Color.parseColor("#FCE300"), "B"))
-        config.drawText(true)
-        config.strokeMode(false)
-        anim.applyConfig(config)
-        anim.start()
+
+        val messageListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    val mise = dataSnapshot.value
+                    if (mise is Number) {
+                        println("ca marche")
+                        val lamise = mise.toDouble()
+                        config.addData(SimplePieInfo((2000.0 - name), Color.parseColor("#ADB7AE")))
+                        config.addData(SimplePieInfo(name, Color.parseColor("#FCE300"), "B"))
+                        config.addData(SimplePieInfo(lamise, Color.parseColor("#061F7F"), "B"))
+                        config.drawText(true)
+                        config.strokeMode(false)
+                        anim.applyConfig(config)
+                        anim.start()
+                    }else {
+                        println("La valeur récupérée n'est pas de type Double")
+                    }
+                    } else {
+                        println("Aucune donnée trouvée")
+                        config.addData(SimplePieInfo((2000.0 - name), Color.parseColor("#ADB7AE")))
+                        config.addData(SimplePieInfo(name, Color.parseColor("#FCE300"), "B"))
+                        config.drawText(true)
+                        config.strokeMode(false)
+                        anim.applyConfig(config)
+                        anim.start()
+                    }
+                }
+
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // En cas d'erreur lors de la récupération des données
+                Log.e("Firebase", "Erreur lors de la récupération des données: ${databaseError.message}")
+            }
+        }
+
+        gameRef.child("paris").addValueEventListener(messageListener)
+
+
 
         fun refresh(valeurReturn: Double) {
             val intent = Intent(this, Gamble2::class.java)
             intent.putExtra("valeurReturn", valeurReturn)
             intent.putExtra("price", price)
             intent.putExtra("GameName", gamename)
-
             startActivity(intent)
         }
+
+        binding.boutontest.setOnClickListener() {
+
+            if (name == 1000.0) {
+            val data : Double = 1000.0
+                val parisRef = gameRef.child("paris")
+                parisRef.setValue(data)
+                Log.d("valeur du paris", "La valeur introduite est 1000")
+            } else {
+                val parisRef = gameRef.child("paris")
+                parisRef.setValue("100")
+                Log.d("valeur du paris", "La valeur introduite est 100")
+            }
+        }
+
 
 // changer d'activité et faire passer la valeur de la mise dans l'autre classe
         binding.button.setOnClickListener() {

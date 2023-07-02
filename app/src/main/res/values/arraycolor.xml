@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ColorForWheel">
+        <item>#E50A0A</item>
+        <item>#E5A90A</item>
+        <item>#E9F719</item>
+        <item>#56F719</item>
+        <item>#19F7A3</item>
+        <item>#19A6F7</item>
+        <item>#061F7F</item>
+        <item>#5F17DC</item>
+        <item>#B511F7</item>
+        <item>#5C1414</item>
+    </string-array>
+</resources>

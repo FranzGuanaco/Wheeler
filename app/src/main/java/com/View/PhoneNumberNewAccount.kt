@@ -23,7 +23,6 @@ class PhoneNumberNewAccount : AppCompatActivity() {
         binding = ActivityPhoneNumberNewAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val db = Firebase.firestore
         val countrySpinner = binding.spinner
         val adapter = Spinner(this, resources.getStringArray(R.array.countries_with_codes).toList())
         val test = intent.getStringExtra("test")
