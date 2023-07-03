@@ -50,12 +50,13 @@ open class Gamble : anychart() {
 
         val messageListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val mise = dataSnapshot.value
+                val miseObject = dataSnapshot.value as? Map<String, Any>
+                val mise = miseObject?.values?.firstOrNull()
                 if (dataSnapshot.exists()) {
-
                     if (mise is Number) {
-                        println("ca marche")
+
                         val lamise = mise.toDouble()
+                        println("ca marche ${lamise}")
                         config.addData(SimplePieInfo((2000.0 - name), Color.parseColor("#ADB7AE")))
                         config.addData(SimplePieInfo(name, Color.parseColor("#FCE300"), "B"))
                         config.addData(SimplePieInfo(lamise, Color.parseColor("#061F7F"), "B"))
@@ -84,8 +85,8 @@ open class Gamble : anychart() {
             }
         }
 
-        var stake = gameRef.child("Session ${gamename}/Stake")
-        stake.addValueEventListener(messageListener)
+        val stakeRef = gameRef.child("Session $gamename").child("Stake")
+        stakeRef.addValueEventListener(messageListener)
 
 
 
@@ -97,36 +98,26 @@ open class Gamble : anychart() {
             startActivity(intent)
         }
 
-        binding.boutontest.setOnClickListener() {
-            println("voila le nom ${gamename}")
-            val user = FirebaseAuth.getInstance().currentUser
-            val data: Double = 1000.0
-            if (user != null) {
-                if (name == 1000.0) {
-                    val sessionRef = gameRef.child("Session ${gamename}")
-                    val playerRef = sessionRef.child("Player")
+            binding.boutontest.setOnClickListener() {
+                println("voila le nom $gamename")
+                val user = FirebaseAuth.getInstance().currentUser
+                val data: Double = 1000.0
+                if (user != null) {
+                    val sessionRef = gameRef.child("Session $gamename")
+                    val playerRef = sessionRef.child("Players").child(user.uid)
                     playerRef.setValue(user.uid)
 
-                    val stakeRef = sessionRef.child("Stake")
+                    val stakeRef = sessionRef.child("Stake").child(user.uid)
                     stakeRef.setValue(data)
 
-                    Log.d("valeur du paris", "La valeur introduite est 1000")
+                    Log.d("valeur du paris", "La valeur introduite est ${if (name == 1000.0) 1000 else 100}")
                 } else {
-                    val sessionRef = gameRef.child("Session ${gamename}")
-                    val playerRef = sessionRef.child("Player")
-                    playerRef.setValue(user.uid)
-
-                    val stakeRef = sessionRef.child("Stake")
-                    stakeRef.setValue(data)
-
-                    Log.d("valeur du paris", "La valeur introduite est 100")
+                    // Utilisateur non connecté
+                    // Faire quelque chose pour gérer ce cas
+                    println("Utilisateur non connecté")
                 }
-            } else {
-                // Utilisateur non connecté
-                // Faire quelque chose pour gérer ce cas
-                println("Utilisateur non connecté")
             }
-        }
+
 
 
 // changer d'activité et faire passer la valeur de la mise dans l'autre classe
