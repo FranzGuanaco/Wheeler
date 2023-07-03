@@ -39,6 +39,18 @@ open class Gamble : anychart() {
         val gamename = intent.getStringExtra("GameName")
         val database = FirebaseDatabase.getInstance()
         val gameRef = database.getReference("Game")
+        val colors = arrayOf(
+            "#E50A0A",
+            "#E5A90A",
+            "#E9F719",
+            "#56F719",
+            "#19F7A3",
+            "#19A6F7",
+            "#061F7F",
+            "#5F17DC",
+            "#B511F7",
+            "#5C1414"
+        )
 
         binding.Gamblename.text = "Gamble"
 
@@ -54,16 +66,30 @@ open class Gamble : anychart() {
                 val mise = miseObject?.values?.firstOrNull()
                 if (dataSnapshot.exists()) {
                     if (mise is Number) {
+                        for (childSnapshot in dataSnapshot.children) {
+                            var index = 0
+                            val uid = childSnapshot.key // Récupérer l'ID de l'enfant (dans ce cas, l'ID utilisateur)
+                            val value = childSnapshot.value
+                            val color = colors[index % colors.size]
+                            index++
+                            if (value is Long) {
+                            val lamise = value?.toDouble()
+                            println("ca marche ${uid} ${value} ${lamise}")
+                            println("Type de value: ${value?.javaClass}")
 
-                        val lamise = mise.toDouble()
-                        println("ca marche ${lamise}")
-                        config.addData(SimplePieInfo((2000.0 - name), Color.parseColor("#ADB7AE")))
-                        config.addData(SimplePieInfo(name, Color.parseColor("#FCE300"), "B"))
-                        config.addData(SimplePieInfo(lamise, Color.parseColor("#061F7F"), "B"))
-                        config.drawText(true)
-                        config.strokeMode(false)
-                        anim.applyConfig(config)
-                        anim.start()
+                            config.addData(
+                                SimplePieInfo(
+                                    (2000.0 - name),
+                                    Color.parseColor("#ADB7AE")
+                                )
+                            )
+                            config.addData(SimplePieInfo(name, Color.parseColor("#FCE300"), "B"))
+                            config.addData(SimplePieInfo(lamise, Color.parseColor("#5F17DC"), "B"))
+                            config.drawText(true)
+                            config.strokeMode(false)
+                            anim.applyConfig(config)
+                            anim.start()
+                        }}
                     }else {
                         println("La valeur récupérée n'est pas de type Double ${mise}")
                     }
