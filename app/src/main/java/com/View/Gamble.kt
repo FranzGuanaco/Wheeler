@@ -51,6 +51,7 @@ open class Gamble : anychart() {
             "#B511F7",
             "#5C1414"
         )
+        var index = 0
 
         binding.Gamblename.text = "Gamble"
 
@@ -59,6 +60,13 @@ open class Gamble : anychart() {
         // Animation
         val anim: AnimatedPieView = findViewById(R.id.pieView)
         val config: AnimatedPieViewConfig = AnimatedPieViewConfig()
+        config.addData(
+            SimplePieInfo(
+                (2000.0 - name),
+                Color.parseColor("#ADB7AE")
+            )
+        )
+        config.addData(SimplePieInfo(name, Color.parseColor("#FCE300")))
 
         val messageListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -67,24 +75,16 @@ open class Gamble : anychart() {
                 if (dataSnapshot.exists()) {
                     if (mise is Number) {
                         for (childSnapshot in dataSnapshot.children) {
-                            var index = 0
                             val uid = childSnapshot.key // Récupérer l'ID de l'enfant (dans ce cas, l'ID utilisateur)
                             val value = childSnapshot.value
-                            val color = colors[index % colors.size]
                             index++
+                            val color = colors[index % colors.size]
                             if (value is Long) {
                             val lamise = value?.toDouble()
-                            println("ca marche ${uid} ${value} ${lamise}")
+                            println("ca marche ${uid} ${value} ${lamise} ${color}")
                             println("Type de value: ${value?.javaClass}")
 
-                            config.addData(
-                                SimplePieInfo(
-                                    (2000.0 - name),
-                                    Color.parseColor("#ADB7AE")
-                                )
-                            )
-                            config.addData(SimplePieInfo(name, Color.parseColor("#FCE300"), "B"))
-                            config.addData(SimplePieInfo(lamise, Color.parseColor("#5F17DC"), "B"))
+                            config.addData(SimplePieInfo(lamise, Color.parseColor(color)))
                             config.drawText(true)
                             config.strokeMode(false)
                             anim.applyConfig(config)
