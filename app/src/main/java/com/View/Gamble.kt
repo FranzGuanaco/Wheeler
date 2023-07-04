@@ -5,8 +5,10 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.util.Log
+import android.widget.TextView
 import com.example.wheeler.R
 import com.example.wheeler.databinding.ActivityAnychartBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -23,6 +25,7 @@ import kotlin.random.Random
 open class Gamble : anychart() {
 
     private lateinit var binding: ActivityAnychartBinding
+    private lateinit var countdownTimer: CountDownTimer
     var random = Random.nextInt(1, 360)
     var randomDuration = Random.nextInt(1800, 6000)
     var randomToFloat = random.toFloat()
@@ -37,6 +40,8 @@ open class Gamble : anychart() {
         val name = intent.getDoubleExtra("valeur", 1.1)
         val price = intent.getStringExtra("price")
         val gamename = intent.getStringExtra("GameName")
+        val initialCountdown: Long = 60000 // 1 minute en millisecondes
+        val countdownInterval: Long = 1000 // 1 seconde en millisecondes
         val database = FirebaseDatabase.getInstance()
         val gameRef = database.getReference("Game")
         val colors = arrayOf(
@@ -53,9 +58,24 @@ open class Gamble : anychart() {
         )
         var index = 0
 
-        binding.Gamblename.text = "Gamble"
 
+        binding.Gamblename.text = "Gamble"
         Log.d("Price", "Price value: $price")
+
+
+        // mise en marche du minuteur avant la fin de la session
+        countdownTimer = object : CountDownTimer(initialCountdown, countdownInterval) {
+            override fun onTick(millisUntilFinished: Long) {
+                val secondsRemaining = millisUntilFinished / 1000
+                binding.timer.text = secondsRemaining.toString()
+            }
+            override fun onFinish() {
+                binding.timer.text = "Temps écoulé !"
+            }
+        }
+        countdownTimer.start()
+
+
 
         // Animation
         val anim: AnimatedPieView = findViewById(R.id.pieView)

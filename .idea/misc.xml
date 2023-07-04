@@ -36,6 +36,7 @@
         <entry key="app/src/main/res/drawable/start_animation.xml" value="0.12334747314453126" />
         <entry key="app/src/main/res/drawable/style.xml" value="0.34" />
         <entry key="app/src/main/res/drawable/styles.xml" value="0.34" />
+        <entry key="app/src/main/res/drawable/tiny_coin_pic_background.xml" value="0.279" />
         <entry key="app/src/main/res/drawable/triangle.xml" value="0.171" />
         <entry key="app/src/main/res/drawable/triangle_blue.xml" value="0.171" />
         <entry key="app/src/main/res/drawable/triangle_green.xml" value="0.171" />
@@ -44,7 +45,7 @@
         <entry key="app/src/main/res/drawable/triangle_yellow.xml" value="0.171" />
         <entry key="app/src/main/res/drawable/wheel.xml" value="0.334" />
         <entry key="app/src/main/res/layout/activity_account.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/activity_anychart.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_anychart.xml" value="0.3569207763671875" />
         <entry key="app/src/main/res/layout/activity_change_account.xml" value="0.3736413043478261" />
         <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.3736413043478261" />
         <entry key="app/src/main/res/layout/activity_choice.xml" value="0.375" />
@@ -99,6 +100,7 @@
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_phone.xml" value="0.2365" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/param.xml" value="0.2375" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/parameter.xml" value="0.3115" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/tiny_coin_pic.xml" value="0.279" />
       </map>
     </option>
   </component>
