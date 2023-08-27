@@ -15,7 +15,7 @@ class Splash : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        //variable se referant à chaque triangle
+        //variable se referant à chaque triangle présent dans le fragment
         val triangle1 = findViewById<ImageView>(R.id.triangleYellow)
         val triangle2 = findViewById<ImageView>(R.id.triangleYellow2)
         val triangle3 = findViewById<ImageView>(R.id.triangleRed)

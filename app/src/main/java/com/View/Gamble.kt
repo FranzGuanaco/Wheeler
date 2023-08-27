@@ -24,11 +24,11 @@ import kotlin.random.Random
 
 open class Gamble : anychart() {
 
-    private lateinit var binding: ActivityAnychartBinding
-    private lateinit var countdownTimer: CountDownTimer
-    var random = Random.nextInt(1, 360)
-    var randomDuration = Random.nextInt(1800, 6000)
-    var randomToFloat = random.toFloat()
+    private lateinit var binding: ActivityAnychartBinding // fragment utilisé pour la classe
+    private lateinit var countdownTimer: CountDownTimer // compteur pour declencher la roue
+    var random = Random.nextInt(1, 360) // valeur aleatoire pour la puissance des tours de la roue
+    var randomDuration = Random.nextInt(1800, 6000) // valeur aleatoire pour la durée des tours
+    var randomToFloat = random.toFloat() // conversion de la puissance des tours en float
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,13 +37,14 @@ open class Gamble : anychart() {
         binding = ActivityAnychartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val name = intent.getDoubleExtra("valeur", 1.1)
-        val price = intent.getStringExtra("price")
-        val gamename = intent.getStringExtra("GameName")
+        val name = intent.getDoubleExtra("valeur", 1.1) // récuperation de la valeur de la classe predecente (valeur du pari)
+        val price = intent.getStringExtra("price") // récuperation de la valeur de la classe predecente (valeur du prix du lot)
+        val gamename = intent.getStringExtra("GameName") // récuperation de la valeur de la classe predecente (nom du lot)
         val initialCountdown: Long = 60000 // 1 minute en millisecondes
         val countdownInterval: Long = 1000 // 1 seconde en millisecondes
         val database = FirebaseDatabase.getInstance()
         val gameRef = database.getReference("Game")
+        // couleur pour identifier les paris
         val colors = arrayOf(
             "#E50A0A",
             "#E5A90A",
@@ -59,7 +60,7 @@ open class Gamble : anychart() {
         var index = 0
 
 
-        binding.Gamblename.text = "Gamble"
+        binding.Gamblename.text = "Gamble" // reference pour savoir dans quelle classe on se trouve
         Log.d("Price", "Price value: $price")
 
 
@@ -73,27 +74,32 @@ open class Gamble : anychart() {
                 binding.timer.text = "Temps écoulé !"
             }
         }
-        countdownTimer.start()
-
-
+        countdownTimer.start() // lancement immédiat du minuteur
 
         // Animation
         val anim: AnimatedPieView = findViewById(R.id.pieView)
         val config: AnimatedPieViewConfig = AnimatedPieViewConfig()
         config.addData(
             SimplePieInfo(
-                (2000.0 - name),
+                (2000.0 - name), //prix du lot moins valeur du pari
                 Color.parseColor("#ADB7AE")
             )
         )
-        config.addData(SimplePieInfo(name, Color.parseColor("#FCE300")))
+        config.addData(SimplePieInfo(name, Color.parseColor("#FCE300"))) // valeur du pari en jaune
 
+        // Création d'un écouteur de données Firebase
         val messageListener = object : ValueEventListener {
+            // Fonction appelée lorsqu'il y a un changement dans les données
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Récupération des données sous forme de Map<String, Any> depuis le snapshot
                 val miseObject = dataSnapshot.value as? Map<String, Any>
+                // Récupération de la première valeur de la Map (dans ce cas, la mise)
                 val mise = miseObject?.values?.firstOrNull()
+                // Vérification si le snapshot existe
                 if (dataSnapshot.exists()) {
+                    // Vérification si la valeur de la mise est de type Number
                     if (mise is Number) {
+                        // Parcours de chaque enfant dans le snapshot
                         for (childSnapshot in dataSnapshot.children) {
                             val uid = childSnapshot.key // Récupérer l'ID de l'enfant (dans ce cas, l'ID utilisateur)
                             val value = childSnapshot.value

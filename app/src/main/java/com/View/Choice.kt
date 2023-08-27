@@ -23,7 +23,6 @@ open class Choice : AppCompatActivity()
 {
     lateinit var binding: ActivityChoiceBinding
     val user = FirebaseAuth.getInstance().currentUser
-    val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState:Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +37,7 @@ open class Choice : AppCompatActivity()
 
             Glide.with(baseContext).asBitmap().load(img).into(binding.imageView4)
 
-            binding.Price.text = "Price: ${data} $"
+        binding.Price.text = "Price: ${data} $"
         binding.texttest.text = price
 
         binding.yesWheel.setOnClickListener() {

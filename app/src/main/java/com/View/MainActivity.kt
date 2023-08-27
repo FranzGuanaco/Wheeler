@@ -23,10 +23,7 @@ import com.google.firebase.storage.FirebaseStorage
 
  class MainActivity : AppCompatActivity() {
 
-        private lateinit var databaseReference: DatabaseReference
-        private lateinit var storageReference: DatabaseReference
         lateinit var binding: ActivityPrizeBinding
-        lateinit var image: String
         lateinit var gsc: GoogleSignInClient
         lateinit var auth: FirebaseAuth
          var db = Firebase.firestore
@@ -36,9 +33,6 @@ import com.google.firebase.storage.FirebaseStorage
             setContentView(R.layout.activity_prize)
              binding = ActivityPrizeBinding.inflate(layoutInflater)
             setContentView(binding.root)
-
-
-            val usersCollection = db.collection("users")
 
             binding.play.setOnClickListener(){
 
