@@ -7,35 +7,35 @@ import android.util.Log
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.ViewModel.LoginViewModel
 import com.example.wheeler.R
-import com.example.wheeler.SendEmailToChangePassword
 import com.example.wheeler.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-
 
  open class Login: AppCompatActivity() {
 
+     private lateinit var viewModel: LoginViewModel
      lateinit var binding: ActivityLoginBinding // Déclaration de la variable pour le binding de l'interface utilisateur
      lateinit var gsc: GoogleSignInClient // Déclaration de la variable pour le client de connexion Google
-     lateinit var auth: FirebaseAuth // Déclaration de la variable pour l'instance de FirebaseAuth
      val firebaseUser = FirebaseAuth.getInstance().currentUser // Récupération de l'utilisateur actuellement connecté à Firebase
      val uid = firebaseUser?.uid // Récupération de l'identifiant de l'utilisateur s'il est connecté
 
      override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
-
          binding = ActivityLoginBinding.inflate(layoutInflater)
          setContentView(binding.root)
 
-         auth = FirebaseAuth.getInstance()
+
+         var auth = FirebaseAuth.getInstance()
 
          // Création des options de connexion Google SignIn
          val gso: GoogleSignInOptions =
@@ -46,34 +46,101 @@ import com.google.firebase.auth.GoogleAuthProvider
 
          // Initialisation du client de connexion Google SignIn en utilisant les options précédentes
          gsc = GoogleSignIn.getClient(this, gso)
-         val firebaseUser =
-             FirebaseAuth.getInstance().currentUser // Récupération de l'utilisateur actuellement connecté à Firebase Authentication
-         val uid =
-             firebaseUser?.uid // Récupération de l'identifiant unique (UID) de l'utilisateur, s'il est connecté
+         val signInIntent: Intent = gsc.signInIntent
 
+         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+         // Initialisez le ViewModel avec les dépendances nécessaires
+         viewModel.initialize(gso, gsc)
+
+         // Live data de la fonction handle
+         viewModel.googleSignInResult.observe(this, Observer { googleSignInAccount ->
+             if (googleSignInAccount != null) {
+                 // La connexion Google est réussie, mettez à jour l'interface utilisateur
+                 Log.d("test", "googlesigninaccount is null")
+                 viewModel.updateUI(googleSignInAccount, auth)
+             } else {
+                 // La connexion Google a échoué, traitez l'erreur si nécessaire
+                 Toast.makeText(this, "La connexion Google a échoué.", Toast.LENGTH_SHORT).show()
+             }
+         })
+
+         viewModel.errorMessage.observe(this) { errorMessage ->
+             if (!errorMessage.isNullOrEmpty()) {
+                 Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+             }
+         }
 
          // Lorsque le bouton "Mot de passe oublié" est cliqué
          binding.pwForgotten.setOnClickListener() {
-             var intent = Intent(this, SendEmailToChangePassword::class.java) // Créer une intention (intent) pour lancer l'activité SendEmailToChangePassword
+             var intent = Intent(
+                 this,
+                 SendEmailToChangePassword::class.java
+             ) // Créer une intention (intent) pour lancer l'activité SendEmailToChangePassword
              startActivity(intent) // Démarrer l'activité SendEmailToChangePassword
          }
 
          binding.buttonGmail.setOnClickListener() { // Lorsque le bouton "Gmail" est cliqué
-             signIn() // Appeler la fonction signIn() pour gérer la connexion via Google
+             viewModel.signInWithGoogle(
+                 gsc,
+                 launcher
+             ) // Appeler la fonction signIn() pour gérer la connexion via Google
          }
 
          binding.Login.setOnClickListener { // Lorsque le bouton "Connexion" est cliqué
-             signInUser()  // Appeler la fonction signInUser() pour gérer la connexion de l'utilisateur
+             val email = binding.email.text.toString().trim()
+             val pass = binding.pass.text.toString().trim()
+             viewModel.setEmail(email)
+             viewModel.setPassword(pass)
+             viewModel.signInUser(auth, signInIntent)  // Appeler la fonction signInUser() pour gérer la connexion de l'utilisateur
+         }
+
+         // Observer pour le résultat de la connexion Google
+         viewModel.signInSuccess.observe(this, Observer<Boolean> { success ->
+             if (success) {
+                 // La connexion Google est réussie, mettez à jour l'interface utilisateur
+                 Log.d("test", "Google Sign-In successful")
+                 val intent = Intent(this, MainActivity::class.java)
+                 startActivity(intent)
+                 finishAffinity()
+                 Toast.makeText(
+                     baseContext, "Authentication réussie.",
+                     Toast.LENGTH_SHORT
+                 ).show()
+                 // Vous pouvez rediriger l'utilisateur ou effectuer d'autres actions ici
+             } else {
+                 // La connexion Google a échoué, traitez l'erreur si nécessaire
+                 Log.d("test", "Google Sign-In failed, account est null")
+                 val errorMessage = viewModel.errorMessage.value
+                 if (!errorMessage.isNullOrEmpty()) {
+                     Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+                 }
+                 // Afficher l'e-mail et le mot de passe ici
+                 val email = viewModel.email.value
+                 val password = viewModel.password.value
+                 Log.d("test", "Email: $email, Password: $password")
+             }
+         })
+
+         /* Observer pour le résultat de la connexion Google */
+         viewModel.googleSignInResult.observe(this) { googleSignInAccount ->
+             if (googleSignInAccount != null) {
+                 val intent = Intent(this, MainActivity::class.java)
+                 startActivity(intent)
+                 finishAffinity()
+                 Toast.makeText(
+                     this, "Authentication réussie.",
+                     Toast.LENGTH_SHORT
+                 ).show()
+             } else {
+                 Log.d("test", "échec")
+                 Toast.makeText(
+                     this, "Authentication échouée.",
+                     Toast.LENGTH_SHORT
+                 ).show()
+             }
          }
      }
 
-
-     private fun signIn() {  // Fonction pour lancer le processus de connexion via Google
-         var signInIntent: Intent = gsc.signInIntent  // Créer une intention (intent) pour lancer l'écran de connexion Google
-         launcher.launch(signInIntent) // Lancer l'activité de connexion Google et attendre le résultat
-     }
-
-     // Mise en place d'un gestionnaire d'activité pour recevoir les résultats de l'écran de connexion Google
      private val launcher =
          registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
              // Vérifier si le résultat est OK (utilisateur connecté avec succès)
@@ -81,74 +148,7 @@ import com.google.firebase.auth.GoogleAuthProvider
                  // Récupérer les informations du compte Google connecté
                  val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
                  // Traiter les résultats
-                 handleResults(task)
-             }
-         }
-
-     // Fonction pour traiter les résultats de la connexion Google
-     private fun handleResults(task: Task<GoogleSignInAccount>) {
-         if (task.isSuccessful) {
-             // Récupérer le compte Google connecté avec succès
-             val account: GoogleSignInAccount = task.result
-             if (account != null) {
-                 // Mettre à jour l'interface utilisateur pour refléter la connexion réussie
-                 updateUI(account)
-             }
-         } else {
-             // Afficher un message d'erreur en cas d'échec de la connexion Google
-             Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
-         }
-     }
-
-     // Fonction pour mettre à jour l'interface utilisateur après une connexion réussie via Google
-     private fun updateUI(account: GoogleSignInAccount) {
-         // Obtenir les informations d'identification de Google pour Firebase
-         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-
-         // Authentifier l'utilisateur via Firebase avec les informations d'identification
-         auth.signInWithCredential(credential).addOnCompleteListener { task ->
-             if (task.isSuccessful) {
-                 // La connexion avec les informations d'identification est réussie
-                 // Rediriger l'utilisateur vers l'écran principal (MainActivity)
-                 val intent = Intent(this, MainActivity::class.java)
-                 startActivity(intent)
-             } else {
-                 // Afficher un message d'erreur si la connexion avec les informations d'identification échoue
-                 Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
-             }
-         }
-     }
-
-
-
-     private fun signInUser() {
-         var email = binding.email.text.toString().trim()
-         var pass = binding.pass.text.toString().trim()
-
-         if (email.isNotEmpty()) {
-             auth.signInWithEmailAndPassword(email, pass)
-                 .addOnCompleteListener { signIn ->
-                     if (signIn.isSuccessful) {
-                         val intent = Intent(this, MainActivity::class.java)
-                         startActivity(intent)
-                          finishAffinity()
-                         Toast.makeText(
-                             baseContext, "Authentication reussi.",
-                             Toast.LENGTH_SHORT
-                         ).show()
-                     } else {
-                         Log.d("test", "raté")
-                         Toast.makeText(
-                             baseContext, "Authentication foiré.",
-                             Toast.LENGTH_SHORT
-                         ).show()
-                     }
-                 }
+                 viewModel.handleGoogleSignInResult(task)
              }
         }
     }
-
-
-
-
-

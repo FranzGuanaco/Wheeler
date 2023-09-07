@@ -95,11 +95,19 @@
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.16041666666666668" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/PhoneNumbPic.xml" value="0.3115" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/PhoneNumbPic_round.xml" value="0.17" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/award_round.xml" value="0.2825" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/gift_round.xml" value="0.2825" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/history.xml" value="0.2825" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_arrow.xml" value="0.2365" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_arrow_round.xml" value="0.2365" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_phone.xml" value="0.2365" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_phone_round.xml" value="0.2825" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/param.xml" value="0.2375" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/parameter.xml" value="0.3115" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/parametres.xml" value="0.2825" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/parametres_round.xml" value="0.2825" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/phonenumbpic.xml" value="0.2825" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/security_round.xml" value="0.2825" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/tiny_coin_pic.xml" value="0.279" />
       </map>
     </option>

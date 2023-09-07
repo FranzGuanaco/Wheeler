@@ -1,9 +1,9 @@
-package com.example.wheeler
+package com.View
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.wheeler.databinding.ActivityChangePasswordBinding
+import com.example.wheeler.R
 import com.example.wheeler.databinding.ActivityRandomNumbCheckBinding
 
 class RandomNumbCheck : AppCompatActivity() {
