@@ -26,8 +26,6 @@ import com.google.firebase.auth.GoogleAuthProvider
      private lateinit var viewModel: LoginViewModel
      lateinit var binding: ActivityLoginBinding // Déclaration de la variable pour le binding de l'interface utilisateur
      lateinit var gsc: GoogleSignInClient // Déclaration de la variable pour le client de connexion Google
-     val firebaseUser = FirebaseAuth.getInstance().currentUser // Récupération de l'utilisateur actuellement connecté à Firebase
-     val uid = firebaseUser?.uid // Récupération de l'identifiant de l'utilisateur s'il est connecté
 
      override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
@@ -35,6 +33,8 @@ import com.google.firebase.auth.GoogleAuthProvider
          setContentView(binding.root)
 
 
+         val firebaseUser = FirebaseAuth.getInstance().currentUser // Récupération de l'utilisateur actuellement connecté à Firebase
+         val uid = firebaseUser?.uid // Récupération de l'identifiant de l'utilisateur s'il est connecté
          var auth = FirebaseAuth.getInstance()
 
          // Création des options de connexion Google SignIn

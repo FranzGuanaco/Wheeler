@@ -6,37 +6,40 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity  // Importez FragmentActivity au lieu de AppCompatActivity
+import androidx.lifecycle.Observer
+import com.ViewModel.Create_accountViewModel
+import com.ViewModel.LoginViewModel
 import com.example.wheeler.databinding.ActivityCreateAccountBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import java.text.SimpleDateFormat
 import java.util.*
+import java.text.SimpleDateFormat
 import java.util.Locale
 
-class Create_account: AppCompatActivity() {
+class Create_account : AppCompatActivity() {
 
-    lateinit var binding: ActivityCreateAccountBinding
-    lateinit var auth: FirebaseAuth
+    private lateinit var viewModel: Create_accountViewModel
+    private lateinit var binding: ActivityCreateAccountBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = FirebaseAuth.getInstance()
-        val db = Firebase.firestore
+        auth = FirebaseAuth.getInstance() // instance de l'authentification via Firebase Auth
+        // Initialize your viewModel here
+        viewModel = Create_accountViewModel()
 
+        // Création du datePicker
         binding.date.setOnClickListener {
-            // Création du datePicker
             val calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)
             val month = calendar.get(Calendar.MONTH)
             val day = calendar.get(Calendar.DAY_OF_MONTH)
 
             val datePickerDialog = DatePickerDialog(
-                this@Create_account,
+                this,
                 { _, year1, month1, dayOfMonth ->
                     binding.date.setText(String.format("%02d/%02d/%04d", dayOfMonth, (month1 + 1), year1))
                 },
@@ -45,60 +48,33 @@ class Create_account: AppCompatActivity() {
             datePickerDialog.show()
         }
 
-        binding.create.setOnClickListener {
+        // bouton pour la validation des données entrées dans les deux input pour la création du compte
+        binding.CreateAccount.setOnClickListener {
+            // données entrées dans les inputs par les utilisateurs
             val email = binding.email.text.toString().trim()
             val password = binding.password.text.toString().trim()
             val birthdate = binding.date.text.toString().trim()
-            val birthday = if (birthdate.isNotEmpty()) SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(birthdate) else null
 
-            var pinsIntent = Intent(this, PinsNewAccount::class.java)
-            var phone = Intent(this, PhoneNumberNewAccount::class.java)
-
-            // Création d'un nouvel utilisateur avec email et mot de passe
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // Connexion réussie, mettez à jour l'interface utilisateur avec les informations de l'utilisateur connecté
-                        Log.d("", "createUserWithEmail:success")
-                        val user = task.result?.user
-
-                        // Envoi d'un email de vérification à l'utilisateur
-                        user?.sendEmailVerification()
-                            ?.addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    Toast.makeText(this, "Verification email sent to ${user.email}", Toast.LENGTH_SHORT).show()
-
-                                    val test = "yooooooooo"
-                                    // Démarrage de l'activité PhoneNumberNewAccount avec des données supplémentaires
-                                    startActivity(phone.putExtra("test", test)
-                                        .putExtra("mail", email)
-                                        .putExtra("password", password)
-                                        .putExtra("birth", birthday?.time))
-
-                                } else {
-                                    Log.e("", "sendEmailVerification", task.exception)
-                                    Toast.makeText(this, "Failed to send verification email.", Toast.LENGTH_SHORT).show()
-                                }
-                            }
-                    }
-
-                    // Connexion de l'utilisateur avec email et mot de passe
-                    FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                val firebaseUser = FirebaseAuth.getInstance().currentUser
-                                val uid = firebaseUser?.uid
-                                Log.d("test", "voici le test: $uid")
-                                // Utilisez l'ID de l'utilisateur ici
-                            } else {
-                                Log.w("test", "raté", task.exception)
-                                // La connexion a échoué
-                            }
-                        }
-                }
+            // envoi vers le ViewModel des données entrées par les utilisateurs
+            viewModel.createAccount(email, password, birthdate)
         }
+
+        // Écoute des événements de navigation et démarrage de la nouvelle activité si nécessaire
+        viewModel.navigationListener = object : Create_accountViewModel.NavigationListener {
+            override fun onVerificationSuccess() {
+                // Démarrer l'activité PhoneNumberNewAccount ici
+                val phoneIntent = Intent(this@Create_account, PhoneNumberNewAccount::class.java)
+                startActivity(phoneIntent)
+            }
+        }
+
+        viewModel.result.observe(this, Observer { result ->
+            // Mettre à jour l'interface utilisateur en fonction du résultat (par exemple, afficher un toast)
+            Toast.makeText(this, result, Toast.LENGTH_SHORT).show()
+        })
     }
 }
+
 
 
 
