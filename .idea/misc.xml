@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/drawable/ic_phone_foreground.xml" value="0.26" />
         <entry key="app/src/main/res/drawable/image_button.xml" value="0.197" />
         <entry key="app/src/main/res/drawable/img.xml" value="0.34" />
+        <entry key="app/src/main/res/drawable/input_emailcheck.xml" value="0.3085" />
         <entry key="app/src/main/res/drawable/param_background.xml" value="0.3115" />
         <entry key="app/src/main/res/drawable/parameter_background.xml" value="0.3115" />
         <entry key="app/src/main/res/drawable/parameters_background.xml" value="0.3115" />
@@ -51,6 +52,7 @@
         <entry key="app/src/main/res/layout/activity_choice.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_disconnect.xml" value="0.3736413043478261" />
+        <entry key="app/src/main/res/layout/activity_email_check.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_history.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_loser_screen.xml" value="0.335" />

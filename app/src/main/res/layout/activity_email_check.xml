@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.View.EmailCheck">
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="230dp"
+        android:layout_height="210dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/mail_check"
+        app:layout_constraintBottom_toTopOf="@+id/TitleVerifyYourAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Submit"
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="210dp"
+        android:background="@drawable/button_style"
+        android:text="Submit"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/VerificationCodeText" />
+
+    <TextView
+        android:id="@+id/VerificationCodeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="179dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TitleVerifyYourAddress" />
+
+    <TextView
+        android:id="@+id/TitleVerifyYourAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="15dp"
+        android:text="Verify your email address"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/VerificationCodeText"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+    <LinearLayout
+        android:id="@+id/CheckCode"
+        android:layout_width="0dp"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="330dp"
+        android:layout_marginLeft="45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/part1"
+            android:layout_width="74dp"
+            android:layout_height="78dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/input_emailcheck" />
+
+        <EditText
+            android:id="@+id/part2"
+            android:layout_width="74dp"
+            android:layout_height="78dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/input_emailcheck" />
+
+        <EditText
+            android:id="@+id/part3"
+            android:layout_width="74dp"
+            android:layout_height="78dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/input_emailcheck" />
+
+        <EditText
+            android:id="@+id/part4"
+            android:layout_width="74dp"
+            android:layout_height="78dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/input_emailcheck" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

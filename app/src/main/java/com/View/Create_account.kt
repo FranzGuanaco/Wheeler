@@ -48,25 +48,49 @@ class Create_account : AppCompatActivity() {
             datePickerDialog.show()
         }
 
+        fun generateRandomCode(): String {
+            val random = java.util.Random()
+            val code = StringBuilder()
+
+            for (i in 0 until 4) { // Générez 4 chiffres
+                val digit = random.nextInt(10) // Générez un chiffre aléatoire entre 0 et 9
+                code.append(digit)
+            }
+
+            return code.toString()
+        }
+
+
         // bouton pour la validation des données entrées dans les deux input pour la création du compte
         binding.CreateAccount.setOnClickListener {
             // données entrées dans les inputs par les utilisateurs
             val email = binding.email.text.toString().trim()
             val password = binding.password.text.toString().trim()
             val birthdate = binding.date.text.toString().trim()
+            val codeVerification = generateRandomCode()
+            Log.d("Create_accountViewModel", "onVerificationSuccess called with code: $codeVerification")
 
             // envoi vers le ViewModel des données entrées par les utilisateurs
-            viewModel.createAccount(email, password, birthdate)
+           // viewModel.createAccount(email, password, birthdate, codeVerification)
+            viewModel.sendEmailToUser(email, codeVerification)
+
         }
 
         // Écoute des événements de navigation et démarrage de la nouvelle activité si nécessaire
         viewModel.navigationListener = object : Create_accountViewModel.NavigationListener {
-            override fun onVerificationSuccess() {
+            override fun onVerificationSuccess(codeVerification: String) {
+                Log.d("Create_accountViewModel", "onVerificationSuccess called with code: $codeVerification")
                 // Démarrer l'activité PhoneNumberNewAccount ici
-                val phoneIntent = Intent(this@Create_account, PhoneNumberNewAccount::class.java)
+                val phoneIntent = Intent(this@Create_account, EmailCheck::class.java)
                 startActivity(phoneIntent)
             }
+
+            override fun onEmailSentSuccessfully() {
+                // Traitement à effectuer lorsque l'e-mail est envoyé avec succès
+                Log.d("reussi", "bravo")
+            }
         }
+
 
         viewModel.result.observe(this, Observer { result ->
             // Mettre à jour l'interface utilisateur en fonction du résultat (par exemple, afficher un toast)

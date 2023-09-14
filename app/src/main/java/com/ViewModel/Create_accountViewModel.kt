@@ -11,6 +11,13 @@ import com.View.PinsNewAccount
 import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.mail.*
+import javax.mail.internet.InternetAddress
+import javax.mail.internet.MimeMessage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class Create_accountViewModel : ViewModel() {
 
@@ -18,38 +25,56 @@ class Create_accountViewModel : ViewModel() {
     val result: LiveData<String> get() = _result
 
     // Créez une interface pour gérer les événements de navigation
-    interface NavigationListener {
+   /* interface NavigationListener {
         fun onVerificationSuccess()
     }
 
     // Propriété pour écouter les événements de navigation
+    var navigationListener: NavigationListener? = null */
+    interface NavigationListener {
+        fun onVerificationSuccess(codeVerification: String)
+        fun onEmailSentSuccessfully()
+    }
+
     var navigationListener: NavigationListener? = null
 
-    fun createAccount(email: String, password: String, birthdate: String) {
-        // Créez le compte utilisateur avec email et mot de passe
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val user = task.result?.user
 
-                    // Envoi d'un email de vérification à l'utilisateur
-                    user?.sendEmailVerification()
-                        ?.addOnCompleteListener { verificationTask ->
-                            if (verificationTask.isSuccessful) {
-                                val message = "Verification email sent to ${user.email}"
-                                _result.postValue(message)
+    fun sendEmailToUser(email: String, codeVerification: String) {
+        GlobalScope.launch(Dispatchers.IO) {
+            // Effectuer l'envoi d'e-mail dans un thread séparé
+            val properties = Properties()
+            properties.put("mail.smtp.host", "smtp.gmail.com")
+            properties.put("mail.smtp.port", "587")
+            properties.put("mail.smtp.auth", "true")
+            properties.put("mail.smtp.starttls.enable", "true")
 
-                                // Signalez le succès de la vérification à la vue
-                                navigationListener?.onVerificationSuccess()
-                            } else {
-                                val errorMessage = "Failed to send verification email."
-                                _result.postValue(errorMessage)
-                            }
-                        }
-                } else {
-                    val errorMessage = "Failed to create user: ${task.exception?.message}"
-                    _result.postValue(errorMessage)
+            val session = Session.getDefaultInstance(properties, object : Authenticator() {
+                override fun getPasswordAuthentication(): PasswordAuthentication {
+                    return PasswordAuthentication("chevin.pierre.tomas@gmail.com", "dhdyefdnerzgivcz")
+                }
+            })
+
+            try {
+                val message = MimeMessage(session)
+                message.setFrom(InternetAddress("chevin.pierre.tomas@gmail.com"))
+                message.addRecipient(Message.RecipientType.TO, InternetAddress(email))
+                message.subject = "Code de vérification"
+                message.setText("Votre code de vérification est : $codeVerification")
+
+                // Envoyez l'e-mail
+                Transport.send(message)
+
+                // L'e-mail a été envoyé avec succès
+                withContext(Dispatchers.Main) {
+                    navigationListener?.onVerificationSuccess(codeVerification)
+                    navigationListener?.onEmailSentSuccessfully()
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // Une erreur s'est produite lors de l'envoi de l'e-mail
+                withContext(Dispatchers.Main) {
+                    _result.postValue("Failed to send email.")
                 }
             }
-    }
-}
+        }
+    }}
