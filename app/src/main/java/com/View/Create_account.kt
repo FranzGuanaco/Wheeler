@@ -65,8 +65,6 @@ class Create_account : AppCompatActivity() {
         binding.CreateAccount.setOnClickListener {
             // données entrées dans les inputs par les utilisateurs
             val email = binding.email.text.toString().trim()
-            val password = binding.password.text.toString().trim()
-            val birthdate = binding.date.text.toString().trim()
             val codeVerification = generateRandomCode()
             Log.d("Create_accountViewModel", "onVerificationSuccess called with code: $codeVerification")
 
@@ -81,13 +79,25 @@ class Create_account : AppCompatActivity() {
             override fun onVerificationSuccess(codeVerification: String) {
                 Log.d("Create_accountViewModel", "onVerificationSuccess called with code: $codeVerification")
                 // Démarrer l'activité PhoneNumberNewAccount ici
+                val email = binding.email.text.toString().trim()
+                val password = binding.password.text.toString().trim()
+                val birthdate = binding.date.text.toString().trim()
                 val phoneIntent = Intent(this@Create_account, EmailCheck::class.java)
-                startActivity(phoneIntent)
+                startActivity(phoneIntent
+                    .putExtra ("codeVerification", codeVerification)
+                    .putExtra ("email", email)
+                    .putExtra ("password", password)
+                    .putExtra ("birthdate", birthdate)
+                )
             }
 
             override fun onEmailSentSuccessfully() {
                 // Traitement à effectuer lorsque l'e-mail est envoyé avec succès
                 Log.d("reussi", "bravo")
+            }
+            override fun onEmailNotSentSuccessfully() {
+                // Traitement à effectuer lorsque l'e-mail est envoyé avec succès
+                Log.d("raté", "l'utilisateur existe deja")
             }
         }
 
