@@ -8,38 +8,42 @@
 
     <FrameLayout
         android:id="@+id/frameLayout"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="104dp"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_marginStart="90dp"
         android:layout_marginTop="132dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <!-- Cercle -->
+
         <RelativeLayout
-            android:layout_width="128dp"
-            android:layout_height="128dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:background="@drawable/circle">
+            android:background="@drawable/circleimage">
 
             <!-- Photo -->
             <ImageView
                 android:id="@+id/userPic"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/circle"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="35dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/pixelavatar" />
+                android:src="@drawable/pixel_avatar_removebg" />
 
         </RelativeLayout>
 
         <ImageButton
             android:id="@+id/addPic"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="bottom|end"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
             android:background="@android:color/transparent"
             android:src="@mipmap/addbox" />
 
@@ -47,11 +51,12 @@
 
     </FrameLayout>
 
+
     <Button
         android:id="@+id/Validate"
         android:layout_width="300dp"
         android:layout_height="64dp"
-        android:layout_marginBottom="128dp"
+        android:layout_marginBottom="124dp"
         android:background="@drawable/button_style"
         android:text="Validate"
         android:textAllCaps="false"
@@ -61,24 +66,36 @@
         app:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
-
 
     <EditText
         android:id="@+id/Name"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="436dp"
-        android:layout_marginRight="11dp"
+        android:layout_marginTop="420dp"
+        android:layout_marginRight="30dp"
         android:background="@drawable/edittext_style"
         android:hint="Name"
         android:padding="11dp"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.657"
+        app:layout_constraintHorizontal_bias="0.63"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:text="Ajoutez une photo de profil"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
