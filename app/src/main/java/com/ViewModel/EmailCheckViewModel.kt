@@ -30,7 +30,7 @@ class EmailCheckViewModel: ViewModel() {
                         ?.addOnCompleteListener { verificationTask ->
                             if (verificationTask.isSuccessful) {
                                 val message = "Verification email sent to ${user.email}"
-                                _accountcreated.postValue(message) // Assurez-vous que message est une chaîne (String)
+                                _accountcreated.postValue(message)
 
                                 // Signalez le succès de la vérification à la vue
                                 navigationListener?.onVerificationSuccess()
